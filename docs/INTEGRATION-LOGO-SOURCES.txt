@@ -1,0 +1,110 @@
+GridCommerce Website Logo Pack — PNG only
+
+Folders:
+01-payment  Payment gateways, wallets, cards, and bank marks
+02-courier  Courier and delivery partner marks
+03-channels  Social, messaging, commerce, and website chat marks
+04-marketing Advertising, messaging, email, and analytics marks
+
+Usage:
+- All logo artwork remains the trademark/property of its respective owner.
+- Use these files only to identify supported services or approved partnerships/integrations.
+- Do not recolor, distort, crop, or imply endorsement.
+- Confirm partner approval and current brand rules before publishing.
+
+Sources:
+01-payment/bkash.png
+  https://en.wikipedia.org/wiki/File:BKash_logo.svg
+  Rendered PNG of the current bKash logo; trademarked.
+01-payment/nagad.png
+  https://www.nagad.com.bd/_nuxt/img/new-logo.14fe8a5.png
+  Official current PNG from Nagad website.
+01-payment/sslcommerz.png
+  https://sslcommerz.com/wp-content/uploads/2021/11/logo.png
+  Official PNG from SSLCOMMERZ website.
+01-payment/rocket.png
+  https://commons.wikimedia.org/wiki/File:Rocket_mobile_banking_logo.svg
+  Supplemental payment logo; transparent PNG rendering.
+01-payment/upay.png
+  https://commons.wikimedia.org/wiki/File:Upay_logo.svg
+  Supplemental payment logo; transparent PNG rendering.
+01-payment/dbbl.png
+  https://commons.wikimedia.org/wiki/File:Dutch-bangla-bank-ltd.svg
+  Supplemental bank/payment logo; transparent PNG rendering.
+01-payment/visa.png
+  https://commons.wikimedia.org/wiki/File:Visa_Inc._logo_(2021%E2%80%93present).svg
+  Current Visa wordmark; transparent PNG rendering.
+01-payment/mastercard.png
+  https://commons.wikimedia.org/wiki/File:Mastercard_2019_logo.svg
+  Current Mastercard symbol; transparent PNG rendering.
+01-payment/aamarpay.png
+  https://aamarpay.com/images/logo/aamarpay_logo.png
+  Official PNG from the aamarPay website.
+01-payment/bank-transfer.png
+  GridCommerce asset pack
+  Brand-neutral bank transfer UI icon; not a company logo.
+02-courier/pathao.png
+  https://pathao.com/press-kit/
+  Official full-color logo from Pathao press kit.
+02-courier/pathao-white.png
+  https://pathao.com/wp-content/uploads/2023/10/logo_white_pathao.svg
+  Official white variant for dark backgrounds.
+02-courier/steadfast.png
+  https://www.steadfast.com.bd/
+  Official website logo.
+02-courier/carrybee-dark-background.png
+  https://carrybee.com/
+  Official PNG from CarryBee website; use on a dark background.
+02-courier/paperfly.png
+  https://paperfly.com.bd/
+  Official website logo.
+02-courier/redx.png
+  https://redx.com.bd/images/new-redx-logo.svg
+  Official website logo.
+02-courier/ecourier.png
+  https://ecourier.com.bd/resources/
+  Official website/media-kit logo.
+02-courier/ecourier-white.png
+  https://ecourier.com.bd/wp-content/themes/ecourier-2.0/images/logo-footer.svg
+  Official white variant for dark backgrounds.
+02-courier/sa-paribahan.png
+  https://www.saparibahan.com/images/logo.webp
+  Official logo image from the S.A. Paribahan website.
+03-channels/facebook-page.png
+  https://commons.wikimedia.org/wiki/File:2023_Facebook_icon.svg
+  Facebook service icon; transparent PNG rendering.
+03-channels/messenger.png
+  https://commons.wikimedia.org/wiki/File:Facebook_Messenger_logo_2020.svg
+  Facebook Messenger service icon; transparent PNG rendering.
+03-channels/whatsapp-business.png
+  https://commons.wikimedia.org/wiki/File:WhatsApp.svg
+  WhatsApp service icon used for the WhatsApp Business channel.
+03-channels/instagram.png
+  https://commons.wikimedia.org/wiki/File:Instagram_logo_2022.svg
+  Instagram service icon; transparent PNG rendering.
+03-channels/tiktok-shop.png
+  https://commons.wikimedia.org/wiki/File:Tiktok_icon.svg
+  TikTok service icon used for the TikTok Shop channel.
+03-channels/website-chat.png
+  GridCommerce asset pack
+  Brand-neutral website chat UI icon; not a company logo.
+04-marketing/meta-ads.png
+  https://commons.wikimedia.org/wiki/File:Meta_Platforms_Inc._logo.svg
+  Meta company mark used for the Meta Ads integration.
+04-marketing/google-ads.png
+  https://commons.wikimedia.org/wiki/File:Google_Ads_icon.svg
+  Google Ads service icon; transparent PNG rendering.
+04-marketing/tiktok-ads.png
+  https://commons.wikimedia.org/wiki/File:Tiktok_icon.svg
+  TikTok service icon used for the TikTok Ads integration.
+04-marketing/sms-gateway.png
+  GridCommerce asset pack
+  Brand-neutral SMS gateway UI icon; not a company logo.
+04-marketing/email.png
+  GridCommerce asset pack
+  Brand-neutral email UI icon; not a company logo.
+04-marketing/google-analytics.png
+  https://commons.wikimedia.org/wiki/File:GAnalytics.svg
+  Google Analytics service icon; transparent PNG rendering.
+
+Updated: 2026-09-14
