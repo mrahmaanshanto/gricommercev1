@@ -1,138 +1,174 @@
 /**
  * Homepage copy.
  *
- * Moved verbatim out of the original homepage components when the Brand
- * Guidelines design became the site's only design. No string was changed.
+ * From the owner's "Website Copy & Claude Handoff · Revised" (14 Sept 2026),
+ * sections H02–H08. English and Bangla are separately authored versions: edit
+ * them together, and never regenerate one from the other. The eight module
+ * cards (H04) live in `data/copy/modules.ts`.
  */
-import {
-  Boxes, ChartColumn, ClipboardList, Globe, MessageCircle, Notebook,
-  ScanBarcode, Smartphone, Table, Truck,
-} from "lucide-react";
-import { loc } from "@/i18n/types";
+import { loc, type Localized } from "@/i18n/types";
 
+type FaqItem = {
+  id: string;
+  question: Localized;
+  answer: Localized;
+  /** An existing deeper page the answer points to. */
+  link?: string;
+};
+
+/** H02 */
 export const HERO_COPY = {
-  eyebrow: loc("Commerce software for Bangladesh", "বাংলাদেশের কমার্স সফটওয়্যার"),
+  eyebrow: loc(
+    "Commerce software for Bangladeshi businesses",
+    "বাংলাদেশের অনলাইন, রিটেইল ও হোলসেল ব্যবসার সমন্বিত ই-কমার্স সলিউশন",
+  ),
   /* The headline breaks into a plain clause and an accent clause — the
      colour, not a heavier weight, is what carries the emphasis. */
-  headline: loc("Run your entire commerce business", "পুরো ব্যবসাটা চালান"),
-  headlineAccent: loc("from one place.", "এক জায়গা থেকে।"),
+  headline: loc("Sales, stock, dues and profit.", "সেলস, স্টক, বকেয়া ও মুনাফা।"),
+  headlineAccent: loc("Connected.", "ব্যবসার নিয়ন্ত্রণ এক প্ল্যাটফর্মে।"),
   sub: loc(
-    "Online store, orders, Facebook and WhatsApp messages, POS, inventory, courier, cash on delivery, customers and analytics — connected, in one system.",
-    "অনলাইন স্টোর, অর্ডার, ফেসবুক আর হোয়াটসঅ্যাপের মেসেজ, পিওএস, স্টক, কুরিয়ার, ক্যাশ অন ডেলিভারি, কাস্টমার আর হিসাব — সব একসাথে, এক সিস্টেমে।",
+    "Manage your online store, phone orders and counter sales with connected stock and customer records. Keep courier dues, daily cash and business costs in view, so you know what needs attention.",
+    "অনলাইন স্টোর, ফোনে আসা অর্ডার ও রিটেইল কাউন্টারের সেলস পরিচালনা করুন লাইভ স্টক ও কাস্টমার ডেটার সমন্বয়ে। কুরিয়ার পেমেন্ট, দৈনিক ক্যাশ ফ্লো ও ব্যবসায়িক ব্যয়ের হিসাব একসঙ্গে পর্যালোচনা করে সময়মতো সিদ্ধান্ত নিন।",
   ),
-  reassure: loc(
-    "Free to start · No card needed · Works in Bangla and English",
-    "শুরু করা ফ্রি · কার্ড লাগবে না · বাংলা ও ইংরেজি দুটোতেই",
+  exploreModules: loc("Explore the Modules", "মডিউলসমূহ দেখুন"),
+  microcopy: loc(
+    "Tell us how you sell. See the workflow that fits your business.",
+    "আপনার ব্যবসার মডেল আমাদের জানান। প্রয়োজনীয় মডিউল ও কাজের প্রক্রিয়া ডেমোতে দেখুন।",
   ),
 };
 
-export const HERO_CHANNELS = [
-  loc("Website", "ওয়েবসাইট"),
-  loc("Landing page", "ল্যান্ডিং পেজ"),
-  loc("Facebook", "ফেসবুক"),
-  loc("WhatsApp", "হোয়াটসঅ্যাপ"),
-  loc("Phone", "ফোন"),
-  loc("Counter", "কাউন্টার"),
-];
-
-export const HERO_CARDS = {
-  message: {
-    name: loc("Nusrat Jahan", "নুসরাত জাহান"),
-    text: loc("Is the blue one still available?", "নীল রঙেরটা কি আছে?"),
-    channel: loc("Messenger", "মেসেঞ্জার"),
-  },
-  order: { title: loc("Order confirmed", "অর্ডার কনফার্ম"), id: "#GC-10482", amount: "৳ 2,450" },
-};
-
-export const FRAGMENTATION_COPY = {
-  eyebrow: loc("The problem", "সমস্যাটা"),
-  headline: loc(
-    "Your business shouldn't live in ten different tabs.",
-    "দশটা আলাদা ট্যাবে ব্যবসা চালানোর কথা নয়।",
-  ),
+/** H03 */
+export const PROBLEM_COPY = {
+  title: loc("Know where your business needs attention.", "ব্যবসার অগ্রাধিকার নির্ধারণ করুন, প্রয়োজনীয় পদক্ষেপ নিন।"),
   body: loc(
-    "Bring orders, stock, customers, payments, messages and marketing together.",
-    "অর্ডার, স্টক, কাস্টমার, পেমেন্ট, মেসেজ আর মার্কেটিং — সব একসাথে আনুন।",
+    "Start with the questions your team answers every day.",
+    "প্রতিদিনের অর্ডার, পেমেন্ট ও মুনাফার চিত্র একসঙ্গে পর্যালোচনা করুন।",
   ),
-  after: loc("All together. More commerce.", "সব একসাথে। আরও কমার্স।"),
+  prompts: [
+    { icon: "ClipboardList", text: loc("Which orders still need confirmation?", "কোন অর্ডারগুলো দ্রুত কনফার্ম করা প্রয়োজন?") },
+    { icon: "Truck", text: loc("How much cash is still with the courier?", "কুরিয়ার পার্টনারের কাছে কত পেমেন্ট বকেয়া রয়েছে?") },
+    { icon: "ChartPie", text: loc("Which products leave a margin after costs?", "আনুষঙ্গিক খরচ বাদে কোন প্রোডাক্টে কত মুনাফা হচ্ছে?") },
+  ],
 };
 
-export const FRAGMENTATION_TOOLS = [
-  { icon: MessageCircle, label: loc("Messenger", "মেসেঞ্জার"), x: -34, y: -30 },
-  { icon: Smartphone, label: loc("WhatsApp", "হোয়াটসঅ্যাপ"), x: 31, y: -32 },
-  { icon: Table, label: loc("Excel", "এক্সেল"), x: -40, y: 5 },
-  { icon: Truck, label: loc("Courier dashboard", "কুরিয়ার ড্যাশবোর্ড"), x: 39, y: 4 },
-  { icon: ScanBarcode, label: loc("POS", "পিওএস"), x: -28, y: 33 },
-  { icon: Globe, label: loc("Website", "ওয়েবসাইট"), x: 26, y: 35 },
-  { icon: ChartColumn, label: loc("Meta Ads", "মেটা অ্যাডস"), x: -13, y: -40 },
-  { icon: ClipboardList, label: loc("Analytics", "অ্যানালিটিক্স"), x: 11, y: -41 },
-  { icon: Notebook, label: loc("Notebook", "খাতা"), x: -7, y: 41 },
-  { icon: Boxes, label: loc("Separate inventory", "আলাদা স্টক হিসাব"), x: 14, y: 42 },
-];
-
-export const CAPABILITY_COPY = {
-  eyebrow: loc("One platform, six jobs", "একটাই প্ল্যাটফর্ম, ছয়টা কাজ"),
-  title: loc("Everything a commerce business does.", "একটা কমার্স ব্যবসা যা যা করে।"),
-  body: loc(
-    "Not six products with a shared login — six views of the same orders, stock, customers and cash.",
-    "একই লগইনে ছয়টা আলাদা প্রোডাক্ট নয় — একই অর্ডার, স্টক, কাস্টমার আর ক্যাশের ছয়টা দৃশ্য।",
-  ),
-};
-
-export const ORDER_DETAIL_COPY = {
-  eyebrow: loc("The order, up close", "অর্ডারটা, কাছ থেকে"),
-  title: loc("One screen holds the whole order.", "একটা স্ক্রিনেই পুরো অর্ডার।"),
-  body: loc(
-    "The conversation, the items, the courier, the money and the history are properties of the order — not five places you go to find out what happened.",
-    "কথোপকথন, পণ্য, কুরিয়ার, টাকা আর ইতিহাস — সবই অর্ডারেরই অংশ, কী হয়েছে জানতে পাঁচ জায়গায় যেতে হয় না।",
-  ),
-  pending: loc(
-    "Layout shown with the orders workspace capture. The dedicated order-detail screenshot is still to be supplied — see docs/ASSETS.md.",
-    "অর্ডার ওয়ার্কস্পেসের ছবি দিয়ে লেআউট দেখানো হচ্ছে। অর্ডার ডিটেইলের আলাদা ছবি এখনো দেওয়া হয়নি।",
-  ),
-};
-
-export const ORDER_DETAIL_NOTES = [
-  { id: "thread", icon: "MessagesSquare", accent: "violet",
-    label: loc("The conversation", "কথোপকথন"),
-    detail: loc("Every message that led to this order, in one thread.", "এই অর্ডার পর্যন্ত আসা সব মেসেজ, এক থ্রেডে।"),
-    pos: "lg:absolute lg:-left-8 lg:top-[12%] xl:-left-16" },
-  { id: "courier", icon: "Truck", accent: "orange",
-    label: loc("Courier and tracking", "কুরিয়ার আর ট্র্যাকিং"),
-    detail: loc("Booked, picked up, in transit — without a courier panel.", "বুকড, পিকআপ, পথে — কুরিয়ার প্যানেল ছাড়াই।"),
-    pos: "lg:absolute lg:-right-8 lg:top-[6%] xl:-right-16" },
-  { id: "cash", icon: "Banknote", accent: "green",
-    label: loc("Cash position", "টাকার অবস্থা"),
-    detail: loc("What is owed, by whom, and whether it has been reconciled.", "কত পাওনা, কার কাছে, আর মিলেছে কি না।"),
-    pos: "lg:absolute lg:-left-6 lg:bottom-[14%] xl:-left-14" },
-  { id: "history", icon: "History", accent: "brand",
-    label: loc("Action history", "কাজের ইতিহাস"),
-    detail: loc("Who changed what on this order, and when.", "এই অর্ডারে কে কী বদলেছে, কখন।"),
-    pos: "lg:absolute lg:-right-6 lg:bottom-[24%] xl:-right-14" },
-] as const;
-
-export const STORIES_COPY = {
-  eyebrow: loc("Merchants", "মার্চেন্ট"),
-  title: loc("The people this is built for.", "যাদের জন্য এটা তৈরি।"),
-  body: loc(
-    "Boutiques, electronics counters, home businesses and cosmetics shops — the shape of commerce in urban Bangladesh.",
-    "বুটিক, ইলেকট্রনিকসের দোকান, ঘরে বসে চালানো ব্যবসা আর কসমেটিকসের দোকান — শহুরে বাংলাদেশের ব্যবসা এমনই।",
-  ),
-  sampleNote: loc(
-    "Sample stories with generated photography. No real merchant is quoted or depicted, and no figure here is evidenced.",
-    "নমুনা গল্প আর তৈরি করা ছবি। কোনো আসল মার্চেন্টের উক্তি বা ছবি নয়, কোনো সংখ্যারই প্রমাণ নেই।",
-  ),
-};
-
-export const MIGRATION_CTA = loc("See how migration works", "মাইগ্রেশন কীভাবে হয় দেখুন");
-
-export const CTA_COPY = {
+/** H04 heading. The cards are `MODULES` in data/copy/modules.ts. */
+export const MODULES_COPY = {
   title: loc(
-    "Your business is already connected. Your software should be too.",
-    "আপনার ব্যবসা তো একসাথেই চলে। সফটওয়্যারটাও একসাথে চলুক।",
+    "Choose the part of your business you want to organise first.",
+    "আপনার ব্যবসার প্রয়োজন অনুযায়ী মডিউল নির্বাচন করুন।",
   ),
   body: loc(
-    "Start with what you sell today, and add the rest when you need it.",
-    "যা এখন বিক্রি করছেন তা দিয়েই শুরু করুন, বাকিটা পরে যোগ করুন।",
+    "Eight connected areas for the work you do every day.",
+    "দৈনন্দিন কার্যক্রম পরিচালনার জন্য পরস্পরের সঙ্গে সংযুক্ত আটটি মডিউল গ্রুপ।",
   ),
 };
+
+/** H05 */
+export const PROOF_COPY = {
+  title: loc("From an online order to stock, cash and margin.", "অনলাইন অর্ডার থেকে মুনাফা, প্রতিটি ধাপের সমন্বিত হিসাব।"),
+  body: loc(
+    "Follow one COD order through the business. Its stock, courier charges and settlement records help explain the result of the sale.",
+    "একটি COD অর্ডার প্রসেসিংয়ের প্রতিটি ধাপ পর্যবেক্ষণ করুন। স্টক রিজার্ভেশন, কুরিয়ার চার্জ ও পেমেন্ট সেটেলমেন্টের তথ্য মিলিয়ে সেলস পারফরম্যান্স মূল্যায়ন করুন।",
+  ),
+  steps: [
+    loc("Confirm the order", "অর্ডার কনফার্মেশন"),
+    loc("Reserve and dispatch stock", "স্টোরের নিয়ম অনুযায়ী স্টক রিজার্ভেশন ও ডিসপ্যাচ"),
+    loc("Record delivery and courier dues", "ডেলিভারি ও কুরিয়ারের কাছে পাওনা রেকর্ড"),
+    loc("Match payment and review recorded costs", "পেমেন্ট রিকনসিলিয়েশন ও খরচ পর্যালোচনা"),
+  ],
+  caption: loc("Follow an order in the demo.", "ডেমোতে একটি অর্ডারের সম্পূর্ণ প্রক্রিয়া পর্যবেক্ষণ করুন।"),
+};
+
+/** H06 — replaces the Solutions cards; links keep the existing solution routes. */
+export const BUSINESS_TYPES_COPY = {
+  title: loc("Start with the way your business sells.", "আপনার ব্যবসার মডেল অনুযায়ী সমাধান।"),
+  types: [
+    {
+      id: "online",
+      icon: "Globe",
+      href: "/solutions/online-commerce",
+      title: loc("Online businesses", "অনলাইন ব্যবসা"),
+      body: loc(
+        "Bring your store, campaign pages, order confirmation, courier dues and customer follow-up into connected workflows.",
+        "স্টোর, ক্যাম্পেইন পেজ, অর্ডার কনফার্মেশন, কুরিয়ার সেটেলমেন্ট ও কাস্টমার ফলোআপ সমন্বিতভাবে পরিচালনা করুন।",
+      ),
+    },
+    {
+      id: "retail",
+      icon: "Store",
+      href: "/solutions/retail-commerce",
+      title: loc("Retail businesses", "রিটেইল ব্যবসা"),
+      body: loc(
+        "Run counter sales with branch stock, purchasing, expenses and a clear daily cash close.",
+        "কাউন্টার সেলসের সঙ্গে ব্রাঞ্চভিত্তিক স্টক, পারচেজ, দৈনিক খরচ ও ক্যাশ ক্লোজিংয়ের হিসাব সমন্বয় করুন।",
+      ),
+    },
+    {
+      id: "wholesale",
+      icon: "Handshake",
+      href: "/solutions/wholesale-commerce",
+      title: loc("Wholesale businesses", "হোলসেল ব্যবসা"),
+      body: loc(
+        "Manage dealer prices, credit sales, customer dues, collections and supplier balances.",
+        "ডিলার প্রাইসিং, ক্রেডিট সেলস, কাস্টমারের বকেয়া, পেমেন্ট কালেকশন ও সাপ্লায়ারের পাওনা এক সিস্টেমে পরিচালনা করুন।",
+      ),
+    },
+  ],
+};
+
+/** H07 */
+export const FAQ_COPY = {
+  title: loc("Before you choose your setup", "সেটআপ ও সাবস্ক্রিপশন সম্পর্কে প্রয়োজনীয় তথ্য"),
+  items: [
+    {
+      id: "modules",
+      question: loc("Do I need every module?", "সব মডিউল কি একসঙ্গে সাবস্ক্রাইব করতে হবে?"),
+      answer: loc(
+        "No. Available modules and limits depend on your plan. Review what you need for online, retail, wholesale or a combination.",
+        "না। আপনার সাবস্ক্রিপশন প্ল্যান অনুযায়ী মডিউল ও ব্যবহারের সীমা নির্ধারিত হয়। অনলাইন, রিটেইল, হোলসেল বা একাধিক ব্যবসার ধরন অনুযায়ী প্রয়োজনীয় ফিচারসহ সেটআপ নির্বাচন করুন।",
+      ),
+      link: "/pricing",
+    },
+    {
+      id: "data",
+      question: loc("Can I bring my existing business data?", "পূর্ববর্তী সিস্টেমের ডেটা কি ইমপোর্ট করা সম্ভব?"),
+      answer: loc(
+        "Import products, customers, suppliers and opening balances from spreadsheets. For an existing WooCommerce store, review the migration pre-scan and test import before transferring the full store.",
+        "হ্যাঁ। স্প্রেডশিট থেকে প্রোডাক্ট, কাস্টমার, সাপ্লায়ার ও ওপেনিং ব্যালেন্স ইমপোর্ট করা যায়। বিদ্যমান WooCommerce স্টোরের সম্পূর্ণ মাইগ্রেশনের আগে প্রি-স্ক্যান ও টেস্ট ইমপোর্টের মাধ্যমে ডেটা যাচাই করা যায়।",
+      ),
+      link: "/migration",
+    },
+    {
+      id: "access",
+      question: loc("Will every staff member see everything?", "টিমের ডেটা অ্যাক্সেস কি নিয়ন্ত্রণ করা যায়?"),
+      answer: loc(
+        "Assign role-based access and approvals, including who may see cost prices or approve sensitive changes.",
+        "হ্যাঁ। দায়িত্ব অনুযায়ী ডেটা অ্যাক্সেস ও অনুমোদনের ক্ষমতা নির্ধারণ করা যায়। কে পারচেজ প্রাইস দেখতে পারবেন বা গুরুত্বপূর্ণ পরিবর্তন অনুমোদন করবেন, তা অ্যাডমিন নির্ধারণ করতে পারবেন।",
+      ),
+    },
+    {
+      id: "credits",
+      question: loc("Do messages and AI usage cost extra?", "মেসেজিং ও AI ব্যবহারের জন্য কি অতিরিক্ত চার্জ প্রযোজ্য?"),
+      answer: loc(
+        "SMS, WhatsApp, email and AI generation use metered credits. Check module access and usage charges when choosing your plan.",
+        "SMS, WhatsApp, ইমেইল ও AI generation-এ ব্যবহার অনুযায়ী ক্রেডিট প্রয়োজন হয়। সাবস্ক্রিপশন প্ল্যান নির্বাচনের সময় মডিউল অ্যাক্সেস ও ব্যবহারের চার্জ পর্যালোচনা করুন।",
+      ),
+      link: "/pricing",
+    },
+  ] as FaqItem[],
+};
+
+/** H08 */
+export const CTA_COPY = {
+  title: loc("See how GridCommerce fits your daily business.", "আপনার ব্যবসার কার্যক্রম আরও সুসংগঠিত করুন।"),
+  body: loc(
+    "Show us how you take orders, manage stock and collect payments. Explore the relevant workflows in a demo.",
+    "অর্ডার প্রসেসিং, ইনভেন্টরি ও পেমেন্ট কালেকশনে আপনার প্রয়োজন আমাদের জানান। GridCommerce-এর প্রাসঙ্গিক মডিউলগুলো সরাসরি দেখতে ডেমো সেশন বুক করুন।",
+  ),
+};
+
+/** Footer short brand description. */
+export const FOOTER_DESCRIPTION = loc(
+  "Connected sales, stock, collections and business reports for online, retail and wholesale businesses in Bangladesh.",
+  "বাংলাদেশের অনলাইন, রিটেইল ও হোলসেল ব্যবসার জন্য সমন্বিত ই-কমার্স ও ব্যবসা পরিচালনার সলিউশন। সেলস, ইনভেন্টরি, বকেয়া আদায় ও মুনাফার রিপোর্ট এক প্ল্যাটফর্মে।",
+);

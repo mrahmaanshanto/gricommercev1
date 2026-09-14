@@ -1,4 +1,6 @@
 import { loc, type Localized } from "@/i18n/types";
+import { BUSINESS_TYPES_COPY } from "@/data/copy/home";
+import { MODULES } from "@/data/copy/modules";
 
 export type NavLink = {
   label: Localized;
@@ -29,188 +31,54 @@ export type MegaMenu = {
   };
 };
 
+/** The eight primary modules, in homepage order, named and described as the
+ *  homepage grid (H04) names them. */
+const MODULE_LINKS: NavLink[] = MODULES.map((m) => ({
+  label: m.name,
+  description: m.hook,
+  href: `/features/${m.slug}`,
+  icon: m.icon,
+}));
+
+/** Supporting feature pages. They link in from the menu without repeating the
+ *  module copy. */
+const SUPPORTING_LINKS: NavLink[] = [
+  { label: loc("Landing Pages", "ল্যান্ডিং পেজ"), href: "/features/landing-pages", icon: "LayoutTemplate" },
+  { label: loc("Warehouse", "Warehouse"), href: "/features/warehouse", icon: "Warehouse" },
+  { label: loc("Products", "প্রোডাক্ট"), href: "/features/products", icon: "Package" },
+  { label: loc("Customers", "কাস্টমার"), href: "/features/customers", icon: "Users" },
+  { label: loc("Payments", "পেমেন্ট"), href: "/features/payments", icon: "CreditCard" },
+  { label: loc("Cash & Expenses", "ক্যাশ ও খরচ"), href: "/features/cash-and-expenses", icon: "Wallet" },
+  { label: loc("Cart Recovery", "কার্ট রিকভারি"), href: "/features/cart-recovery", icon: "ShoppingCart" },
+  { label: loc("Reviews", "রিভিউ"), href: "/features/reviews", icon: "Star" },
+  { label: loc("AI Product Creation", "AI প্রোডাক্ট ড্রাফট"), href: "/features/ai-product-creation", icon: "Sparkles" },
+  { label: loc("Reports", "রিপোর্ট"), href: "/features/reports", icon: "FileBarChart" },
+  { label: loc("Staff & Permissions", "স্টাফ ও অনুমতি"), href: "/features/staff-permissions", icon: "ShieldCheck" },
+];
+
+/** A continuation column carries no heading of its own; the non-breaking space
+ *  keeps its links aligned with the column beside it. */
+const CONTINUED = loc(" ", " ");
+
 export const MEGA_MENUS: MegaMenu[] = [
   {
     id: "products",
-    label: loc("Products", "প্রোডাক্ট"),
+    label: loc("Modules", "মডিউল"),
     columns: [
-      {
-        title: loc("Commerce", "কমার্স"),
-        accent: "brand",
-        links: [
-          {
-            label: loc("Online Store", "অনলাইন স্টোর"),
-            description: loc("Themes, checkout and your own domain", "থিম, চেকআউট আর নিজের ডোমেইন"),
-            href: "/features/storefront",
-            icon: "Store",
-          },
-          {
-            label: loc("Orders", "অর্ডার"),
-            description: loc("Every channel in one workflow", "সব চ্যানেলের অর্ডার এক জায়গায়"),
-            href: "/features/orders",
-            icon: "ClipboardList",
-          },
-          {
-            label: loc("Products", "প্রোডাক্ট"),
-            description: loc("Variants, pricing and media", "ভ্যারিয়েন্ট, দাম আর ছবি"),
-            href: "/features/products",
-            icon: "Package",
-          },
-          {
-            label: loc("Inventory", "ইনভেন্টরি"),
-            description: loc("Know what you have, and why", "কত স্টক আছে, কেন আছে"),
-            href: "/features/inventory",
-            icon: "Boxes",
-          },
-          {
-            label: loc("Customers", "কাস্টমার"),
-            description: loc("One profile behind every order", "প্রতিটি অর্ডারের পেছনের মানুষটি"),
-            href: "/features/customers",
-            icon: "Users",
-          },
-          {
-            label: loc("Payments", "পেমেন্ট"),
-            description: loc("Online, mobile wallet and cash", "অনলাইন, মোবাইল ওয়ালেট আর ক্যাশ"),
-            href: "/features/payments",
-            icon: "CreditCard",
-          },
-        ],
-      },
-      {
-        title: loc("Sell Everywhere", "সব জায়গায় বিক্রি"),
-        accent: "cyan",
-        links: [
-          {
-            label: loc("POS", "পিওএস"),
-            description: loc("Counter selling with shared stock", "দোকানের কাউন্টার, একই স্টক"),
-            href: "/features/pos",
-            icon: "ScanBarcode",
-          },
-          {
-            label: loc("Landing Pages", "ল্যান্ডিং পেজ"),
-            description: loc("Built for ad traffic", "অ্যাড ট্রাফিকের জন্য তৈরি"),
-            href: "/features/landing-pages",
-            icon: "LayoutTemplate",
-          },
-          {
-            label: loc("Wholesale", "হোলসেল"),
-            description: loc("Dealer pricing and credit", "ডিলার প্রাইস আর বাকি"),
-            href: "/features/wholesale",
-            icon: "Handshake",
-          },
-          {
-            label: loc("Warehouse", "ওয়্যারহাউস"),
-            description: loc("Multiple locations and transfers", "একাধিক গুদাম আর ট্রান্সফার"),
-            href: "/features/warehouse",
-            icon: "Warehouse",
-          },
-        ],
-      },
-      {
-        title: loc("Growth", "গ্রোথ"),
-        accent: "mint",
-        links: [
-          {
-            label: loc("Omnichannel Inbox", "সব মেসেজ এক ইনবক্সে"),
-            description: loc("Messenger, WhatsApp and store chat", "মেসেঞ্জার, হোয়াটসঅ্যাপ আর স্টোর চ্যাট"),
-            href: "/features/omnichannel",
-            icon: "MessagesSquare",
-          },
-          {
-            label: loc("Marketing Analytics", "মার্কেটিং অ্যানালিটিক্স"),
-            description: loc("What your ads actually earned", "অ্যাড থেকে আসলে কত এলো"),
-            href: "/features/analytics",
-            icon: "ChartNoAxesCombined",
-          },
-          {
-            label: loc("Cart Recovery", "কার্ট রিকভারি"),
-            description: loc("Bring abandoned carts back", "ফেলে যাওয়া কার্ট ফিরিয়ে আনুন"),
-            href: "/features/cart-recovery",
-            icon: "ShoppingCart",
-          },
-          {
-            label: loc("Reviews", "রিভিউ"),
-            description: loc("Collect and publish with control", "রিভিউ সংগ্রহ ও প্রকাশ"),
-            href: "/features/reviews",
-            icon: "Star",
-          },
-          {
-            label: loc("AI Product Creation", "এআই প্রোডাক্ট ড্রাফট"),
-            description: loc("Draft listings, you approve", "ড্রাফট এআই করে, অনুমোদন আপনার"),
-            href: "/features/ai-product-creation",
-            icon: "Sparkles",
-          },
-        ],
-      },
-      {
-        title: loc("Operations", "অপারেশন"),
-        accent: "butter",
-        links: [
-          {
-            label: loc("Reports", "রিপোর্ট"),
-            description: loc("Sales, stock, cash and profit", "বিক্রি, স্টক, ক্যাশ আর লাভ"),
-            href: "/features/reports",
-            icon: "FileBarChart",
-          },
-          {
-            label: loc("Courier", "কুরিয়ার"),
-            description: loc("Booking, tracking and returns", "বুকিং, ট্র্যাকিং আর রিটার্ন"),
-            href: "/features/courier",
-            icon: "Truck",
-          },
-          {
-            label: loc("Cash & Expenses", "ক্যাশ ও খরচ"),
-            description: loc("Including the COD ledger", "ক্যাশ অন ডেলিভারি হিসাবসহ"),
-            href: "/features/cash-and-expenses",
-            icon: "Wallet",
-          },
-          {
-            label: loc("Staff & Permissions", "স্টাফ ও অনুমতি"),
-            description: loc("Roles, limits and audit trail", "রোল, সীমা আর অডিট"),
-            href: "/features/staff-permissions",
-            icon: "ShieldCheck",
-          },
-        ],
-      },
+      { title: loc("Modules", "মডিউল"), accent: "brand", links: MODULE_LINKS.slice(0, 4) },
+      { title: CONTINUED, accent: "brand", links: MODULE_LINKS.slice(4) },
+      { title: loc("Supporting features", "সহায়ক ফিচার"), accent: "cyan", links: SUPPORTING_LINKS.slice(0, 6) },
+      { title: CONTINUED, accent: "cyan", links: SUPPORTING_LINKS.slice(6) },
     ],
-    feature: {
-      eyebrow: loc("Signature", "বিশেষ"),
-      title: loc("Delivered orders, not just clicks", "ক্লিক নয় — ডেলিভার হওয়া অর্ডার"),
-      body: loc(
-        "GridCommerce reads your own order data next to Meta, Google and TikTok — and never merges the two.",
-        "মেটা, গুগল আর টিকটকের হিসাব আর আপনার নিজের অর্ডারের হিসাব — পাশাপাশি, মেশানো নয়।",
-      ),
-      href: "/features/analytics",
-      cta: loc("See how measurement works", "মাপার পদ্ধতি দেখুন"),
-    },
   },
   {
     id: "solutions",
-    label: loc("Solutions", "সল্যুশন"),
+    label: loc("Business Types", "ব্যবসার ধরন"),
     columns: [
       {
         title: loc("By how you sell", "কীভাবে বিক্রি করেন"),
         accent: "brand",
-        links: [
-          {
-            label: loc("Online Commerce", "অনলাইন কমার্স"),
-            description: loc("Facebook-first sellers and D2C brands", "ফেসবুক সেলার আর ডিটুসি ব্র্যান্ড"),
-            href: "/solutions/online-commerce",
-            icon: "Globe",
-          },
-          {
-            label: loc("Retail Commerce", "রিটেইল কমার্স"),
-            description: loc("Shops, counters and branches", "দোকান, কাউন্টার আর ব্রাঞ্চ"),
-            href: "/solutions/retail-commerce",
-            icon: "Store",
-          },
-          {
-            label: loc("Wholesale Commerce", "হোলসেল কমার্স"),
-            description: loc("Dealers, credit and collections", "ডিলার, বাকি আর আদায়"),
-            href: "/solutions/wholesale-commerce",
-            icon: "Handshake",
-          },
-        ],
+        links: BUSINESS_TYPES_COPY.types.map((type) => ({ label: type.title, href: type.href, icon: type.icon })),
       },
       {
         title: loc("Mixed businesses", "মিশ্র ব্যবসা"),
@@ -268,7 +136,7 @@ export const MEGA_MENUS: MegaMenu[] = [
 ];
 
 export const PRIMARY_NAV: { label: Localized; href: string }[] = [
-  { label: loc("Pricing", "প্রাইসিং"), href: "/pricing" },
+  { label: loc("Pricing", "প্রাইসিং ও প্ল্যান"), href: "/pricing" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -280,25 +148,12 @@ export type FooterColumn = { titleKey: "product" | "solutions" | "resources" | "
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     titleKey: "product",
-    links: [
-      { label: loc("Online Store", "অনলাইন স্টোর"), href: "/features/storefront" },
-      { label: loc("Orders", "অর্ডার"), href: "/features/orders" },
-      { label: loc("Inventory", "ইনভেন্টরি"), href: "/features/inventory" },
-      { label: loc("POS", "পিওএস"), href: "/features/pos" },
-      { label: loc("Wholesale", "হোলসেল"), href: "/features/wholesale" },
-      { label: loc("Courier", "কুরিয়ার"), href: "/features/courier" },
-      { label: loc("Omnichannel Inbox", "অমনিচ্যানেল ইনবক্স"), href: "/features/omnichannel" },
-      { label: loc("Marketing Analytics", "মার্কেটিং অ্যানালিটিক্স"), href: "/features/analytics" },
-      { label: loc("Landing Pages", "ল্যান্ডিং পেজ"), href: "/features/landing-pages" },
-      { label: loc("AI Product Creation", "এআই প্রোডাক্ট ড্রাফট"), href: "/features/ai-product-creation" },
-    ],
+    links: MODULES.map((m) => ({ label: m.name, href: `/features/${m.slug}` })),
   },
   {
     titleKey: "solutions",
     links: [
-      { label: loc("Online Commerce", "অনলাইন কমার্স"), href: "/solutions/online-commerce" },
-      { label: loc("Retail Commerce", "রিটেইল কমার্স"), href: "/solutions/retail-commerce" },
-      { label: loc("Wholesale Commerce", "হোলসেল কমার্স"), href: "/solutions/wholesale-commerce" },
+      ...BUSINESS_TYPES_COPY.types.map((type) => ({ label: type.title, href: type.href })),
       { label: loc("Facebook Sellers", "ফেসবুক সেলার"), href: "/solutions/online-commerce#facebook-sellers" },
       { label: loc("Multi-location Businesses", "একাধিক ব্রাঞ্চের ব্যবসা"), href: "/solutions/retail-commerce#branches" },
     ],

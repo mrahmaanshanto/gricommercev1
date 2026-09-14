@@ -2,9 +2,9 @@ import { BrandHome } from "@/components/brand/home/BrandHome";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "GridCommerce — Run your whole commerce business from one place",
+  title: "GridCommerce — Sales, stock, dues and profit. Connected.",
   description:
-    "Online store, orders, Facebook and WhatsApp messages, POS, inventory, courier, cash on delivery, customers and marketing analytics — connected in one platform, built for Bangladesh.",
+    "Manage your online store, phone orders and counter sales with connected stock and customer records. Keep courier dues, daily cash and business costs in view, so you know what needs attention.",
   path: "/",
   keywords: [
     "ecommerce software Bangladesh",

@@ -8,8 +8,9 @@ import { useI18n } from "@/i18n/provider";
 import { trackEvent } from "@/lib/analytics";
 import { GcButton, Panel } from "../primitives";
 
-/** Final call to action: the RoyalBlue → DeepSkyBlue ground (p.39) laid over a
- *  photograph of parcels leaving a shop, strong enough to keep white text legible. */
+/** H08 final call to action: the RoyalBlue → DeepSkyBlue ground (p.39) laid over a
+ *  photograph of parcels leaving a shop, strong enough to keep white text legible.
+ *  The WhatsApp action appears only once a verified number is supplied. */
 export function BrandCTA() {
   const { t, L } = useI18n();
   const whatsappReady = !isPending(CONTACT.whatsapp);
@@ -32,35 +33,27 @@ export function BrandCTA() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <GcButton
-            href="/signup"
+            href="/contact?topic=demo"
             variant="white"
             size="lg"
             withArrow
-            className="w-full sm:w-auto"
-            onClick={() => trackEvent("start_free_clicked", { source: "final_cta" })}
-          >
-            {t.common.startFree}
-          </GcButton>
-          <GcButton
-            href="/contact?topic=demo"
-            variant="onDark"
-            size="lg"
             className="w-full sm:w-auto"
             onClick={() => trackEvent("demo_requested", { source: "final_cta" })}
           >
             {t.common.bookDemo}
           </GcButton>
+          {whatsappReady && (
+            <GcButton
+              href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, "")}`}
+              variant="onDark"
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => trackEvent("whatsapp_clicked", { source: "final_cta" })}
+            >
+              {t.common.talkWhatsApp}
+            </GcButton>
+          )}
         </div>
-
-        {whatsappReady && (
-          <button
-            type="button"
-            onClick={() => trackEvent("whatsapp_clicked", { source: "final_cta" })}
-            className="mt-7 text-gc-small font-semibold text-white underline-offset-4 hover:underline"
-          >
-            {t.common.talkWhatsApp}
-          </button>
-        )}
       </Reveal>
     </Panel>
   );

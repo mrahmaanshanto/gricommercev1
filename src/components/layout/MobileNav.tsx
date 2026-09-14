@@ -148,10 +148,7 @@ export function MobileNav({
             </nav>
 
             <div className="mt-7 grid gap-3">
-              <Button href="/signup" size="lg" fullWidth withArrow onClick={onClose}>
-                {t.common.startFree}
-              </Button>
-              <Button href="/contact?topic=demo" variant="secondary" size="lg" fullWidth onClick={onClose}>
+              <Button href="/contact?topic=demo" size="lg" fullWidth withArrow onClick={onClose}>
                 {t.common.bookDemo}
               </Button>
             </div>

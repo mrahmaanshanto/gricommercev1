@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Order management",
-  description: "Every order from your website, landing pages, Facebook, WhatsApp, phone and counter — in one workflow, from confirmation to delivered.",
+  title: "Orders & Sales Entry",
+  description:
+    "Keep online orders moving through confirmation and dispatch. Use a dedicated sales screen for orders taken by phone, Messenger or WhatsApp, with product availability, customer history and payment details ready when your team needs them.",
   path: "/features/orders",
 });
 

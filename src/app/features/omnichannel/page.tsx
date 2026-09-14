@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Omnichannel inbox",
-  description: "Reply to Messenger, WhatsApp, Instagram, store chat, SMS and email from one inbox — with the customer's orders beside every conversation.",
+  title: "Customer Inbox & Follow-up",
+  description:
+    "Bring supported customer channels into a shared inbox. See the customer's history beside the conversation, give the right staff member responsibility and follow up when an interested buyer leaves without ordering.",
   path: "/features/omnichannel",
 });
 

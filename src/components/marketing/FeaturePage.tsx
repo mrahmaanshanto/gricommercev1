@@ -6,15 +6,15 @@ import { Stagger } from "@/components/motion";
 import { BrandScreen } from "@/components/brand/BrandScreen";
 import { BrandCTA } from "@/components/brand/home/BrandCTA";
 import { GcButton, IconTile, Panel, SectionHead } from "@/components/brand/primitives";
+import { ModulePage } from "./ModulePage";
 import { PageHero } from "./pages/PageHero";
+import { MODULE_BY_SLUG, MODULE_UI, type ModuleSlug } from "@/data/copy/modules";
 import { FEATURES, FEATURE_BY_SLUG, FEATURE_GROUPS, type FeaturePoint } from "@/data/sample";
 import { useI18n } from "@/i18n/provider";
 import { loc } from "@/i18n/types";
 
 const COPY = {
-  home: loc("Home", "হোম"),
   features: loc("Features", "ফিচার"),
-  related: loc("Works with", "যেগুলোর সাথে কাজ করে"),
   relatedBody: loc(
     "Nothing here is a separate product. These share the same orders, stock and customers.",
     "এখানে কোনোটাই আলাদা প্রোডাক্ট নয়। সবাই একই অর্ডার, স্টক আর কাস্টমার ব্যবহার করে।",
@@ -22,13 +22,20 @@ const COPY = {
 };
 
 /**
- * Template for all 19 feature routes, driven by `data/sample/features.ts` — a
- * route file is a slug and its metadata. Where a capture exists it sits on the
- * brand stage beside the heading; where none does, the benefit points take
- * that place rather than a fabricated interface.
+ * Template for all 19 feature routes — a route file is a slug and its metadata.
+ *
+ * The eight primary modules render `ModulePage` from the authored copy in
+ * `data/copy/modules.ts`. The supporting features are driven by
+ * `data/sample/features.ts`: where a capture exists it sits on the brand stage
+ * beside the heading; where none does, the benefit points take that place
+ * rather than a fabricated interface.
  */
 export function FeaturePage({ slug }: { slug: string }) {
   const { t, L } = useI18n();
+
+  const moduleEntry = MODULE_BY_SLUG.get(slug as ModuleSlug);
+  if (moduleEntry) return <ModulePage entry={moduleEntry} />;
+
   const feature = FEATURE_BY_SLUG.get(slug);
 
   // A slug with no registry entry is a wiring mistake, not a runtime state.
@@ -66,10 +73,7 @@ export function FeaturePage({ slug }: { slug: string }) {
         }
       >
         <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row">
-          <GcButton href="/signup" size="lg" withArrow className="w-full sm:w-auto">
-            {t.common.startFree}
-          </GcButton>
-          <GcButton href="/contact?topic=demo" size="lg" variant="secondary" className="w-full sm:w-auto">
+          <GcButton href="/contact?topic=demo" size="lg" withArrow className="w-full sm:w-auto">
             {t.common.bookDemo}
           </GcButton>
         </div>
@@ -90,24 +94,30 @@ export function FeaturePage({ slug }: { slug: string }) {
 
       {related.length > 0 && (
         <Panel tone={feature.screen ? "white" : "tint"} pattern="tr">
-          <SectionHead eyebrow={L(COPY.related)} title={L(COPY.relatedBody)} />
+          <SectionHead eyebrow={L(MODULE_UI.related)} title={L(COPY.relatedBody)} />
           <Stagger className="mt-10 grid gap-4 md:grid-cols-3" stagger={0.07}>
-            {related.map((rel) => (
-              <Stagger.Item key={rel.slug} className="h-full">
-                <Link
-                  href={`/features/${rel.slug}`}
-                  className="group/rel flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
-                >
-                  <IconTile name={rel.icon} />
-                  <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(rel.name)}</p>
-                  <p className="mt-2 flex-1 text-gc-small text-gc-ink-60">{L(rel.title)}</p>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-gc-small font-semibold text-gc-royal">
-                    {L(COPY.features)}
-                    <ArrowRight aria-hidden className="size-4 transition-transform duration-[200ms] group-hover/rel:translate-x-1" />
-                  </span>
-                </Link>
-              </Stagger.Item>
-            ))}
+            {related.map((rel) => {
+              // A related primary module is named the way the homepage names it.
+              const relModule = MODULE_BY_SLUG.get(rel.slug as ModuleSlug);
+              return (
+                <Stagger.Item key={rel.slug} className="h-full">
+                  <Link
+                    href={`/features/${rel.slug}`}
+                    className="group/rel flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
+                  >
+                    <IconTile name={relModule?.icon ?? rel.icon} />
+                    <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">
+                      {L(relModule?.name ?? rel.name)}
+                    </p>
+                    <p className="mt-2 flex-1 text-gc-small text-gc-ink-60">{L(relModule?.hook ?? rel.title)}</p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 text-gc-small font-semibold text-gc-royal">
+                      {L(relModule ? MODULE_UI.explore : COPY.features)}
+                      <ArrowRight aria-hidden className="size-4 transition-transform duration-[200ms] group-hover/rel:translate-x-1" />
+                    </span>
+                  </Link>
+                </Stagger.Item>
+              );
+            })}
           </Stagger>
         </Panel>
       )}

@@ -12,6 +12,7 @@ import {
 import { BrandLogo } from "@/components/brand/primitives";
 import { Button } from "@/components/ui/Button";
 import { FormStatus, Input } from "@/components/ui/Field";
+import { FOOTER_DESCRIPTION } from "@/data/copy/home";
 import { FOOTER_COLUMNS } from "@/data/navigation";
 import { CONTACT, SITE, isPending } from "@/data/site";
 import { useFinePointer } from "@/hooks/useMediaQuery";
@@ -135,6 +136,14 @@ function NewsletterForm() {
   );
 }
 
+/** Only verified details are shown; an unconfirmed one is left out rather than
+ *  shown as a placeholder. */
+const CONTACT_ITEMS = [
+  { label: "Sales", value: CONTACT.salesEmail },
+  { label: "Support", value: CONTACT.supportEmail },
+  { label: "Phone", value: CONTACT.phone },
+].filter((item) => !isPending(item.value));
+
 export function Footer({
   logo,
   className,
@@ -160,7 +169,7 @@ export function Footer({
           {/* Brand + newsletter */}
           <div className="max-w-sm">
             {logo ?? <BrandLogo tone="dark" className="h-[30px]" />}
-            <p className="mt-5 text-gc-small text-white/60">{SITE.description}</p>
+            <p className="mt-5 text-gc-small text-white/60">{L(FOOTER_DESCRIPTION)}</p>
 
             <div className="mt-8 rounded-[24px] bg-white/[0.04] p-5 ring-1 ring-inset ring-white/10">
               <p className="font-gc-display text-[1rem] font-bold text-white">{t.footer.newsletterTitle}</p>
@@ -194,10 +203,19 @@ export function Footer({
             ))}
 
             {/* Contact */}
-            <div className="col-span-2 sm:col-span-3 lg:col-span-5">
-              <p className="mb-3 font-gc-display text-[1rem] font-bold text-white">{t.footer.contact}</p>
-              <ContactBlock />
-            </div>
+            {CONTACT_ITEMS.length > 0 && (
+              <div className="col-span-2 sm:col-span-3 lg:col-span-5">
+                <p className="mb-3 font-gc-display text-[1rem] font-bold text-white">{t.footer.contact}</p>
+                <ul className="flex flex-wrap gap-x-10 gap-y-3">
+                  {CONTACT_ITEMS.map((item) => (
+                    <li key={item.label} className="text-gc-small">
+                      <span className="mr-2 text-white/40">{item.label}</span>
+                      <span className="text-white/75">{item.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
@@ -218,31 +236,5 @@ export function Footer({
         </div>
       </div>
     </footer>
-  );
-}
-
-function ContactBlock() {
-  const { t } = useI18n();
-  const items = [
-    { label: "Sales", value: CONTACT.salesEmail },
-    { label: "Support", value: CONTACT.supportEmail },
-    { label: "Phone", value: CONTACT.phone },
-  ];
-
-  return (
-    <ul className="flex flex-wrap gap-x-10 gap-y-3">
-      {items.map((item) => (
-        <li key={item.label} className="text-gc-small">
-          <span className="mr-2 text-white/40">{item.label}</span>
-          {isPending(item.value) ? (
-            <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-[0.75rem] font-semibold text-white/50 ring-1 ring-inset ring-white/12">
-              {t.common.toBeConfirmed}
-            </span>
-          ) : (
-            <span className="text-white/75">{item.value}</span>
-          )}
-        </li>
-      ))}
-    </ul>
   );
 }

@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { Floating, Reveal, Stagger } from "@/components/motion";
-import { MIGRATION_CTA } from "@/data/copy/home";
 import { MIGRATION_COPY, MIGRATION_SOURCES } from "@/data/sample";
 import { useI18n } from "@/i18n/provider";
+import { loc } from "@/i18n/types";
 import { FloatCard, GcButton, IconTile, Panel, SectionHead } from "../primitives";
 
-/** Section 17 — migration. */
+const MIGRATION_CTA = loc("See how migration works", "মাইগ্রেশন কীভাবে হয় দেখুন");
+
+/** Migration. The copy handoff folded this into the homepage FAQ; the section
+ *  itself remains on /migration. */
 export function BrandMigration() {
   const { L } = useI18n();
   const sheets = MIGRATION_SOURCES.find((s) => s.id === "sheets");

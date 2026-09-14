@@ -16,7 +16,7 @@ export const SITE = {
   url: "https://gridcommerce.com.bd",
   domain: "gridcommerce.com.bd",
   description:
-    "Run your whole commerce business from one place — online store, orders, POS, inventory, courier, cash on delivery, messaging and marketing, built for Bangladesh.",
+    "Connected sales, stock, collections and business reports for online, retail and wholesale businesses in Bangladesh.",
   locales: ["en", "bn"] as const,
   defaultLocale: "en" as const,
 } as const;
@@ -33,9 +33,11 @@ export const CONTACT = {
   salesEmail: "sales@gridcommerce.com.bd",
   supportEmail: "support@gridcommerce.com.bd",
   partnershipEmail: "partners@gridcommerce.com.bd",
-  phone: "+880 1700 000000",
-  whatsapp: "+880 1700 000000",
-  addressLines: ["Level 7, House 42, Road 11", "Banani, Dhaka 1213"] as string[],
+  /* The copy handoff requires verified contact details only; these sample
+     values were removed until real ones are supplied. */
+  phone: PENDING as string,
+  whatsapp: PENDING as string,
+  addressLines: [PENDING] as string[],
   city: "Dhaka",
   country: "Bangladesh",
 } as const;

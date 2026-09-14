@@ -37,7 +37,7 @@ const notoBengali = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Run your whole commerce business from one place`,
+    default: `${SITE.name} — Sales, stock, dues and profit. Connected.`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,

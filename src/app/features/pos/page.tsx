@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Point of sale",
-  description: "Your counter and your online store finally share the same stock, the same customers and the same reports.",
+  title: "POS & Daily Cash",
+  description:
+    "Scan products, take payments and adjust stock at the correct branch. Record expenses and cash movements, then compare what the system expects with what your cashier counts at closing.",
   path: "/features/pos",
 });
 

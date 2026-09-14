@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Wholesale",
-  description: "Quotations, dealer pricing, credit limits and receivables — in the same system as everything else.",
+  title: "Wholesale & Collections",
+  description:
+    "Carry a quotation through to order, invoice and payment. GridCommerce shows each customer's due, credit terms and collection history, so your team knows which accounts need follow-up.",
   path: "/features/wholesale",
 });
 

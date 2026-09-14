@@ -3,12 +3,27 @@
 import Image from "next/image";
 import { Quote } from "lucide-react";
 import { Reveal, Stagger } from "@/components/motion";
-import { STORIES_COPY } from "@/data/copy/home";
 import { MERCHANT_STORIES } from "@/data/sample";
 import { useI18n } from "@/i18n/provider";
+import { loc } from "@/i18n/types";
 import { Panel, SectionHead } from "../primitives";
 
-/** Section 19 — merchant stories. Sample content, labelled as such below. */
+/** Sample copy, kept beside the sample stories it introduces. The copy handoff
+ *  removed this section from the homepage; it remains on /customers. */
+const STORIES_COPY = {
+  eyebrow: loc("Merchants", "মার্চেন্ট"),
+  title: loc("The people this is built for.", "যাদের জন্য এটা তৈরি।"),
+  body: loc(
+    "Boutiques, electronics counters, home businesses and cosmetics shops — the shape of commerce in urban Bangladesh.",
+    "বুটিক, ইলেকট্রনিকসের দোকান, ঘরে বসে চালানো ব্যবসা আর কসমেটিকসের দোকান — শহুরে বাংলাদেশের ব্যবসা এমনই।",
+  ),
+  sampleNote: loc(
+    "Sample stories with generated photography. No real merchant is quoted or depicted, and no figure here is evidenced.",
+    "নমুনা গল্প আর তৈরি করা ছবি। কোনো আসল মার্চেন্টের উক্তি বা ছবি নয়, কোনো সংখ্যারই প্রমাণ নেই।",
+  ),
+};
+
+/** Merchant stories. Sample content, labelled as such below. */
 export function BrandStories() {
   const { L } = useI18n();
 

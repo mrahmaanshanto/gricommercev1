@@ -18,9 +18,10 @@ import { BrandLogo, GcButton } from "./primitives";
 type MenuId = (typeof MEGA_MENUS)[number]["id"];
 
 /**
- * Same menus, links and actions as the site navbar, set as a floating rounded
- * bar over the canvas. Behaviour — hover intent, Escape, close on route
- * change — mirrors `layout/Navbar`.
+ * H01 — Modules · Business Types · Resources · Pricing, then Log in and one
+ * dominant "Book a Demo" action. Set as a floating rounded bar over the canvas.
+ * Behaviour — hover intent, Escape, close on route change — mirrors
+ * `layout/Navbar`.
  */
 export function BrandNavbar() {
   const { t, L } = useI18n();
@@ -155,25 +156,21 @@ export function BrandNavbar() {
             </Link>
             <GcButton
               href="/contact?topic=demo"
-              variant="secondary"
               size="sm"
               onClick={() => trackEvent("demo_requested", { source: "navbar" })}
             >
               {t.common.bookDemo}
             </GcButton>
-            <GcButton
-              href="/signup"
-              size="sm"
-              onClick={() => trackEvent("start_free_clicked", { source: "navbar" })}
-            >
-              {t.common.startFree}
-            </GcButton>
           </div>
 
           <div className="flex items-center gap-1 lg:hidden">
             <LanguageToggle compact />
-            <GcButton href="/signup" size="sm">
-              {t.common.startFree}
+            <GcButton
+              href="/contact?topic=demo"
+              size="sm"
+              onClick={() => trackEvent("demo_requested", { source: "navbar_mobile" })}
+            >
+              {t.common.bookDemo}
             </GcButton>
             <button
               type="button"
