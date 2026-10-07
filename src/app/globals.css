@@ -9,7 +9,7 @@
 
 /* Type roles. Plus Jakarta Sans carries headings and body; Instrument Serif
    italic is the accent. Loaded by next/font in app/layout.tsx. The font
-   preview panel (components/dev/FontTweak) overrides these three on <html>. */
+   preview panel (components/dev/DesignPreview) overrides these three on <html>. */
 :root {
   --gc-font-body: var(--font-jakarta);
   --gc-font-heading: var(--font-jakarta);

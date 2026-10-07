@@ -7,7 +7,7 @@ import { LanguageProvider } from "@/i18n/provider";
 import { BrandNavbar } from "@/components/brand/BrandNavbar";
 import { BrandFooter } from "@/components/brand/BrandFooter";
 import { SampleBadge } from "@/components/marketing/SampleBadge";
-import { FontTweak } from "@/components/dev/FontTweak";
+import { DesignPreview } from "@/components/dev/DesignPreview";
 import { SITE } from "@/data/site";
 import { JsonLd, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 
@@ -78,7 +78,7 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <BrandFooter />
           <SampleBadge />
-          <FontTweak />
+          <DesignPreview />
         </LanguageProvider>
       </body>
     </html>
