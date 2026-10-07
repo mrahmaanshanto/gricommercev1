@@ -1,0 +1,11 @@
+# Netlify builds the Next.js site with its Next.js runtime. Vercel ignores this file.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Next.js runtime: serves the pages, redirects and server rendering
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
