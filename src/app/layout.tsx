@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -7,22 +7,33 @@ import { LanguageProvider } from "@/i18n/provider";
 import { BrandNavbar } from "@/components/brand/BrandNavbar";
 import { BrandFooter } from "@/components/brand/BrandFooter";
 import { SampleBadge } from "@/components/marketing/SampleBadge";
+import { FontTweak } from "@/components/dev/FontTweak";
 import { SITE } from "@/data/site";
 import { JsonLd, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 
 /**
- * Montserrat is the secondary typeface in the GridCommerce Brand Guidelines
- * and carries all body copy; headings ask for Century Gothic first and fall
- * back to it. next/font downloads it at build time and serves it from our own
- * origin, so there is no third-party CDN round trip on mobile networks.
+ * Plus Jakarta Sans carries headings and body; Instrument Serif italic is the
+ * one-word accent in display headlines. next/font downloads both at build time
+ * and serves them from our own origin, so there is no third-party CDN round
+ * trip on mobile networks. Roles are mapped in globals.css (`--gc-font-*`).
  */
-const montserrat = Montserrat({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
   preload: true,
   fallback: ["Arial", "sans-serif"],
+});
+
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-instrument",
+  display: "swap",
+  preload: true,
+  fallback: ["Georgia", "serif"],
 });
 
 const notoBengali = localFont({
@@ -58,7 +69,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${notoBengali.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${instrument.variable} ${notoBengali.variable}`}>
       <body className="gc-scope bg-gc-canvas antialiased">
         <JsonLd data={organizationSchema()} />
         <JsonLd data={softwareApplicationSchema()} />
@@ -67,6 +78,7 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <BrandFooter />
           <SampleBadge />
+          <FontTweak />
         </LanguageProvider>
       </body>
     </html>

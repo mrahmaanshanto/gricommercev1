@@ -7,6 +7,15 @@
    not hardcode values in components.
    ============================================================ */
 
+/* Type roles. Plus Jakarta Sans carries headings and body; Instrument Serif
+   italic is the accent. Loaded by next/font in app/layout.tsx. The font
+   preview panel (components/dev/FontTweak) overrides these three on <html>. */
+:root {
+  --gc-font-body: var(--font-jakarta);
+  --gc-font-heading: var(--font-jakarta);
+  --gc-font-accent: var(--font-instrument);
+}
+
 @theme {
   --color-gc-royal: #0A5BCF;       /* primary buttons, links, key brand elements */
   --color-gc-royal-700: #084AA8;   /* hover */
@@ -17,6 +26,10 @@
   --color-gc-sky-20: #D1EDFD;
   --color-gc-dark: #111827;        /* titles, body text, strong-contrast surfaces */
   --color-gc-dark-10: #E7E8E9;
+
+  /* Warm accent: one highlight per section (chips, "sale" moments). Never text. */
+  --color-gc-accent: #FF6B3D;
+  --color-gc-accent-10: #FFF0EA;
 
   /* Neutral ramp built on Dark #111827 */
   --color-gc-ink: #111827;
@@ -38,8 +51,8 @@
   --color-gc-danger-10: #FEF2F2;
   --color-gc-danger-light: #FCA5A5;
 
-  /* Montserrat is the brand's secondary typeface and the body face. */
-  --font-sans: var(--font-montserrat), Arial, sans-serif;
+  /* Body face. The three --gc-font-* roles are set in :root below. */
+  --font-sans: var(--gc-font-body), Arial, sans-serif;
 
   /* Headings are bold (p.30: "Bold, Powerful, Confident") */
   --text-gc-display: clamp(2.375rem, 1.4rem + 2.6vw, 3.875rem);
@@ -96,25 +109,24 @@
   }
 
   .gc-scope {
-    font-family: var(--font-montserrat), Arial, sans-serif;
+    font-family: var(--gc-font-body), Arial, sans-serif;
     color: var(--color-gc-ink-60);
   }
-  /* Century Gothic is a licensed Monotype face: it is referenced by name, never
-     bundled. Where it is not installed, the brand's own secondary typeface
-     (Montserrat) takes over rather than an arbitrary lookalike. */
+  /* Headings: the heading face, heavier at display size. */
   .gc-scope h1, .gc-scope h2, .gc-scope h3, .gc-scope h4 {
-    font-family: "Century Gothic", "CenturyGothic", var(--font-montserrat), Arial, sans-serif;
+    font-family: var(--gc-font-heading), Arial, sans-serif;
     font-weight: 700;
     color: var(--color-gc-ink);
     text-wrap: balance;
   }
+  .gc-scope h1 { font-weight: 800; }
 
   /* Bangla is a first-class language: taller lines, and no tracking —
      tight display tracking is wrong for Bengali conjuncts. */
   [lang="bn"] .gc-scope,
   [lang="bn"] .gc-scope h1, [lang="bn"] .gc-scope h2,
   [lang="bn"] .gc-scope h3, [lang="bn"] .gc-scope h4 {
-    font-family: var(--font-noto-bengali), var(--font-montserrat), sans-serif;
+    font-family: var(--font-noto-bengali), var(--gc-font-body), sans-serif;
     letter-spacing: 0;
   }
   [lang="bn"] .gc-scope { line-height: 1.85; }
@@ -157,7 +169,7 @@
 }
 
 @utility font-gc-display {
-  font-family: "Century Gothic", "CenturyGothic", var(--font-montserrat), Arial, sans-serif;
+  font-family: var(--gc-font-heading), Arial, sans-serif;
 }
 
 @utility gc-pattern {
@@ -166,8 +178,18 @@
   background-repeat: repeat;
 }
 
-/* Neither Century Gothic nor tracked capitals exist for Bengali. */
-[lang="bn"] .font-gc-display { font-family: var(--font-noto-bengali), var(--font-montserrat), sans-serif; }
+/* The serif accent: one word in a headline, set in italic. */
+@utility font-gc-accent {
+  font-family: var(--gc-font-accent), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Neither the Latin display faces, the italic accent nor tracked capitals
+   exist for Bengali. */
+[lang="bn"] .font-gc-display { font-family: var(--font-noto-bengali), var(--gc-font-body), sans-serif; }
+[lang="bn"] .font-gc-accent { font-family: var(--font-noto-bengali), var(--gc-font-body), sans-serif; font-style: normal; font-weight: 700; letter-spacing: 0; }
 [lang="bn"] .gc-eyebrow { letter-spacing: 0; text-transform: none; }
 
 /* ============================================================

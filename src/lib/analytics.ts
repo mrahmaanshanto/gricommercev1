@@ -22,6 +22,7 @@ export type AnalyticsEvent =
   | "language_switched"
   | "mega_menu_opened"
   | "feature_tab_changed"
+  | "hero_tour_tab"
   | "help_search_performed"
   | "blog_article_opened";
 
