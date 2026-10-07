@@ -6,7 +6,7 @@ import { Reveal, Stagger } from "@/components/motion";
 import { BrandScreen } from "@/components/brand/BrandScreen";
 import { GcButton, IconTile, Panel, SectionHead } from "@/components/brand/primitives";
 import { PageHero } from "./pages/PageHero";
-import { MODULE_BY_SLUG, MODULE_UI, type ModuleEntry, type ModuleSlug } from "@/data/copy/modules";
+import { MODULE_BY_SLUG, MODULE_UI, type AnyModuleEntry, type ModuleSlug, type SwitchedOffSlug } from "@/data/copy/modules";
 import { SCREENS, type ProductScreen } from "@/data/screenshots";
 import { useI18n } from "@/i18n/provider";
 import { loc } from "@/i18n/types";
@@ -17,22 +17,23 @@ const DEMO_HREF = "/contact?topic=demo";
 
 /** Real product captures that match a module. A module without a matching
  *  capture shows none, rather than borrowing another module's screen. */
-const MODULE_SCREENS: Partial<Record<ModuleSlug, ProductScreen>> = {
-  courier: SCREENS.orders,
+const MODULE_SCREENS: Partial<Record<ModuleSlug | SwitchedOffSlug, ProductScreen>> = {
   orders: SCREENS.orders,
+  courier: SCREENS.orders,
   storefront: SCREENS.landingPages,
   omnichannel: SCREENS.omnichannel,
   pos: SCREENS.pos,
   analytics: SCREENS.dashboard,
+  customers: SCREENS.customers,
 };
 
 /**
- * One layout for the eight primary module pages, in the order the copy handoff
+ * One layout for every primary module page, in the order the copy handoff
  * sets: breadcrumb → module name → D01 hero and actions → product capture →
  * D02 benefits → D03 workflow (#workflow) → D04 FAQ → D05 related modules →
  * D06 close. The same demo action opens and closes the page.
  */
-export function ModulePage({ entry }: { entry: ModuleEntry }) {
+export function ModulePage({ entry }: { entry: AnyModuleEntry }) {
   const { t, L } = useI18n();
   const screen = MODULE_SCREENS[entry.slug];
   const related = entry.related.flatMap((slug) => MODULE_BY_SLUG.get(slug) ?? []);

@@ -2,9 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Profit & Marketing Reports",
+  title: "Reports & Ad Tracking",
   description:
-    "Look beyond the order total. Bring sales and recorded costs into one reporting view, with online performance measured on delivered orders and a separate view of what the ad platforms report.",
+    "Reports cover sales, online and delivery, customers and loyalty, stock, purchases, finance, POS, staff and marketing. Connect your pixels and ad accounts to compare ad spend with confirmed and delivered orders, kept separate from what the ad platforms report.",
   path: "/features/analytics",
 });
 

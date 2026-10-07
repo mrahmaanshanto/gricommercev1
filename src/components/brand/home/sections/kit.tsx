@@ -1,94 +1,142 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/motion";
+import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
+import { EASE } from "@/lib/motion";
 import { ChannelLogo, type Channel } from "../hero/shared";
 
 /**
- * Shared pieces for the homepage showcase sections: a scroll-started timeline,
- * the mixed-weight heading with inline chips, and the bento card surfaces.
+ * Shared pieces for the homepage sections: scroll-started timelines, the
+ * two-tone heading with inline chips, bento surfaces, product windows and
+ * locale-aware numbers.
  */
 
 /* ------------------------------------------------------------------ */
-/* Timeline                                                            */
+/* Numbers                                                             */
 /* ------------------------------------------------------------------ */
+
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+
+export function toLocaleDigits(s: string, locale: string) {
+  return locale === "bn" ? s.replace(/\d/g, (d) => BN_DIGITS[Number(d)]) : s;
+}
+
+/** Bangladeshi grouping (2,46,040), in Bangla digits when the page is in Bangla. */
+export function useNum() {
+  const { locale } = useI18n();
+  return useCallback(
+    (n: number, { money = false, sign = false }: { money?: boolean; sign?: boolean } = {}) => {
+      const abs = Math.abs(n).toLocaleString("en-IN");
+      return toLocaleDigits(`${n < 0 ? "−" : sign && n > 0 ? "+" : ""}${money ? "৳" : ""}${abs}`, locale);
+    },
+    [locale],
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Timelines                                                           */
+/* ------------------------------------------------------------------ */
+
+/** True while any part of the element is in the middle band of the viewport. */
+export function useOnScreen<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [onScreen, setOnScreen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting), { rootMargin: "-20% 0px -20% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return { ref, onScreen };
+}
 
 /**
- * Plays a list of cue times once the element reaches mid-screen and returns
- * how many have passed. With `loop`, it starts over every `duration` ms while
- * visible; it stops when scrolled away. Reduced motion gets the final state.
+ * Plays a list of cue times while the element is on screen and returns how
+ * many have passed. With `loop` it starts over every `duration` ms; it stops
+ * when scrolled away and restarts on return. Reduced motion: the final state.
  */
 export function useTimeline(cues: number[], { duration, loop = true }: { duration: number; loop?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref, onScreen } = useOnScreen<HTMLDivElement>();
   const reduced = useReducedMotion();
   const [beat, setBeat] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el || reduced) return;
+    if (!onScreen || reduced) return;
     let timers: number[] = [];
-    let running = false;
-    const clear = () => {
+    const run = () => {
       timers.forEach((t) => window.clearTimeout(t));
       timers = [];
-    };
-    const run = () => {
-      clear();
       setBeat(0);
       cues.forEach((c, i) => timers.push(window.setTimeout(() => setBeat(i + 1), c)));
       if (loop) timers.push(window.setTimeout(run, duration));
     };
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !running) {
-          running = true;
-          run();
-        } else if (!entry.isIntersecting && running) {
-          running = false;
-          clear();
-        }
-      },
-      // Any part of it inside the middle half of the viewport: works for
-      // sections taller than the screen, where a ratio threshold never fires.
-      { rootMargin: "-25% 0px -25% 0px" },
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      clear();
-    };
+    run();
+    return () => timers.forEach((t) => window.clearTimeout(t));
     // cues are module constants
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduced, duration, loop]);
+  }, [onScreen, reduced, duration, loop]);
 
-  return { ref, beat: reduced ? cues.length : beat };
+  return { ref, beat: reduced ? cues.length : beat, reduced: !!reduced };
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion helpers                                                      */
+/* ------------------------------------------------------------------ */
+
+/** A value that slides in when it changes; its label stays put. */
+export function ValueSwap({ value, className }: { value: ReactNode; className?: string }) {
+  const reduced = useReducedMotion();
+  return (
+    <span className={cn("relative inline-grid overflow-hidden align-bottom", className)}>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={String(value)}
+          className="col-start-1 row-start-1"
+          initial={reduced ? false : { y: "70%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={reduced ? undefined : { y: "-70%", opacity: 0 }}
+          transition={{ duration: 0.3, ease: EASE.outQuart }}
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
 }
 
 /* ------------------------------------------------------------------ */
 /* Heading                                                             */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Splits a heading into a lead and a quieter tail without changing a word:
+ * at the first sentence break (. ? । —) if there is one mid-way, otherwise
+ * before the last part of the words.
+ */
+export function splitTitle(text: string): [string, string] {
+  const m = text.match(/^(.+?[.?।—])\s+(.+)$/);
+  if (m && m[2].length > 3) return [m[1], m[2]];
+  const words = text.split(" ");
+  if (words.length < 4) return [text, ""];
+  const cut = Math.ceil(words.length * 0.55);
+  return [words.slice(0, cut).join(" "), words.slice(cut).join(" ")];
+}
+
 const CHIP_TONE = {
   royal: "bg-gc-royal text-white",
   sky: "bg-gc-sky text-white",
   accent: "bg-gc-accent text-white",
   ink: "bg-gc-ink text-white",
-  soft: "bg-gc-royal-10 text-gc-royal",
 } as const;
 
 /** A rounded icon tile sized to sit inside a line of display type. */
-export function IconChip({
-  icon: Icon,
-  tone = "royal",
-  tilt = 0,
-}: {
-  icon: LucideIcon;
-  tone?: keyof typeof CHIP_TONE;
-  tilt?: number;
-}) {
+export function IconChip({ icon: Icon, tone = "royal", tilt = 0 }: { icon: LucideIcon; tone?: keyof typeof CHIP_TONE; tilt?: number }) {
   return (
     <span
       aria-hidden
@@ -120,35 +168,67 @@ export function LogoChip({ channels }: { channels: Channel[] }) {
   );
 }
 
+/** A two-tone section heading on its own (lead in ink, tail quieter, inline chip). */
+export function TwoTone({ title, chip, size = "h2", className }: { title: string; chip?: ReactNode; size?: "h1" | "h2"; className?: string }) {
+  const [lead, tail] = splitTitle(title);
+  return (
+    <h2 className={cn("tracking-[-0.03em] text-gc-ink", size === "h1" ? "text-gc-h1" : "text-gc-h2", className)}>
+      {lead} {chip}
+      {tail && <span className="text-gc-ink-50">{tail}</span>}
+    </h2>
+  );
+}
+
 /**
  * Section opener: a large two-tone heading (lead in ink, tail quieter) with an
  * inline chip, and the body set to its right on wide screens.
  */
 export function SectionIntro({
-  lead,
+  title,
   chip,
-  tail,
   body,
+  eyebrow,
   aside,
+  size = "h1",
+  layout = "split",
   className,
 }: {
-  lead: ReactNode;
+  title: string;
   chip?: ReactNode;
-  tail: ReactNode;
-  body: ReactNode;
+  body?: ReactNode;
+  eyebrow?: ReactNode;
   aside?: ReactNode;
+  size?: "h1" | "h2";
+  layout?: "split" | "stack" | "center";
   className?: string;
 }) {
+  const [lead, tail] = splitTitle(title);
   return (
-    <Reveal className={cn("grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-14", className)}>
-      <h2 className="text-gc-h1 tracking-[-0.03em] text-gc-ink">
-        {lead} {chip}
-        <span className="text-gc-ink-50">{tail}</span>
-      </h2>
-      <div className="lg:pb-2">
-        <p className="max-w-[34rem] text-gc-lead text-gc-ink-60">{body}</p>
-        {aside}
+    <Reveal
+      className={cn(
+        layout === "split" && "grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-14",
+        layout === "center" && "mx-auto max-w-3xl text-center",
+        className,
+      )}
+    >
+      <div>
+        {eyebrow && (
+          <p className="gc-eyebrow mb-5 inline-flex items-center gap-2 rounded-full bg-gc-royal-10 px-3 py-1.5 text-gc-eyebrow font-semibold uppercase text-gc-royal">
+            <span aria-hidden className="size-1.5 rounded-full bg-gc-royal" />
+            {eyebrow}
+          </p>
+        )}
+        <h2 className={cn("tracking-[-0.03em] text-gc-ink", size === "h1" ? "text-gc-h1" : "text-gc-h2")}>
+          {lead} {chip}
+          {tail && <span className="text-gc-ink-50">{tail}</span>}
+        </h2>
       </div>
+      {(body || aside) && (
+        <div className={cn(layout === "split" ? "lg:pb-2" : "mt-6")}>
+          {body && <p className={cn("max-w-[34rem] text-gc-lead text-gc-ink-60", layout === "center" && "mx-auto")}>{body}</p>}
+          {aside}
+        </div>
+      )}
     </Reveal>
   );
 }
@@ -185,9 +265,9 @@ export function Bento({
   children?: ReactNode;
 }) {
   return (
-    <div className={cn("relative flex flex-col overflow-hidden rounded-[28px] p-5 md:p-6", BENTO[tone], className)}>
+    <div className={cn("relative flex min-w-0 flex-col overflow-hidden rounded-[28px] p-5 md:p-6", BENTO[tone], className)}>
       {(label || title) && (
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-3 pr-20">
           {Icon && (
             <span
               className={cn(
@@ -195,16 +275,12 @@ export function Bento({
                 tone === "ink" ? "bg-white/10 text-gc-sky" : "bg-white text-gc-royal shadow-[0_6px_14px_-8px_rgba(17,24,39,0.35)] ring-1 ring-gc-line",
               )}
             >
-              <Icon className="size-[18px]" strokeWidth={2} />
+              <Icon aria-hidden className="size-[18px]" strokeWidth={2} />
             </span>
           )}
           <div className="min-w-0">
-            {label && (
-              <p className={cn("text-gc-small font-semibold", tone === "ink" ? "text-white" : "text-gc-ink")}>{label}</p>
-            )}
-            {title && (
-              <p className={cn("text-[0.8125rem] leading-snug", tone === "ink" ? "text-white/60" : "text-gc-ink-50")}>{title}</p>
-            )}
+            {label && <p className={cn("text-gc-small font-semibold", tone === "ink" ? "text-white" : "text-gc-ink")}>{label}</p>}
+            {title && <p className={cn("text-[0.8125rem] leading-snug", tone === "ink" ? "text-white/70" : "text-gc-ink-60")}>{title}</p>}
           </div>
         </div>
       )}
@@ -213,18 +289,130 @@ export function Bento({
   );
 }
 
-/** Small "Demo data" stamp for a mockup. */
-export function DemoStamp({ label, className }: { label: string; className?: string }) {
+/** A product screen in a light browser frame. */
+export function ProductWindow({
+  path,
+  children,
+  className,
+  bodyClassName,
+}: {
+  path: string;
+  children: ReactNode;
+  className?: string;
+  bodyClassName?: string;
+}) {
+  return (
+    <div className={cn("overflow-hidden rounded-[22px] bg-white shadow-gc-screen ring-1 ring-gc-line", className)}>
+      <div className="flex h-10 items-center gap-3 border-b border-gc-line bg-[#F8FAFC] px-4" aria-hidden>
+        <div className="flex gap-1.5">
+          <span className="size-[10px] rounded-full bg-[#FF5F57]" />
+          <span className="size-[10px] rounded-full bg-[#FEBC2E]" />
+          <span className="size-[10px] rounded-full bg-[#28C840]" />
+        </div>
+        <div className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-[0.6875rem] font-medium text-gc-ink-50 ring-1 ring-gc-line">
+          app.gridcommerce.com.bd/{path}
+        </div>
+        <span className="w-[42px]" />
+      </div>
+      <div className={cn("bg-[#F6F7FB]", bodyClassName)}>{children}</div>
+    </div>
+  );
+}
+
+/** The "Demo data" stamp every illustrative figure carries. */
+export function DemoStamp({ className }: { className?: string }) {
+  const { t } = useI18n();
   return (
     <span
       className={cn(
-        "rounded-full bg-white/90 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-gc-ink-50 ring-1 ring-gc-line",
+        "rounded-full bg-white/90 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-gc-ink-60 ring-1 ring-gc-line",
         className,
       )}
     >
-      {label}
+      {t.common.demoData}
+    </span>
+  );
+}
+
+/** A labelled status pill. */
+export function Pill({
+  tone = "neutral",
+  children,
+  className,
+}: {
+  tone?: "neutral" | "royal" | "success" | "warning" | "danger" | "ai";
+  children: ReactNode;
+  className?: string;
+}) {
+  const tones = {
+    neutral: "bg-[#F1F3F7] text-gc-ink-70",
+    royal: "bg-gc-royal-10 text-gc-royal",
+    success: "bg-gc-success-10 text-gc-success",
+    warning: "bg-gc-warning-10 text-gc-warning",
+    danger: "bg-gc-danger-10 text-gc-danger",
+    ai: "bg-[#F1ECFE] text-[#6D3FD9]",
+  } as const;
+  return (
+    <span className={cn("inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.75rem] font-semibold leading-none", tones[tone], className)}>
+      {children}
     </span>
   );
 }
 
 export type { Channel };
+
+/* ------------------------------------------------------------------ */
+/* Real product screens                                                */
+/* ------------------------------------------------------------------ */
+
+/** Compact vertical rhythm for every homepage section. */
+export const HOME_INNER = "py-12 md:py-16 lg:py-20";
+
+/**
+ * A real screen from the merchant app in a light browser frame. Wide screens
+ * get the desktop capture; phones get the app's own phone layout, cropped to
+ * a readable window. Captures live in /public/product (`<id>.webp`,
+ * `<id>-m.webp`).
+ */
+export function Shot({
+  id,
+  alt,
+  priority,
+  className,
+  path,
+}: {
+  id: string;
+  alt: string;
+  priority?: boolean;
+  className?: string;
+  path?: string;
+}) {
+  return (
+    <div className={cn("overflow-hidden rounded-[20px] bg-white shadow-gc-screen ring-1 ring-gc-line", className)}>
+      <div className="flex h-8 items-center gap-3 border-b border-gc-line bg-[#F8FAFC] px-3 sm:h-9 sm:px-4" aria-hidden>
+        <div className="flex gap-1.5">
+          <span className="size-[9px] rounded-full bg-[#FF5F57]" />
+          <span className="size-[9px] rounded-full bg-[#FEBC2E]" />
+          <span className="size-[9px] rounded-full bg-[#28C840]" />
+        </div>
+        <div className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-[0.6875rem] font-medium text-gc-ink-50 ring-1 ring-gc-line">
+          app.gridcommerce.com.bd/{path ?? id}
+        </div>
+        <span className="w-[33px]" />
+      </div>
+      <Image
+        src={`/product/${id}.webp`}
+        alt={alt}
+        width={1920}
+        height={1200}
+        priority={priority}
+        loading={priority ? undefined : "lazy"}
+        sizes="(min-width: 1280px) 1100px, (min-width: 640px) 90vw, 1px"
+        className="hidden h-auto w-full sm:block"
+      />
+      <div className="relative aspect-[390/560] overflow-hidden sm:hidden">
+        <Image src={`/product/${id}-m.webp`} alt={alt} fill loading="lazy" sizes="100vw" className="object-cover object-top" />
+      </div>
+    </div>
+  );
+}

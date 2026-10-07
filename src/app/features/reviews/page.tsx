@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Reviews",
-  description: "Collect reviews and choose what gets published.",
+  title: "Google Reviews",
+  description:
+    "Answer your Google reviews from one place. Once your Google Business Profile is connected, its reviews appear beside your other conversations, ready for a reply you have checked.",
   path: "/features/reviews",
 });
 

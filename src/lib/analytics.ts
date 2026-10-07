@@ -22,7 +22,11 @@ export type AnalyticsEvent =
   | "language_switched"
   | "mega_menu_opened"
   | "feature_tab_changed"
-  | "hero_tour_tab"
+  | "hero_preview_tab"
+  | "how_it_works_interaction"
+  | "growth_tab_changed"
+  | "demo_replayed"
+  | "module_opened"
   | "help_search_performed"
   | "blog_article_opened";
 

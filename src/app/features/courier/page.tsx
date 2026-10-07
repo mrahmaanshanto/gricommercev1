@@ -2,9 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Courier & COD Control",
+  title: "Online Orders & Couriers",
   description:
-    "A delivered parcel does not mean the payment is in your account. GridCommerce connects delivery status, courier charges and remittances, so you can follow up on the money still due to your business.",
+    "A delivered parcel does not mean the payment is in your account. GridCommerce keeps courier booking, parcel status, COD collected, charges and payouts together for each courier, so you can follow up on the money still due to your business.",
   path: "/features/courier",
 });
 

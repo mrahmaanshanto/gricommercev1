@@ -1,52 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import { FAQ_COPY } from "@/data/copy/home";
+import { ChevronDown } from "lucide-react";
+import { FAQ } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
-import { loc, type Localized } from "@/i18n/types";
-import { Panel, SectionHead } from "../primitives";
-
-/** Deeper pages an answer links to, labelled as they are in the navigation. */
-const LINK_LABELS: Record<string, Localized> = {
-  "/pricing": loc("Pricing", "প্রাইসিং ও প্ল্যান"),
-  "/migration": loc("Migration", "মাইগ্রেশন"),
-};
+import { Panel } from "../primitives";
+import { HOME_INNER, SectionIntro } from "./sections/kit";
 
 /**
- * H07 — a short accordion. Native <details> keeps every answer in the HTML,
- * open or closed, so it stays visible to search and screen readers.
+ * Section 10 — FAQ. Native <details>: several answers can be open at once,
+ * keyboard and screen readers get the built-in behaviour, and every answer
+ * stays in the HTML.
  */
 export function BrandFaq() {
   const { L } = useI18n();
 
   return (
-    <Panel tone="white" pattern="tr">
+    <Panel tone="tint" pattern="tr" inner={HOME_INNER}>
       <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-        <SectionHead title={L(FAQ_COPY.title)} />
+        <SectionIntro layout="stack" size="h2" title={L(FAQ.title)} />
 
         <div className="divide-y divide-gc-line border-y border-gc-line">
-          {FAQ_COPY.items.map((item) => (
+          {FAQ.items.map((item) => (
             <details key={item.id} className="group/faq">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-gc-display text-[1.0625rem] font-bold leading-snug text-gc-ink [&::-webkit-details-marker]:hidden">
-                {L(item.question)}
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-5 font-gc-display text-[1.0625rem] font-bold leading-snug text-gc-ink [&::-webkit-details-marker]:hidden">
+                {L(item.q)}
                 <ChevronDown
                   aria-hidden
-                  className="size-5 shrink-0 text-gc-ink-50 transition-transform duration-[220ms] group-open/faq:rotate-180 group-open/faq:text-gc-royal"
+                  className="size-5 shrink-0 text-gc-ink-50 transition-transform duration-[220ms] group-open/faq:rotate-180 group-open/faq:text-gc-royal motion-reduce:transition-none"
                 />
               </summary>
-              <div className="pb-6 pr-2 md:pr-10">
-                <p className="text-gc-body text-gc-ink-60">{L(item.answer)}</p>
-                {item.link && LINK_LABELS[item.link] && (
-                  <Link
-                    href={item.link}
-                    className="mt-3 inline-flex items-center gap-1.5 text-gc-small font-semibold text-gc-royal underline-offset-4 hover:underline"
-                  >
-                    {L(LINK_LABELS[item.link])}
-                    <ArrowRight aria-hidden className="size-4" />
-                  </Link>
-                )}
-              </div>
+              <p className="pb-6 pr-2 text-gc-body text-gc-ink-60 md:pr-10">{L(item.a)}</p>
             </details>
           ))}
         </div>

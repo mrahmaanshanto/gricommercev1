@@ -58,8 +58,8 @@ export const MODULES_COPY = {
     "আপনার ব্যবসার প্রয়োজন অনুযায়ী মডিউল নির্বাচন করুন।",
   ),
   body: loc(
-    "Eight connected areas for the work you do every day.",
-    "দৈনন্দিন কার্যক্রম পরিচালনার জন্য পরস্পরের সঙ্গে সংযুক্ত আটটি মডিউল গ্রুপ।",
+    "Connected modules for the work you do every day, sharing one set of products, stock, customers and money records.",
+    "দৈনন্দিন কাজের জন্য পরস্পরের সঙ্গে সংযুক্ত মডিউল—সবগুলো একই প্রোডাক্ট, স্টক, কাস্টমার ও টাকার হিসাব ব্যবহার করে।",
   ),
 };
 

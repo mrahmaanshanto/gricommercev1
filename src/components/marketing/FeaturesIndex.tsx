@@ -7,7 +7,7 @@ import { BrandCTA } from "@/components/brand/home/BrandCTA";
 import { GcButton, IconTile, Panel, SectionHead } from "@/components/brand/primitives";
 import { PageHero } from "./pages/PageHero";
 import { MODULES_COPY } from "@/data/copy/home";
-import { MODULES, MODULE_BY_SLUG, MODULE_UI, type ModuleSlug } from "@/data/copy/modules";
+import { MODULES, MODULE_BY_SLUG, MODULE_UI } from "@/data/copy/modules";
 import { FEATURES } from "@/data/sample";
 import { useI18n } from "@/i18n/provider";
 import { loc } from "@/i18n/types";
@@ -25,11 +25,12 @@ const COPY = {
 const cardClass =
   "flex h-full flex-col rounded-[24px] p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-gc-float md:p-7";
 
-/** The eight primary modules first, with the homepage (H04) names and
- *  descriptions, then the supporting feature pages. */
+/** The primary modules first, in the order `MODULES` sets, then the
+ *  supporting feature pages, each labelled with the module it belongs to.
+ *  Switched-off modules (wholesale) keep their route but are not listed. */
 export function FeaturesIndex() {
   const { t, L } = useI18n();
-  const supporting = FEATURES.filter((f) => !MODULE_BY_SLUG.has(f.slug as ModuleSlug));
+  const supporting = FEATURES;
 
   return (
     <>
@@ -43,7 +44,7 @@ export function FeaturesIndex() {
 
       <Panel tone="white" pattern="tr" inner="py-14 md:py-20">
         <SectionHead title={L(MODULES_COPY.title)} body={L(MODULES_COPY.body)} />
-        <Stagger className="mt-10 grid gap-4 md:grid-cols-2" stagger={0.05}>
+        <Stagger className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3" stagger={0.04}>
           {MODULES.map((m) => (
             <Stagger.Item key={m.slug} className="h-full">
               <Link href={`/features/${m.slug}`} className={`group/f bg-gc-canvas hover:bg-white ${cardClass}`}>
@@ -72,6 +73,11 @@ export function FeaturesIndex() {
                 <Link href={`/features/${f.slug}`} className={`group/f bg-white ring-1 ring-inset ring-gc-line/80 ${cardClass}`}>
                   <IconTile name={f.icon} />
                   <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(f.name)}</p>
+                  {MODULE_BY_SLUG.get(f.module) && (
+                    <p className="mt-1 text-[0.8125rem] font-semibold text-gc-royal">
+                      {L(MODULE_BY_SLUG.get(f.module)!.name)}
+                    </p>
+                  )}
                   <p className="mt-2 flex-1 text-gc-small text-gc-ink-60">{L(f.title)}</p>
                   <span className="mt-6 inline-flex items-center gap-1.5 text-gc-small font-semibold text-gc-royal">
                     {L(COPY.eyebrow)}

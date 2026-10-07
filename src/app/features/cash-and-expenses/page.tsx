@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Cash and expenses",
-  description: "Where the money came in, where it went, and what is still outstanding.",
+  title: "Money",
+  description:
+    "Sales, refunds, payouts and expenses post to the cash drawer, bank or wallet that moved the money. See what partners still hold, what customers owe you and what you owe, and match bank statements against your records.",
   path: "/features/cash-and-expenses",
 });
 

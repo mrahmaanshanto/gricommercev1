@@ -9,6 +9,8 @@ import {
   Receipt, ScanBarcode, Search, Send, Settings, ShieldCheck, ShoppingBag, ShoppingCart, Smartphone,
   Sparkles, Star, Store, Table, Tag, TrendingUp, Truck, Users, Wallet, Warehouse,
   Zap,
+  CalendarCheck, CalendarClock, ClipboardCheck, Contact, Crown, Gift, PackageX, PhoneCall,
+  Radar, RadioTower, RefreshCw, Scale, Share2, Sun, Target, TicketPercent, Workflow,
   type LucideIcon,
 } from "lucide-react";
 
@@ -23,6 +25,8 @@ export const ICONS: Record<string, LucideIcon> = {
   Receipt, RotateCcw, ScanBarcode, Search, Send, Settings,
   ShieldCheck, ShoppingBag, ShoppingCart, Smartphone, Sparkles, Star, Store, Table, Tag,
   TrendingUp, Truck, Users, Wallet, Warehouse, Zap,
+  CalendarCheck, CalendarClock, ClipboardCheck, Contact, Crown, Gift, PackageX, PhoneCall,
+  Radar, RadioTower, RefreshCw, Scale, Share2, Sun, Target, TicketPercent, Workflow,
 };
 
 export function Icon({

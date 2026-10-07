@@ -2,8 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "AI product creation",
-  description: "Upload a product photo and let GridCommerce prepare the draft. You approve before anything publishes.",
+  title: "AI Product Writing",
+  description:
+    "It writes the draft. You decide what is saved. While adding a product, ask AI to draft the descriptions, SEO text, tags, FAQ and photo alt text, in English or Bangla, then edit before you save.",
   path: "/features/ai-product-creation",
 });
 

@@ -1,6 +1,7 @@
 import { loc, type Localized } from "@/i18n/types";
 import { BUSINESS_TYPES_COPY } from "@/data/copy/home";
 import { MODULES } from "@/data/copy/modules";
+import { FEATURES } from "@/data/sample";
 
 export type NavLink = {
   label: Localized;
@@ -31,30 +32,22 @@ export type MegaMenu = {
   };
 };
 
-/** The eight primary modules, in homepage order, named and described as the
- *  homepage grid (H04) names them. */
+/** The primary modules, in the order `MODULES` sets, described by their
+ *  one-line summary. Switched-off modules (wholesale) are not in `MODULES`. */
 const MODULE_LINKS: NavLink[] = MODULES.map((m) => ({
   label: m.name,
-  description: m.hook,
+  description: m.summary,
   href: `/features/${m.slug}`,
   icon: m.icon,
 }));
 
-/** Supporting feature pages. They link in from the menu without repeating the
- *  module copy. */
-const SUPPORTING_LINKS: NavLink[] = [
-  { label: loc("Landing Pages", "ল্যান্ডিং পেজ"), href: "/features/landing-pages", icon: "LayoutTemplate" },
-  { label: loc("Warehouse", "Warehouse"), href: "/features/warehouse", icon: "Warehouse" },
-  { label: loc("Products", "প্রোডাক্ট"), href: "/features/products", icon: "Package" },
-  { label: loc("Customers", "কাস্টমার"), href: "/features/customers", icon: "Users" },
-  { label: loc("Payments", "পেমেন্ট"), href: "/features/payments", icon: "CreditCard" },
-  { label: loc("Cash & Expenses", "ক্যাশ ও খরচ"), href: "/features/cash-and-expenses", icon: "Wallet" },
-  { label: loc("Cart Recovery", "কার্ট রিকভারি"), href: "/features/cart-recovery", icon: "ShoppingCart" },
-  { label: loc("Reviews", "রিভিউ"), href: "/features/reviews", icon: "Star" },
-  { label: loc("AI Product Creation", "AI প্রোডাক্ট ড্রাফট"), href: "/features/ai-product-creation", icon: "Sparkles" },
-  { label: loc("Reports", "রিপোর্ট"), href: "/features/reports", icon: "FileBarChart" },
-  { label: loc("Staff & Permissions", "স্টাফ ও অনুমতি"), href: "/features/staff-permissions", icon: "ShieldCheck" },
-];
+/** Supporting feature pages, generated from the registry so the menu never
+ *  links to a page that does not exist. Each sits inside one module. */
+const SUPPORTING_LINKS: NavLink[] = FEATURES.map((f) => ({
+  label: f.name,
+  href: `/features/${f.slug}`,
+  icon: f.icon,
+}));
 
 /** A continuation column carries no heading of its own; the non-breaking space
  *  keeps its links aligned with the column beside it. */
@@ -65,10 +58,10 @@ export const MEGA_MENUS: MegaMenu[] = [
     id: "products",
     label: loc("Modules", "মডিউল"),
     columns: [
-      { title: loc("Modules", "মডিউল"), accent: "brand", links: MODULE_LINKS.slice(0, 4) },
-      { title: CONTINUED, accent: "brand", links: MODULE_LINKS.slice(4) },
-      { title: loc("Supporting features", "সহায়ক ফিচার"), accent: "cyan", links: SUPPORTING_LINKS.slice(0, 6) },
-      { title: CONTINUED, accent: "cyan", links: SUPPORTING_LINKS.slice(6) },
+      { title: loc("Modules", "মডিউল"), accent: "brand", links: MODULE_LINKS.slice(0, 5) },
+      { title: CONTINUED, accent: "brand", links: MODULE_LINKS.slice(5, 10) },
+      { title: CONTINUED, accent: "brand", links: MODULE_LINKS.slice(10) },
+      { title: loc("Supporting features", "সহায়ক ফিচার"), accent: "cyan", links: SUPPORTING_LINKS },
     ],
   },
   {

@@ -3,27 +3,27 @@
 import Image from "next/image";
 import { motion, useReducedMotion, animate, useMotionValue, useTransform } from "motion/react";
 import { useEffect, type ReactNode } from "react";
-import {
-  ChartColumn,
-  Globe,
-  House,
-  Inbox,
-  Settings,
-  ShoppingCart,
-  Users,
-  Wallet,
-  type LucideIcon,
-} from "lucide-react";
+import { Boxes, ChartColumn, Globe, House, Inbox, Settings, ShoppingCart, Users, Wallet, type LucideIcon } from "lucide-react";
+import { useI18n } from "@/i18n/provider";
+import { loc, type Localized } from "@/i18n/types";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
 
 /**
- * Building blocks for the hero's product mockups.
+ * Building blocks for the homepage's product mockups.
  *
- * The mockups are drawn at a fixed design size and scaled to fit (see
+ * The hero mockups are drawn at a fixed design size and scaled to fit (see
  * HeroShowcase), so sizes here are design pixels that follow the merchant
  * app's own scale: 13px body, 12px helper text, 20px page titles.
  */
+
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+
+/** Bangladeshi digit grouping (2,46,040), in Bangla digits for Bangla. */
+export function formatBdt(n: number, locale = "en") {
+  const s = n.toLocaleString("en-IN");
+  return locale === "bn" ? s.replace(/\d/g, (d) => BN_DIGITS[Number(d)]) : s;
+}
 
 /* ------------------------------------------------------------------ */
 /* Reveal on a beat                                                    */
@@ -78,9 +78,10 @@ export function Counter({
   className?: string;
   duration?: number;
 }) {
+  const { locale } = useI18n();
   const reduced = useReducedMotion();
   const mv = useMotionValue(value);
-  const text = useTransform(mv, (v) => prefix + formatBdt(Math.round(v)));
+  const text = useTransform(mv, (v) => (v < 0 ? "−" : "") + prefix + formatBdt(Math.abs(Math.round(v)), locale));
 
   useEffect(() => {
     if (reduced) {
@@ -94,24 +95,20 @@ export function Counter({
   return <motion.span className={cn("tabular-nums", className)}>{text}</motion.span>;
 }
 
-/** Bangladeshi digit grouping: 2,46,040. */
-export function formatBdt(n: number) {
-  return n.toLocaleString("en-IN");
-}
-
 /* ------------------------------------------------------------------ */
 /* Window chrome                                                       */
 /* ------------------------------------------------------------------ */
 
-type RailItem = "home" | "inbox" | "orders" | "customers" | "payments" | "analytics";
+export type RailItem = "home" | "inbox" | "orders" | "stock" | "customers" | "payments" | "analytics";
 
-const RAIL: { id: RailItem; icon: LucideIcon; label: string }[] = [
-  { id: "home", icon: House, label: "Home" },
-  { id: "inbox", icon: Inbox, label: "Inbox" },
-  { id: "orders", icon: ShoppingCart, label: "Orders" },
-  { id: "customers", icon: Users, label: "Customers" },
-  { id: "payments", icon: Wallet, label: "Payments" },
-  { id: "analytics", icon: ChartColumn, label: "Analytics" },
+const RAIL: { id: RailItem; icon: LucideIcon; label: Localized }[] = [
+  { id: "home", icon: House, label: loc("Home", "হোম") },
+  { id: "inbox", icon: Inbox, label: loc("Inbox", "ইনবক্স") },
+  { id: "orders", icon: ShoppingCart, label: loc("Orders", "অর্ডার") },
+  { id: "stock", icon: Boxes, label: loc("Stock", "স্টক") },
+  { id: "customers", icon: Users, label: loc("Customers", "কাস্টমার") },
+  { id: "payments", icon: Wallet, label: loc("Payments", "পেমেন্ট") },
+  { id: "analytics", icon: ChartColumn, label: loc("Reports", "রিপোর্ট") },
 ];
 
 /**
@@ -131,6 +128,7 @@ export function AppFrame({
   className?: string;
   children: ReactNode;
 }) {
+  const { L } = useI18n();
   return (
     <div
       className={cn(
@@ -155,20 +153,13 @@ export function AppFrame({
             <Image src="/brand/v2/gridcommerce-mark.png" alt="" width={28} height={28} className="mb-3 size-7 object-contain" />
             {RAIL.map(({ id, icon: Icon, label }) => (
               <div key={id} className="flex flex-col items-center gap-0.5 py-1">
-                <span
-                  className={cn(
-                    "grid size-8 place-items-center rounded-lg",
-                    id === active ? "bg-gc-royal text-white" : "text-gc-ink-50",
-                  )}
-                >
+                <span className={cn("grid size-8 place-items-center rounded-lg", id === active ? "bg-gc-royal text-white" : "text-gc-ink-50")}>
                   <Icon className="size-4" strokeWidth={1.9} />
                 </span>
-                <span className={cn("text-[9.5px]", id === active ? "font-semibold text-gc-ink" : "text-gc-ink-50")}>
-                  {label}
-                </span>
+                <span className={cn("text-[9.5px]", id === active ? "font-semibold text-gc-ink" : "text-gc-ink-50")}>{L(label)}</span>
               </div>
             ))}
-            <span className="mt-auto mb-3 grid size-8 place-items-center text-gc-ink-30">
+            <span className="mb-3 mt-auto grid size-8 place-items-center text-gc-ink-30">
               <Settings className="size-4" />
             </span>
           </div>
@@ -197,28 +188,25 @@ export type Tone = keyof typeof TONES;
 
 export function Chip({ tone = "neutral", children, className }: { tone?: Tone; children: ReactNode; className?: string }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-[3px] text-[11px] font-semibold leading-none",
-        TONES[tone],
-        className,
-      )}
-    >
+    <span className={cn("inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-[3px] text-[11px] font-semibold leading-none", TONES[tone], className)}>
       {children}
     </span>
   );
 }
 
 export function Card({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn("rounded-[12px] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.05)] ring-1 ring-[#E8EBF0]", className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn("rounded-[12px] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.05)] ring-1 ring-[#E8EBF0]", className)}>{children}</div>;
 }
 
-const AVATAR_TONES = ["bg-[#E7EFFA] text-[#0A5BCF]", "bg-[#FDECEF] text-[#BE185D]", "bg-[#E8F7F0] text-[#047857]", "bg-[#FEF3E2] text-[#B45309]", "bg-[#EEF0FF] text-[#4F46E5]"];
+const AVATAR_TONES = [
+  "bg-[#E7EFFA] text-[#0A5BCF]",
+  "bg-[#FDECEF] text-[#BE185D]",
+  "bg-[#E8F7F0] text-[#047857]",
+  "bg-[#FEF3E2] text-[#B45309]",
+  "bg-[#EEF0FF] text-[#4F46E5]",
+];
 
+/** Initials in a tinted circle. Decorative: the name is always written beside it. */
 export function Avatar({ name, size = 32, tone = 0 }: { name: string; size?: number; tone?: number }) {
   const initials = name
     .split(" ")
@@ -227,6 +215,7 @@ export function Avatar({ name, size = 32, tone = 0 }: { name: string; size?: num
     .join("");
   return (
     <span
+      aria-hidden
       className={cn("grid shrink-0 place-items-center rounded-full font-semibold", AVATAR_TONES[tone % AVATAR_TONES.length])}
       style={{ width: size, height: size, fontSize: size * 0.36 }}
     >
@@ -244,13 +233,15 @@ const CHANNEL_LOGO = {
   web: "/integrations/website-chat.png",
 } as const;
 
-/** `site` is the merchant's own website, drawn as a globe rather than a chat bubble. */
+/** `site` is the merchant's own website, drawn as a globe. */
 export type Channel = keyof typeof CHANNEL_LOGO | "site";
 
+/** A channel mark. Decorative: the channel is always named in the text beside it. */
 export function ChannelLogo({ channel, size = 14, className }: { channel: Channel; size?: number; className?: string }) {
   if (channel === "site") {
     return (
       <span
+        aria-hidden
         className={cn("grid shrink-0 place-items-center rounded-full bg-[#10B981] text-white", className)}
         style={{ width: size, height: size }}
       >
@@ -267,23 +258,6 @@ export function ChannelLogo({ channel, size = 14, className }: { channel: Channe
       className={cn("shrink-0 object-contain", className)}
       style={{ width: size, height: size }}
     />
-  );
-}
-
-/** Three dots that pulse while someone (or GridAI) is typing. */
-export function TypingDots({ className }: { className?: string }) {
-  const reduced = useReducedMotion();
-  return (
-    <span className={cn("inline-flex items-center gap-1", className)} aria-hidden>
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="size-1.5 rounded-full bg-current"
-          animate={reduced ? undefined : { opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
-          transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
-        />
-      ))}
-    </span>
   );
 }
 
@@ -311,7 +285,7 @@ export function FloatPanel({ children, className }: { children: ReactNode; class
   );
 }
 
-/** What every slide receives from HeroShowcase. */
+/** What every hero slide receives from HeroShowcase. */
 export type SlideProps = {
   /** How many of the slide's cues have passed; the slide draws itself from it. */
   beat: number;

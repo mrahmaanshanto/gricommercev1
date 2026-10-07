@@ -202,6 +202,21 @@
    `hero-rise`. Stagger: HERO_STAGGER in src/lib/motion.ts.
    ============================================================ */
 
+/* The "How it works" step's progress bar (driven from OrderStory). */
+@keyframes gc-step-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.gc-step-bar {
+  transform: scaleX(0);
+  animation-name: gc-step-bar;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gc-step-bar { animation: none; transform: scaleX(1); }
+}
+
 @keyframes hero-settle {
   from { transform: translateY(16px); }
 }

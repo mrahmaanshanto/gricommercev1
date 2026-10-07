@@ -20,7 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return routes
-    .filter((r) => !["/login", "/signup"].includes(r))
+    // /features/wholesale keeps its route while the wholesale module is
+    // switched off, but is no longer listed or linked anywhere.
+    .filter((r) => !["/login", "/signup", "/features/wholesale"].includes(r))
     .map((route) => ({
       url: `${SITE.url}${route}`,
       lastModified: now,

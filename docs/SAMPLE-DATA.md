@@ -26,7 +26,7 @@ grep -rn "data/sample" src
 | `integrations.ts` | Solutions, integration provider lists, migration sources, security capabilities |
 | `pricing.ts` | Three plans, four add-on modules, pricing FAQ |
 | `articles.ts` | Six blog posts, six help categories with articles, about values, status states |
-| `features.ts` | Supporting copy for all 19 feature pages |
+| `features.ts` | Supporting copy for the seven supporting feature pages (module pages render from `data/copy/modules.ts`) |
 | `pages.ts` | Themes, about, status and legal document structures |
 
 ## Outside that directory

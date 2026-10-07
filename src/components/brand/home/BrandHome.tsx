@@ -1,41 +1,35 @@
 import { BrandHero } from "./BrandHero";
-import { BrandProblem } from "./BrandProblem";
-import { BrandModules } from "./BrandModules";
-import { BrandProof } from "./BrandProof";
 import { BrandSolutions } from "./BrandSolutions";
+import { BrandModules } from "./BrandModules";
 import { BrandFaq } from "./BrandFaq";
 import { BrandCTA } from "./BrandCTA";
-import { ChannelAnalytics } from "./sections/ChannelAnalytics";
-import { LandingBuilder } from "./sections/LandingBuilder";
-import { MobileApps } from "./sections/MobileApps";
-import { OneDashboard } from "./sections/OneDashboard";
-import { SocialPlanner } from "./sections/SocialPlanner";
-import { StoreSync } from "./sections/StoreSync";
+import { DailyControl } from "./sections/DailyControl";
+import { GrowthTools } from "./sections/GrowthTools";
+import { Migration } from "./sections/Migration";
+import { OrderStory } from "./sections/OrderStory";
+import { SharedStock } from "./sections/SharedStock";
+import { StartSteps } from "./sections/StartSteps";
 
 /**
- * The homepage in the GridCommerce Brand Guidelines design.
- *
- * Rendered at `/`. The copy handoff's sections (H02–H08: hero, daily
- * questions, the eight module groups, one order followed end to end, business
- * types, FAQ and the demo close) are interleaved with the October 2026
- * showcase sections in `sections/`: one dashboard, channel analytics, the
- * social planner, the AI landing page builder, store sync and the apps. Copy lives in `data/copy/`; this
- * file only composes the sections in order.
+ * The homepage, rendered at `/`. The sections that decide whether a business
+ * buys come first and get the most room — one order from sale to money, daily
+ * money control, shared stock, and moving over from Shopify or WordPress —
+ * then business fit, growth tools, the modules, how to start, FAQ and the demo
+ * close. Copy lives in `data/copy/homepage.ts`; product visuals are real
+ * captures of the merchant app in `/public/product`.
  */
 export function BrandHome() {
   return (
     <div className="gc-scope bg-gc-canvas">
       <BrandHero />
-      <OneDashboard />
-      <BrandProblem />
-      <BrandModules />
-      <ChannelAnalytics />
-      <SocialPlanner />
-      <LandingBuilder />
-      <BrandProof />
-      <StoreSync />
+      <OrderStory />
+      <DailyControl />
+      <SharedStock />
+      <Migration />
       <BrandSolutions />
-      <MobileApps />
+      <GrowthTools />
+      <BrandModules />
+      <StartSteps />
       <BrandFaq />
       <BrandCTA />
     </div>

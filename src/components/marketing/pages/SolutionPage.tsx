@@ -8,10 +8,11 @@ import { BrandCTA } from "@/components/brand/home/BrandCTA";
 import { SOLUTION_PHOTOS } from "@/components/brand/home/BrandSolutions";
 import { Eyebrow, GcButton, IconTile, Panel, SectionHead } from "@/components/brand/primitives";
 import { PageHero } from "./PageHero";
+import { MODULES } from "@/data/copy/modules";
 import { FEATURES, SOLUTIONS } from "@/data/sample";
 import { SCREENS } from "@/data/screenshots";
 import { useI18n } from "@/i18n/provider";
-import { loc } from "@/i18n/types";
+import { loc, type Localized } from "@/i18n/types";
 
 const COPY = {
   home: loc("Home", "হোম"),
@@ -24,11 +25,25 @@ const COPY = {
   others: loc("Other ways in", "অন্য পথ"),
 };
 
+/** Module and supporting-feature slugs shown on each solution page. The
+ *  wholesale module is switched off, so the wholesale page links only to
+ *  modules every edition can carry. */
 const SOLUTION_FEATURES: Record<string, string[]> = {
-  online: ["storefront", "landing-pages", "orders", "courier", "omnichannel", "cart-recovery"],
-  retail: ["pos", "inventory", "warehouse", "products", "customers", "reports"],
-  wholesale: ["wholesale", "products", "inventory", "cash-and-expenses", "staff-permissions", "reports"],
+  online: ["storefront", "courier", "orders", "omnichannel", "sales-channels", "cart-recovery"],
+  retail: ["pos", "inventory", "warehouse", "customers", "offers-loyalty", "reports"],
+  wholesale: ["inventory", "warehouse", "orders", "cash-and-expenses", "customers", "reports"],
 };
+
+type SolutionLink = { slug: string; icon: string; name: Localized; line: Localized };
+
+/** A primary module is named the way the module list names it; anything else
+ *  comes from the supporting-feature registry. */
+function resolveLink(slug: string): SolutionLink | undefined {
+  const m = MODULES.find((x) => x.slug === slug);
+  if (m) return { slug, icon: m.icon, name: m.name, line: m.hook };
+  const f = FEATURES.find((x) => x.slug === slug);
+  return f && { slug, icon: f.icon, name: f.name, line: f.title };
+}
 
 const SOLUTION_SCREEN: Record<string, keyof typeof SCREENS> = {
   online: "landingPages",
@@ -41,9 +56,7 @@ export function SolutionPage({ id }: { id: string }) {
   const solution = SOLUTIONS.find((s) => s.id === id);
   if (!solution) throw new Error(`SolutionPage: unknown solution "${id}"`);
 
-  const features = (SOLUTION_FEATURES[id] ?? [])
-    .map((s) => FEATURES.find((f) => f.slug === s))
-    .filter((f) => f !== undefined);
+  const features = (SOLUTION_FEATURES[id] ?? []).map(resolveLink).filter((f) => f !== undefined);
   const others = SOLUTIONS.filter((s) => s.id !== id);
   const photo = SOLUTION_PHOTOS[id];
   const capture = SCREENS[SOLUTION_SCREEN[id] ?? "orders"].mobile;
@@ -113,7 +126,7 @@ export function SolutionPage({ id }: { id: string }) {
               >
                 <IconTile name={f.icon} />
                 <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(f.name)}</p>
-                <p className="mt-2 flex-1 text-gc-small text-gc-ink-60">{L(f.title)}</p>
+                <p className="mt-2 flex-1 text-gc-small text-gc-ink-60">{L(f.line)}</p>
               </Link>
             </Stagger.Item>
           ))}

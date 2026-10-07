@@ -3,7 +3,8 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Reports",
-  description: "Sales, stock, cash and profit — read the same way every time.",
+  description:
+    "Read the same way every time. Sales, stock, purchases, finance, POS, staff and marketing reports in one report centre, ready to filter, download or schedule.",
   path: "/features/reports",
 });
 

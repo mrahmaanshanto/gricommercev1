@@ -2,9 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Orders & Sales Entry",
+  title: "Orders & Returns",
   description:
-    "Keep online orders moving through confirmation and dispatch. Use a dedicated sales screen for orders taken by phone, Messenger or WhatsApp, with product availability, customer history and payment details ready when your team needs them.",
+    "See online and counter orders in one list, filtered by status, courier, payment and delivery zone. Verify an order before you approve it, take an advance when you need one, and handle returns and exchanges from the same place.",
   path: "/features/orders",
 });
 

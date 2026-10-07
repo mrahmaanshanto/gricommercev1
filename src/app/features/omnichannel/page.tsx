@@ -2,9 +2,9 @@ import { FeaturePage } from "@/components/marketing/FeaturePage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Customer Inbox & Follow-up",
+  title: "Inbox, Calls & AI Calls",
   description:
-    "Bring supported customer channels into a shared inbox. See the customer's history beside the conversation, give the right staff member responsibility and follow up when an interested buyer leaves without ordering.",
+    "Bring chats from Facebook, Instagram, WhatsApp, TikTok and other connected channels into a shared inbox, alongside comments and mentions. See the customer's orders beside the conversation, create an order without leaving it, and let AI calls confirm new orders in Bangla or English.",
   path: "/features/omnichannel",
 });
 
