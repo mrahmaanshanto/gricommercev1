@@ -60,6 +60,9 @@ export function useOnScreen<T extends HTMLElement>() {
  * many have passed. With `loop` it starts over every `duration` ms; it stops
  * when scrolled away and restarts on return. Reduced motion: the final state.
  */
+/** Timing factor for animated scenes on phones (0.6 = 40% faster). */
+export const PHONE_SPEED = 0.6;
+
 export function useTimeline(cues: number[], { duration, loop = true }: { duration: number; loop?: boolean }) {
   const { ref, onScreen } = useOnScreen<HTMLDivElement>();
   const reduced = useReducedMotion();
@@ -68,12 +71,14 @@ export function useTimeline(cues: number[], { duration, loop = true }: { duratio
   useEffect(() => {
     if (!onScreen || reduced) return;
     let timers: number[] = [];
+    // Phones play every scene faster: less waiting on a small screen.
+    const k = window.matchMedia("(max-width: 639px)").matches ? PHONE_SPEED : 1;
     const run = () => {
       timers.forEach((t) => window.clearTimeout(t));
       timers = [];
       setBeat(0);
-      cues.forEach((c, i) => timers.push(window.setTimeout(() => setBeat(i + 1), c)));
-      if (loop) timers.push(window.setTimeout(run, duration));
+      cues.forEach((c, i) => timers.push(window.setTimeout(() => setBeat(i + 1), c * k)));
+      if (loop) timers.push(window.setTimeout(run, duration * k));
     };
     run();
     return () => timers.forEach((t) => window.clearTimeout(t));

@@ -13,9 +13,8 @@ import { HERO_COUNT, readHeroChoice, readPreviewEnabled, setHeroChoice, subscrib
  * One button and one panel for everything the team is still choosing: the
  * homepage hero (five candidates or the current one), ten heading / body /
  * accent font pairings and six colour palettes. On phones the panel opens as a
- * bottom sheet. It shows in development, and on any deployment once the URL
- * has carried `?preview` (or the older `?fonts` / `?hero`) in this browser;
- * `?preview=off` hides it again. Visitors never see it.
+ * bottom sheet. It is on by default while the design is being chosen;
+ * `?preview=off` hides it in that browser and `?preview` shows it again.
  *
  * A palette overrides the `--color-gc-*` tokens (and the two blue-tinted
  * shadows); a font pair overrides the three `--gc-font-*` roles on <html>.
@@ -308,7 +307,7 @@ export function DesignPreview() {
                   </li>
                 ))}
             </ul>
-            <p className="border-t border-gc-line px-4 py-2.5 text-[0.75rem] text-gc-ink-50">Only you see this panel. Add ?preview=off to the address to hide it.</p>
+            <p className="border-t border-gc-line px-4 py-2.5 text-[0.75rem] text-gc-ink-50">Review tool while the design is chosen. Add ?preview=off to the address to hide it.</p>
           </div>
         </>
       )}

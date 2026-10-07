@@ -35,6 +35,7 @@ import { useNum } from "../sections/kit";
  */
 
 const SPEED = 60; // px per second
+const SPEED_PHONE = 95; // phones: faster, so more cards pass in less time
 
 export function HeroGallery() {
   const reduced = useReducedMotion();
@@ -88,7 +89,7 @@ export function HeroGallery() {
         const dt = Math.min(now - last, 100);
         last = now;
         if (visible && document.visibilityState === "visible") {
-          offset += (SPEED * dt) / 1000;
+          offset += ((width < 640 ? SPEED_PHONE : SPEED) * dt) / 1000;
           place();
         }
         raf = requestAnimationFrame(tick);

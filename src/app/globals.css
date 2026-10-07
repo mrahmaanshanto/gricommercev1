@@ -212,6 +212,11 @@
   to { transform: translate3d(0, -50%, 0); }
 }
 .gc-marquee-y { animation: gc-marquee-y var(--gc-marquee-duration, 40s) linear infinite; }
+/* Phones: logo rows and theme columns move faster. */
+@media (max-width: 639px) {
+  .gc-marquee { animation-duration: calc(var(--gc-marquee-duration, 18s) * 0.6); }
+  .gc-marquee-y { animation-duration: calc(var(--gc-marquee-duration, 40s) * 0.6); }
+}
 @media (prefers-reduced-motion: reduce) {
   .gc-marquee, .gc-marquee-y { animation: none; }
 }
@@ -303,4 +308,10 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Phones: floating stickers and background glows move a little faster. */
+@media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
+  .gc-float { animation-duration: 3.5s; }
+  .gc-drift { animation-duration: 12s; }
 }

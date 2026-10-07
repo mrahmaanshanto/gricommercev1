@@ -51,9 +51,9 @@ export function HeroCentered() {
 
           <h1 className="hero-settle mx-auto mt-7 max-w-4xl text-gc-display tracking-[-0.035em] text-gc-ink" style={heroDelay(HERO_STAGGER.headline)}>
             <span className="block">{L(HERO.line1)}</span>
-            <span className="relative mt-5 inline-block">
+            <span className="relative mt-1 inline-block text-gc-royal lg:mt-5 lg:text-gc-ink">
               {L(HERO.line2)}
-              <svg aria-hidden viewBox="0 0 400 100" preserveAspectRatio="none" className="pointer-events-none absolute -left-[5%] -top-[34%] h-[170%] w-[110%]">
+              <svg aria-hidden viewBox="0 0 400 100" preserveAspectRatio="none" className="pointer-events-none absolute -left-[5%] -top-[34%] hidden h-[170%] w-[110%] lg:block">
                 <path
                   d="M40 64 C 10 40, 60 10, 200 8 S 396 22, 392 52 S 300 96, 190 94 S 6 84, 14 56 S 90 18, 230 14"
                   fill="none"

@@ -82,10 +82,10 @@ export function HeroTilt() {
               initial={{ opacity: 0, rotateY: -24, rotateX: 10, y: 30 }}
               animate={{ opacity: 1, rotateY: -14, rotateX: 6, y: 0 }}
               transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
-              className="origin-left overflow-hidden rounded-[22px] bg-white shadow-[0_50px_100px_-40px_rgba(10,40,100,0.55)] ring-1 ring-gc-line lg:w-[118%]"
+              className="origin-left overflow-hidden rounded-[22px] max-sm:![transform:none] bg-white shadow-[0_50px_100px_-40px_rgba(10,40,100,0.55)] ring-1 ring-gc-line lg:w-[118%]"
             >
-              <div className="grid grid-cols-[150px_1fr] sm:grid-cols-[170px_1fr]">
-                <aside className="border-r border-gc-line bg-gc-canvas/60 p-3">
+              <div className="grid sm:grid-cols-[170px_1fr]">
+                <aside className="hidden border-r border-gc-line bg-gc-canvas/60 p-3 sm:block">
                   <p className="flex items-center gap-1.5 px-1 text-[13px] font-bold text-gc-ink">
                     <span className="grid size-5 place-items-center rounded-md bg-gc-royal text-[10px] text-white">G</span> GridCommerce
                   </p>
@@ -115,9 +115,9 @@ export function HeroTilt() {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-4 grid grid-cols-3 gap-2.5">
+                  <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
                     {V.columns.map((col, c) => (
-                      <div key={c} className="min-w-0">
+                      <div key={c} className={cn("min-w-0", c === 2 && "hidden sm:block")}>
                         <p className="flex items-center gap-1.5 text-[11px] font-semibold text-gc-ink-70">
                           <span className={cn("size-1.5 rounded-full", ["bg-gc-warning", "bg-gc-royal", "bg-gc-success"][c])} />
                           {L(col)} <span className="text-gc-ink-50">{n(BOARD[c].length)}</span>

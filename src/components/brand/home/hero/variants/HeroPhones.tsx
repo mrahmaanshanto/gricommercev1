@@ -34,7 +34,7 @@ export function HeroPhones() {
           <HeroActions center className="mt-8" />
         </div>
 
-        <div aria-hidden className="relative mx-auto mt-12 h-[400px] max-w-[880px] sm:h-[440px]">
+        <div aria-hidden className="relative mx-auto mt-10 h-[400px] max-w-[880px] sm:mt-12 sm:h-[440px]">
           {/* Left phone: inbox */}
           <Phone className="left-[2%] top-16 hidden -rotate-[10deg] sm:block" delay={0.5} tone="bg-white">
             <p className="text-[13px] font-bold text-gc-ink">{L(V.menu[2])}</p>
@@ -107,12 +107,12 @@ export function HeroPhones() {
           </Phone>
 
           {/* Name tags and stickers */}
-          <NameTag name={V.names.a} className="left-[18%] top-6 bg-gc-success" />
-          <NameTag name={V.names.b} className="right-[1%] top-[42%] bg-[#F5A524]" flip />
-          <span className="gc-float absolute left-[6%] top-[62%] grid size-14 place-items-center rounded-full bg-[#FFD8E4] text-[1.6rem] shadow-lg [animation-delay:-2s]">
+          <NameTag name={V.names.a} className="left-[18%] top-6 bg-gc-success max-sm:hidden" />
+          <NameTag name={V.names.b} className="right-[1%] top-[42%] bg-[#F5A524] max-sm:hidden" flip />
+          <span className="gc-float absolute left-[6%] top-[62%] hidden size-14 sm:grid place-items-center rounded-full bg-[#FFD8E4] text-[1.6rem] shadow-lg [animation-delay:-2s]">
             <ShieldCheck className="size-7 text-[#D93636]" />
           </span>
-          <span className="gc-float absolute right-[8%] top-2 grid size-14 rotate-12 place-items-center rounded-2xl bg-gc-accent text-white shadow-lg [animation-delay:-1s]">
+          <span className="gc-float absolute right-[8%] top-2 hidden size-14 sm:grid rotate-12 place-items-center rounded-2xl bg-gc-accent text-white shadow-lg [animation-delay:-1s]">
             <span className="text-[1rem] font-black">COD</span>
           </span>
         </div>

@@ -1,9 +1,9 @@
 /**
  * Shared state for the design preview panel (a review tool, not part of the
- * site): whether it is switched on for this browser, and which hero is picked.
- * Turn it on with `?preview` (or the older `?fonts` / `?hero`) on any page; it
- * is then remembered in this browser until `?preview=off`. It is always on in
- * development. Visitors who never use the link never see it.
+ * site): whether it is shown in this browser, and which hero is picked. While
+ * the design is being chosen the panel is ON for everyone by default;
+ * `?preview=off` hides it in that browser and `?preview` brings it back.
+ * When the choices are final, delete components/dev and the hero variants.
  */
 
 const ENABLED_KEY = "gc.preview";
@@ -24,14 +24,11 @@ export function subscribePreview(cb: () => void) {
 export function readPreviewEnabled() {
   try {
     const q = new URLSearchParams(window.location.search);
-    if (q.get("preview") === "off") {
-      localStorage.removeItem(ENABLED_KEY);
-      return false;
-    }
-    if (q.has("preview") || q.has("fonts") || q.has("hero")) localStorage.setItem(ENABLED_KEY, "1");
-    return process.env.NODE_ENV !== "production" || localStorage.getItem(ENABLED_KEY) === "1";
+    if (q.get("preview") === "off") localStorage.setItem(ENABLED_KEY, "off");
+    else if (q.has("preview") || q.has("fonts") || q.has("hero")) localStorage.removeItem(ENABLED_KEY);
+    return localStorage.getItem(ENABLED_KEY) !== "off";
   } catch {
-    return false;
+    return true;
   }
 }
 
