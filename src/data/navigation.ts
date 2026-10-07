@@ -138,10 +138,16 @@ export const PRIMARY_NAV: { label: Localized; href: string }[] = [
 
 export type FooterColumn = { titleKey: "product" | "solutions" | "resources" | "company" | "legal"; links: NavLink[] };
 
+const FOOTER_MODULES = ["orders", "courier", "omnichannel", "inventory", "analytics"];
+
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     titleKey: "product",
-    links: MODULES.map((m) => ({ label: m.name, href: `/features/${m.slug}` })),
+    // The five modules online sellers open most, then the full list.
+    links: [
+      ...FOOTER_MODULES.map((slug) => MODULES.find((m) => m.slug === slug)!).map((m) => ({ label: m.name, href: `/features/${m.slug}` })),
+      { label: loc("All modules", "সব মডিউল"), href: "/features" },
+    ],
   },
   {
     titleKey: "solutions",

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -362,57 +361,8 @@ export function Pill({
 export type { Channel };
 
 /* ------------------------------------------------------------------ */
-/* Real product screens                                                */
+/* Section rhythm                                                      */
 /* ------------------------------------------------------------------ */
 
 /** Compact vertical rhythm for every homepage section. */
 export const HOME_INNER = "py-12 md:py-16 lg:py-20";
-
-/**
- * A real screen from the merchant app in a light browser frame. Wide screens
- * get the desktop capture; phones get the app's own phone layout, cropped to
- * a readable window. Captures live in /public/product (`<id>.webp`,
- * `<id>-m.webp`).
- */
-export function Shot({
-  id,
-  alt,
-  priority,
-  className,
-  path,
-}: {
-  id: string;
-  alt: string;
-  priority?: boolean;
-  className?: string;
-  path?: string;
-}) {
-  return (
-    <div className={cn("overflow-hidden rounded-[20px] bg-white shadow-gc-screen ring-1 ring-gc-line", className)}>
-      <div className="flex h-8 items-center gap-3 border-b border-gc-line bg-[#F8FAFC] px-3 sm:h-9 sm:px-4" aria-hidden>
-        <div className="flex gap-1.5">
-          <span className="size-[9px] rounded-full bg-[#FF5F57]" />
-          <span className="size-[9px] rounded-full bg-[#FEBC2E]" />
-          <span className="size-[9px] rounded-full bg-[#28C840]" />
-        </div>
-        <div className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-[0.6875rem] font-medium text-gc-ink-50 ring-1 ring-gc-line">
-          app.gridcommerce.com.bd/{path ?? id}
-        </div>
-        <span className="w-[33px]" />
-      </div>
-      <Image
-        src={`/product/${id}.webp`}
-        alt={alt}
-        width={1920}
-        height={1200}
-        priority={priority}
-        loading={priority ? undefined : "lazy"}
-        sizes="(min-width: 1280px) 1100px, (min-width: 640px) 90vw, 1px"
-        className="hidden h-auto w-full sm:block"
-      />
-      <div className="relative aspect-[390/560] overflow-hidden sm:hidden">
-        <Image src={`/product/${id}-m.webp`} alt={alt} fill loading="lazy" sizes="100vw" className="object-cover object-top" />
-      </div>
-    </div>
-  );
-}

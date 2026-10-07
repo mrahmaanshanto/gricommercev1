@@ -1,22 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Banknote, Boxes, Hourglass, Store, Wallet } from "lucide-react";
+import { ArrowRight, Banknote, Hourglass, Store, Wallet } from "lucide-react";
 import { Reveal } from "@/components/motion";
-import { SHARED, SHARED_DEMO, SHOTS } from "@/data/copy/homepage";
+import { SHARED, SHARED_DEMO } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
-import { cn } from "@/lib/cn";
 import { Panel } from "../../primitives";
-import { DemoStamp, HOME_INNER, IconChip, Shot, TwoTone, ValueSwap, useNum, useTimeline } from "./kit";
-
-/** Beats: 1 counter sale completed · 2 online order reserved. Repeats while on screen. */
-const CUES = [1400, 3800];
-const DURATION = 8000;
-const STATES = [
-  { onHand: 12, reserved: 0, available: 12 },
-  { onHand: 11, reserved: 0, available: 11 },
-  { onHand: 11, reserved: 1, available: 10 },
-];
+import { StockScene } from "../scenes/StockScene";
+import { HOME_INNER, IconChip, TwoTone, useNum } from "./kit";
 
 /* Today's simplified money picture. Received and outstanding never add into "cash". */
 const CASH = { counter: 61200, online: 18400, cod: 28640 };
@@ -24,56 +15,21 @@ const RECEIVED = CASH.counter + CASH.online; // 79,600
 const SALES = RECEIVED + CASH.cod; // 1,08,240 — sales value, not cash
 
 /**
- * Section 4 — counter and online share one stock picture, emphasised: the
- * real Daily summary with a small live stock card, and today's money with
- * sales value, money received and COD still with couriers kept apart.
+ * Section 4 — counter and online share one stock picture, emphasised: an
+ * animated scene (a counter sale and an online order drawing on one count)
+ * beside today's money, with sales value, money received and COD still with
+ * couriers kept apart.
  */
 export function SharedStock() {
   const { L } = useI18n();
   const n = useNum();
-  const { ref, beat } = useTimeline(CUES, { duration: DURATION });
-  const s = STATES[beat];
   const D = SHARED_DEMO;
-  const event = beat >= 2 ? D.onlineEvent : beat >= 1 ? D.counterEvent : D.waiting;
 
   return (
     <Panel tone="tint" pattern="bl" inner={HOME_INNER}>
-      <div ref={ref} className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14">
-        <Reveal direction="right" className="relative order-last min-w-0 lg:order-first">
-          <div className="mb-2 flex justify-end">
-            <DemoStamp />
-          </div>
-          <Shot id="daily-summary" alt={L(SHOTS["daily-summary"])} path="analytics/daily-summary" />
-
-          {/* One product, one location, both channels */}
-          <div className="mt-3 sm:absolute sm:-bottom-6 sm:-right-3 sm:mt-0 sm:w-[20rem] lg:-right-8">
-            <div className="rounded-2xl bg-white/95 p-4 shadow-gc-float ring-1 ring-gc-line backdrop-blur">
-              <p className="flex items-center gap-2 text-[0.8125rem] font-bold text-gc-ink">
-                <Boxes aria-hidden className="size-4 text-gc-royal" /> {L(D.product)}
-              </p>
-              <p className="text-[0.75rem] text-gc-ink-60">{L(D.location)}</p>
-              <dl className="mt-2.5 grid grid-cols-3 gap-1.5 text-[0.8125rem]">
-                {(
-                  [
-                    [D.onHand, s.onHand],
-                    [D.reserved, s.reserved],
-                    [D.available, s.available],
-                  ] as const
-                ).map(([label, v], i) => (
-                  <div key={i} className={cn("rounded-lg px-2 py-1.5", i === 2 ? "bg-gc-royal-10" : "bg-gc-canvas")}>
-                    <dt className="text-[0.6875rem] text-gc-ink-60">{L(label)}</dt>
-                    <dd className="text-[1.125rem] font-bold tabular-nums text-gc-ink">
-                      <ValueSwap value={n(v)} />
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-2 flex items-center gap-1.5 text-[0.75rem] font-medium text-gc-ink-70">
-                <Store aria-hidden className="size-3.5 shrink-0 text-gc-ink-50" />
-                <ValueSwap value={L(event)} />
-              </p>
-            </div>
-          </div>
+      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14">
+        <Reveal direction="right" className="order-last min-w-0 lg:order-first">
+          <StockScene />
         </Reveal>
 
         <Reveal className="min-w-0">

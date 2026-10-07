@@ -202,6 +202,47 @@
    `hero-rise`. Stagger: HERO_STAGGER in src/lib/motion.ts.
    ============================================================ */
 
+/* Logo marquee: the track holds the list twice and slides by half its width. */
+@keyframes gc-marquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.gc-marquee { animation: gc-marquee var(--gc-marquee-duration, 18s) linear infinite; }
+.gc-marquee-reverse { animation-direction: reverse; }
+@keyframes gc-marquee-y {
+  to { transform: translate3d(0, -50%, 0); }
+}
+.gc-marquee-y { animation: gc-marquee-y var(--gc-marquee-duration, 40s) linear infinite; }
+.gc-marquee-wrap:hover :is(.gc-marquee, .gc-marquee-y) { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .gc-marquee, .gc-marquee-y { animation: none; }
+}
+
+/* A small bell swing for the alerts tile. */
+@keyframes gc-ring {
+  0%, 60%, 100% { transform: rotate(0); }
+  10%, 30% { transform: rotate(14deg); }
+  20%, 40% { transform: rotate(-12deg); }
+}
+
+/* Dashed connectors in the product scenes run while data moves along them. */
+@keyframes gc-dash {
+  to { stroke-dashoffset: -18; }
+}
+.gc-dash { animation: gc-dash 0.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .gc-dash { animation: none; }
+}
+
+/* Slow drift for the hero's aurora glows. */
+@keyframes gc-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(5%, 4%, 0) scale(1.08); }
+}
+.gc-drift { animation: gc-drift 18s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .gc-drift { animation: none; }
+}
+
 /* The "How it works" step's progress bar (driven from OrderStory). */
 @keyframes gc-step-bar {
   from { transform: scaleX(0); }

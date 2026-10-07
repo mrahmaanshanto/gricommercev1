@@ -29,7 +29,6 @@ export const HERO = {
     "Manage online, counter and wholesale sales with connected stock and customer records. See what customers and couriers owe you, and what each sale leaves after recorded costs.",
     "অনলাইন, দোকানের কাউন্টার ও পাইকারি বিক্রি সামলান একই স্টক ও কাস্টমার তথ্যের সঙ্গে। কাস্টমার ও কুরিয়ারের কাছে কত টাকা বাকি, আর নথিভুক্ত খরচ বাদে প্রতিটি বিক্রিতে কত থাকে—দেখুন এক জায়গায়।",
   ),
-  secondary: loc("See How It Works", "যেভাবে কাজ করে দেখুন"),
   microcopy: loc(
     "Tell us how you sell. We’ll walk through the workflows that fit your business.",
     "আপনি কীভাবে বিক্রি করেন জানান। আপনার ব্যবসার উপযোগী কাজের ধাপগুলো আমরা দেখিয়ে দেব।",
@@ -42,146 +41,6 @@ export const HERO = {
     stock: loc("Shared stock", "একই স্টক"),
     customer: loc("Customer history", "কাস্টমারের ইতিহাস"),
   },
-};
-
-/* Labels inside the hero's product preview. */
-export const HERO_DEMO = {
-  order: loc("Order", "অর্ডার"),
-  stock: loc("Stock", "স্টক"),
-  collection: loc("Collection", "আদায়"),
-  contribution: loc("Contribution", "অবদান"),
-  confirmed: loc("Confirmed by staff", "স্টাফ কনফার্ম করেছেন"),
-  dispatched: loc("1 unit dispatched · 11 available", "১টি ডিসপ্যাচ · ১১টি উপলব্ধ"),
-  payoutMatched: loc("Payout ৳2,400 received and matched", "৳২,৪০০ পেআউট পাওয়া ও মিলানো হয়েছে"),
-  afterCosts: loc("৳540 after recorded costs", "নথিভুক্ত খরচ বাদে ৳৫৪০"),
-  cod: loc("Cash on delivery", "ক্যাশ অন ডেলিভারি"),
-  item: loc("Wireless earbuds × 1", "ওয়্যারলেস ইয়ারবাড × ১"),
-  customerName: loc("Nusrat Jahan · Mirpur, Dhaka", "নুসরাত জাহান · মিরপুর, ঢাকা"),
-  completed: loc("Completed", "সম্পন্ন"),
-  location: loc("Mirpur shop", "মিরপুর শপ"),
-  onHand: loc("On hand", "হাতে আছে"),
-  reserved: loc("Reserved", "রিজার্ভড"),
-  available: loc("Available", "উপলব্ধ"),
-  history: loc("Stock history", "স্টকের ইতিহাস"),
-  counterSale: loc("Counter sale · receipt R-2291", "কাউন্টার বিক্রি · রসিদ R-2291"),
-  onlineReserve: loc("Online order #GC-10518 reserved", "অনলাইন অর্ডার #GC-10518 রিজার্ভড"),
-  purchase: loc("Purchase received · PO-118", "পারচেজ গ্রহণ · PO-118"),
-  customerSince: loc("Customer since March 2026", "মার্চ ২০২৬ থেকে কাস্টমার"),
-  orders: loc("Orders", "অর্ডার"),
-  lifetime: loc("Total spent", "মোট কেনাকাটা"),
-  due: loc("Due now", "এখন বাকি"),
-  returns: loc("Returns", "রিটার্ন"),
-  recent: loc("Recent activity", "সাম্প্রতিক কার্যক্রম"),
-  act1: loc("Order #GC-10512 delivered", "অর্ডার #GC-10512 ডেলিভারড"),
-  act2: loc("Bought at the Mirpur counter", "মিরপুর কাউন্টারে কিনেছেন"),
-  act3: loc("Messaged about delivery time", "ডেলিভারির সময় নিয়ে মেসেজ"),
-  act4: loc("Returned a phone case · refunded ৳650", "ফোন কেস রিটার্ন · ৳৬৫০ ফেরত"),
-  spend: loc("Spend by month", "মাসভিত্তিক কেনাকাটা"),
-  reachedOn: loc("Talks to you on", "যেসব চ্যানেলে কথা বলেন"),
-  oneProfile: loc("One profile, every channel", "সব চ্যানেলে একটাই প্রোফাইল"),
-  moneyTrail: loc("Money trail", "টাকার হিসাব"),
-  saleRecorded: loc("Sale recorded", "বিক্রি নথিভুক্ত"),
-  courierCharge: loc("Courier charge", "কুরিয়ার চার্জ"),
-};
-
-/* ------------------------------------------------------------------ */
-/* 2 · How it works — follow one order                                 */
-/* ------------------------------------------------------------------ */
-
-export const STORY = {
-  eyebrow: loc("See the connection", "সংযোগটা দেখুন"),
-  title: loc("One order. Follow the stock and the money.", "একটি অর্ডার। স্টক আর টাকার পথ দেখুন।"),
-  body: loc(
-    "See how a sale moves through confirmation, dispatch and collection—with stock, courier dues and recorded costs connected along the way.",
-    "একটি বিক্রি কীভাবে কনফার্মেশন, ডিসপ্যাচ ও আদায়ের ধাপ পার হয়—স্টক, কুরিয়ারের পাওনা ও নথিভুক্ত খরচসহ—দেখুন।",
-  ),
-  steps: [
-    {
-      title: loc("Confirm the order", "অর্ডার কনফার্ম করুন"),
-      body: loc("Check the customer, items and payment details before dispatch.", "ডিসপ্যাচের আগে কাস্টমার, পণ্য ও পেমেন্টের তথ্য যাচাই করুন।"),
-    },
-    {
-      title: loc("Reserve and dispatch stock", "স্টক রিজার্ভ ও ডিসপ্যাচ"),
-      body: loc("Follow the stock change at the location fulfilling the order.", "যে লোকেশন থেকে অর্ডার যাচ্ছে, সেখানের স্টক পরিবর্তন দেখুন।"),
-    },
-    {
-      title: loc("Track what the courier owes", "কুরিয়ারের পাওনা ট্র্যাক করুন"),
-      body: loc(
-        "A delivered order stays outstanding until the payout is received and matched.",
-        "পেআউট পাওয়া ও মিলানো না হওয়া পর্যন্ত ডেলিভারড অর্ডারের টাকা পাওনা হিসেবেই থাকে।",
-      ),
-    },
-    {
-      title: loc("Match payment. Review contribution.", "পেমেন্ট মেলান। অবদান দেখুন।"),
-      body: loc(
-        "Connect the received payout and recorded costs to the same sale.",
-        "পাওয়া পেআউট আর নথিভুক্ত খরচ একই বিক্রির সঙ্গে যুক্ত করুন।",
-      ),
-    },
-  ],
-  pause: loc("Pause", "থামান"),
-  play: loc("Play", "চালু করুন"),
-  replay: loc("Replay", "আবার দেখুন"),
-  differenceOn: loc("See a payout difference", "পেআউটে পার্থক্য দেখুন"),
-  differenceOff: loc("Back to matched example", "মিলে যাওয়া উদাহরণে ফিরুন"),
-  caption: loc(
-    "Illustrative order. Contribution excludes costs not recorded here. Workflow illustration; actual delivery and settlement times vary.",
-    "উদাহরণমূলক অর্ডার। এখানে নথিভুক্ত নয় এমন খরচ অবদানে ধরা হয়নি। কাজের ধাপের চিত্র; আসল ডেলিভারি ও সেটেলমেন্টের সময় ভিন্ন হতে পারে।",
-  ),
-  link: loc("Explore courier & COD control", "কুরিয়ার ও COD নিয়ন্ত্রণ দেখুন"),
-  stepsLabel: loc("Workflow steps", "কাজের ধাপ"),
-};
-
-export const STORY_DEMO = {
-  orderTitle: loc("Order #GC-10512", "অর্ডার #GC-10512"),
-  orderMeta: loc("Online store · Nusrat Jahan · Wireless earbuds × 1", "অনলাইন স্টোর · নুসরাত জাহান · ওয়্যারলেস ইয়ারবাড × ১"),
-  price: loc("Selling price", "বিক্রয়মূল্য"),
-  status: {
-    pending: loc("Waiting for confirmation", "কনফার্মেশনের অপেক্ষায়"),
-    confirmed: loc("Confirmed", "কনফার্মড"),
-    dispatched: loc("Dispatched", "ডিসপ্যাচড"),
-    delivered: loc("Delivered", "ডেলিভারড"),
-  },
-  confirmAction: loc("Confirm order", "অর্ডার কনফার্ম করুন"),
-  confirmedBy: loc("Confirmed by Rina after a call", "কল করে রিনা কনফার্ম করেছেন"),
-  checks: [loc("Customer and phone checked", "কাস্টমার ও ফোন যাচাই"), loc("Items and price checked", "পণ্য ও দাম যাচাই"), loc("Cash on delivery", "ক্যাশ অন ডেলিভারি")],
-  stockTitle: loc("Stock · Mirpur warehouse", "স্টক · মিরপুর ওয়্যারহাউস"),
-  onHand: loc("On hand", "হাতে আছে"),
-  reserved: loc("Reserved", "রিজার্ভড"),
-  available: loc("Available", "উপলব্ধ"),
-  stockNote: {
-    before: loc("Nothing reserved yet", "এখনো রিজার্ভ হয়নি"),
-    reserved: loc("Reserved on confirmation (this store’s rule)", "কনফার্মেশনে রিজার্ভ (এই স্টোরের নিয়ম)"),
-    dispatched: loc("Left the warehouse on dispatch", "ডিসপ্যাচে ওয়্যারহাউস থেকে বের হয়েছে"),
-  },
-  courierTitle: loc("Courier & payout", "কুরিয়ার ও পেআউট"),
-  delivery: loc("Delivery", "ডেলিভারি"),
-  deliveryState: {
-    none: loc("Not dispatched", "ডিসপ্যাচ হয়নি"),
-    transit: loc("With courier", "কুরিয়ারের কাছে"),
-    delivered: loc("Delivered", "ডেলিভারড"),
-  },
-  expected: loc("Expected payout", "প্রত্যাশিত পেআউট"),
-  expectedNote: loc("৳2,500 collected − ৳100 courier charge", "৳২,৫০০ আদায় − ৳১০০ কুরিয়ার চার্জ"),
-  payoutPending: loc("Payout pending", "পেআউট বাকি"),
-  payoutReceived: loc("Payout received", "পেআউট পাওয়া গেছে"),
-  matched: loc("Matched", "মিলেছে"),
-  notCash: loc("Owed by the courier — not in your account yet", "কুরিয়ারের কাছে পাওনা — এখনো আপনার অ্যাকাউন্টে আসেনি"),
-  received: loc("Received", "পাওয়া গেছে"),
-  difference: loc("৳50 difference — review needed", "৳৫০ পার্থক্য — যাচাই প্রয়োজন"),
-  differenceNote: loc("Left open for your team to review with the courier.", "কুরিয়ারের সঙ্গে যাচাইয়ের জন্য খোলা রাখা হয়েছে।"),
-  contributionTitle: loc("Contribution after recorded costs", "নথিভুক্ত খরচ বাদে অবদান"),
-  contributionHint: loc("What this sale leaves after the costs shown", "দেখানো খরচ বাদে এই বিক্রিতে থাকে"),
-  costs: {
-    price: loc("Selling price", "বিক্রয়মূল্য"),
-    product: loc("Product cost", "পণ্যের খরচ"),
-    courier: loc("Courier cost", "কুরিয়ার খরচ"),
-    packaging: loc("Packaging", "প্যাকেজিং"),
-    ads: loc("Advertising (allocated)", "বিজ্ঞাপন (ভাগ করা)"),
-  },
-  contribution: loc("Contribution", "অবদান"),
-  contributionWaiting: loc("Shown once the payout is matched", "পেআউট মিলানোর পর দেখা যাবে"),
-  contributionHeld: loc("Held until the difference is reviewed", "পার্থক্য যাচাই না হওয়া পর্যন্ত স্থগিত"),
 };
 
 /* ------------------------------------------------------------------ */
@@ -235,6 +94,16 @@ export const FIT = {
 /* 4 · Daily control and reporting                                     */
 /* ------------------------------------------------------------------ */
 
+export const STORY = {
+  eyebrow: loc("See the connection", "সংযোগটা দেখুন"),
+  title: loc("One order. Follow the stock and the money.", "একটি অর্ডার। স্টক আর টাকার পথ দেখুন।"),
+  body: loc(
+    "See how a sale moves through confirmation, dispatch and collection—with stock, courier dues and recorded costs connected along the way.",
+    "একটি বিক্রি কীভাবে কনফার্মেশন, ডিসপ্যাচ ও আদায়ের ধাপ পার হয়—স্টক, কুরিয়ারের পাওনা ও নথিভুক্ত খরচসহ—দেখুন।",
+  ),
+  link: loc("Explore orders", "অর্ডার মডিউল দেখুন"),
+};
+
 export const CONTROL = {
   title: loc("Know what needs your attention today.", "আজ কোন কাজে নজর দরকার, জানুন।"),
   body: loc(
@@ -272,42 +141,6 @@ export const CONTROL = {
       ),
       links: [{ href: "/features/analytics", label: loc("Explore profit reports", "প্রফিট রিপোর্ট দেখুন") }],
     },
-  ],
-  reportTitle: loc("Which campaigns bring delivered orders?", "কোন ক্যাম্পেইন থেকে ডেলিভারড অর্ডার আসে?"),
-  reportBody: loc(
-    "Compare ad spend with confirmed and delivered orders. Keep platform-reported results separate from the orders recorded in your business.",
-    "বিজ্ঞাপন খরচ মিলিয়ে দেখুন কনফার্মড ও ডেলিভারড অর্ডারের সঙ্গে। প্ল্যাটফর্মের দেখানো ফল আলাদা রাখুন আপনার ব্যবসায় নথিভুক্ত অর্ডার থেকে।",
-  ),
-};
-
-export const REPORT_DEMO = {
-  window: loc("1–30 Sep 2026 · counted by delivery date", "১–৩০ সেপ্টেম্বর ২০২৬ · ডেলিভারির তারিখ অনুযায়ী"),
-  campaign: loc("Campaign", "ক্যাম্পেইন"),
-  spend: loc("Ad spend", "বিজ্ঞাপন খরচ"),
-  confirmed: loc("Confirmed orders", "কনফার্মড অর্ডার"),
-  delivered: loc("Delivered orders", "ডেলিভারড অর্ডার"),
-  revenue: loc("Delivered revenue", "ডেলিভারড আয়"),
-  cpdo: loc("Cost per delivered order", "প্রতি ডেলিভারড অর্ডারে খরচ"),
-  returns: loc("Returns", "রিটার্ন"),
-  platform: loc("Platform-reported purchases", "প্ল্যাটফর্মের দেখানো পারচেজ"),
-  platformNote: loc("Shown for comparison; not used in the calculations.", "তুলনার জন্য দেখানো; হিসাবে ব্যবহার হয়নি।"),
-  total: loc("All campaigns", "সব ক্যাম্পেইন"),
-  definition: loc(
-    "Cost per delivered order = ad spend ÷ delivered orders in the same window. Returns are orders sent back after dispatch.",
-    "প্রতি ডেলিভারড অর্ডারে খরচ = একই সময়ের বিজ্ঞাপন খরচ ÷ ডেলিভারড অর্ডার। রিটার্ন মানে ডিসপ্যাচের পর ফেরত আসা অর্ডার।",
-  ),
-  caution: loc(
-    "A lower cost per delivered order doesn’t show profit on its own. Compare contribution in the profit reports.",
-    "কম খরচ মানেই বেশি মুনাফা নয়। প্রফিট রিপোর্টে অবদান মিলিয়ে দেখুন।",
-  ),
-  chartTitle: loc("Delivered orders by day", "দিনভিত্তিক ডেলিভারড অর্ডার"),
-  shareTitle: loc("Share of delivered revenue", "ডেলিভারড আয়ের ভাগ"),
-  days: [loc("1 Sep", "১ সেপ্টেম্বর"), loc("15 Sep", "১৫ সেপ্টেম্বর"), loc("30 Sep", "৩০ সেপ্টেম্বর")],
-  campaigns: [
-    loc("Facebook · Eid offer", "ফেসবুক · ঈদ অফার"),
-    loc("Facebook · Visitor retargeting", "ফেসবুক · ভিজিটর রিটার্গেটিং"),
-    loc("TikTok · Unboxing video", "টিকটক · আনবক্সিং ভিডিও"),
-    loc("Google · Search", "গুগল · সার্চ"),
   ],
 };
 
@@ -363,95 +196,87 @@ export const SHARED_DEMO = {
 /* 6 · Connected growth tools                                          */
 /* ------------------------------------------------------------------ */
 
-export const GROWTH = {
-  title: loc("Bring the next sale into the same system.", "পরের বিক্রিটাও আনুন একই সিস্টেমে।"),
-  body: loc(
-    "Build the offer, reply to the customer and follow up—with orders connected to your stock and business records.",
-    "অফার তৈরি করুন, কাস্টমারকে উত্তর দিন, ফলোআপ করুন—অর্ডার যুক্ত থাকে আপনার স্টক ও ব্যবসার তথ্যের সঙ্গে।",
-  ),
-  tabsLabel: loc("Growth tools", "বিক্রি বাড়ানোর টুল"),
-  play: loc("Show the steps", "ধাপগুলো দেখুন"),
-  replay: loc("Show again", "আবার দেখুন"),
-  tabs: {
-    store: {
-      tab: loc("Store & campaign pages", "স্টোর ও ক্যাম্পেইন পেজ"),
-      heading: loc("Create the offer. Keep the order connected.", "অফার তৈরি করুন। অর্ডার থাকুক সংযুক্ত।"),
-      body: loc(
-        "Build your store and campaign pages, preview the mobile checkout and send orders into your confirmation workflow.",
-        "স্টোর ও ক্যাম্পেইন পেজ তৈরি করুন, মোবাইল চেকআউট দেখে নিন, আর অর্ডার পাঠান আপনার কনফার্মেশনের ধাপে।",
-      ),
-      ai: loc(
-        "Use AI to draft product content in Bangla or English, then edit and approve it before publishing.",
-        "AI দিয়ে বাংলা বা ইংরেজিতে প্রোডাক্ট কনটেন্টের খসড়া তৈরি করুন, তারপর সম্পাদনা ও অনুমোদন করে প্রকাশ করুন।",
-      ),
-      tracking: loc(
-        "Connect supported tracking tools to send eligible events and review campaign results.",
-        "সমর্থিত ট্র্যাকিং টুল যুক্ত করে উপযুক্ত ইভেন্ট পাঠান এবং ক্যাম্পেইনের ফল দেখুন।",
-      ),
-      small: loc("AI drafting uses metered credits.", "AI খসড়ায় ব্যবহার অনুযায়ী ক্রেডিট লাগে।"),
-      link: loc("Explore stores & landing pages", "স্টোর ও ল্যান্ডিং পেজ দেখুন"),
-      href: "/features/storefront",
-    },
-    inbox: {
-      tab: loc("Inbox & follow-up", "ইনবক্স ও ফলোআপ"),
-      heading: loc("Reply with the customer’s history beside you.", "কাস্টমারের ইতিহাস পাশে রেখে উত্তর দিন।"),
-      body: loc(
-        "See orders and returns beside supported conversations. Assign replies, prepare an order from the chat and follow up on unfinished checkouts.",
-        "সমর্থিত কথোপকথনের পাশে অর্ডার ও রিটার্ন দেখুন। উত্তরের দায়িত্ব দিন, চ্যাট থেকেই অর্ডার তৈরি করুন এবং অসম্পূর্ণ চেকআউটের ফলোআপ করুন।",
-      ),
-      small: loc("Supported channels and message rules apply. Usage charges may apply.", "সমর্থিত চ্যানেল ও মেসেজের নিয়ম প্রযোজ্য। ব্যবহার অনুযায়ী চার্জ প্রযোজ্য হতে পারে।"),
-      link: loc("Explore inbox & follow-up", "ইনবক্স ও ফলোআপ দেখুন"),
-      href: "/features/omnichannel",
-    },
-    recovery: {
-      tab: loc("Cart recovery", "কার্ট রিকভারি"),
-      heading: loc("Give unfinished checkouts a clear way back.", "অসম্পূর্ণ চেকআউটকে ফেরার সহজ পথ দিন।"),
-      body: loc(
-        "Use supported follow-up sequences and cart-restoring links. Stop reminders when an order is placed and respect customer opt-outs.",
-        "সমর্থিত ফলোআপ সিকোয়েন্স ও কার্ট ফিরিয়ে আনার লিংক ব্যবহার করুন। অর্ডার হলে রিমাইন্ডার বন্ধ করুন এবং কাস্টমারের অপ্ট-আউট মেনে চলুন।",
-      ),
-      small: loc("SMS, WhatsApp and email use metered credits.", "SMS, WhatsApp ও ইমেইলে ব্যবহার অনুযায়ী ক্রেডিট লাগে।"),
-      link: loc("Explore cart recovery", "কার্ট রিকভারি দেখুন"),
-      href: "/features/cart-recovery",
-    },
-  },
-};
-
-export const GROWTH_DEMO = {
-  store: {
-    steps: [loc("Product details", "পণ্যের তথ্য"), loc("Draft", "খসড়া"), loc("Review", "যাচাই"), loc("Published", "প্রকাশিত"), loc("Order", "অর্ডার")],
-    details: loc("Wireless earbuds · ৳2,500 · 6-month warranty · Dhaka delivery", "ওয়্যারলেস ইয়ারবাড · ৳২,৫০০ · ৬ মাসের ওয়ারেন্টি · ঢাকায় ডেলিভারি"),
-    draftLabel: loc("AI draft · not published", "AI খসড়া · প্রকাশিত নয়"),
-    draftTitle: loc("Wireless earbuds with clear calls and a 6-month warranty", "পরিষ্কার কলিং ও ৬ মাসের ওয়ারেন্টিসহ ওয়্যারলেস ইয়ারবাড"),
-    draftBody: loc("Up to 6 hours per charge. Cash on delivery in Dhaka.", "এক চার্জে ৬ ঘণ্টা পর্যন্ত। ঢাকায় ক্যাশ অন ডেলিভারি।"),
-    review: loc("Edited and approved by Shanto", "শান্ত সম্পাদনা ও অনুমোদন করেছেন"),
-    published: loc("Page published · mobile checkout ready", "পেজ প্রকাশিত · মোবাইল চেকআউট প্রস্তুত"),
-    orderNow: loc("Order now", "অর্ডার করুন"),
-    order: loc("Order #GC-10530 · waiting for confirmation", "অর্ডার #GC-10530 · কনফার্মেশনের অপেক্ষায়"),
-    orderSource: loc("From the campaign page · stock checked", "ক্যাম্পেইন পেজ থেকে · স্টক যাচাই হয়েছে"),
-  },
+/* Dedicated feature sections — each sits beside its own animated product scene. */
+export const FEATURES = {
   inbox: {
-    steps: [loc("Question", "প্রশ্ন"), loc("History", "ইতিহাস"), loc("Sales Entry", "সেলস এন্ট্রি"), loc("Staff saves", "স্টাফ সেভ করেন")],
-    customer: loc("Farzana Karim · Messenger", "ফারজানা করিম · মেসেঞ্জার"),
-    question: loc("Earbuds ta ki stock e ache? 2 ta nibo.", "Earbuds ta ki stock e ache? 2 ta nibo."),
-    historyTitle: loc("Customer history", "কাস্টমারের ইতিহাস"),
-    historyLine: loc("3 orders · 0 returns · nothing due", "৩টি অর্ডার · ০ রিটার্ন · কোনো বাকি নেই"),
-    assigned: loc("Assigned to Rina", "রিনাকে দায়িত্ব দেওয়া হয়েছে"),
-    entryTitle: loc("Sales Entry · customer loaded", "সেলস এন্ট্রি · কাস্টমার যুক্ত"),
-    entryLine: loc("Wireless earbuds × 2 · 14 available", "ওয়্যারলেস ইয়ারবাড × ২ · ১৪টি উপলব্ধ"),
-    save: loc("Save order", "অর্ডার সেভ করুন"),
-    saved: loc("Saved by Rina · #GC-10531", "রিনা সেভ করেছেন · #GC-10531"),
-    draftNote: loc("Draft until staff confirm", "স্টাফ কনফার্ম না করা পর্যন্ত খসড়া"),
+    eyebrow: loc("Omnichannel inbox", "অমনিচ্যানেল ইনবক্স"),
+    title: loc("Every chat in one inbox. Every order from the chat.", "সব চ্যাট এক ইনবক্সে। চ্যাট থেকেই অর্ডার।"),
+    body: loc(
+      "See orders and returns beside each conversation. Let AI draft the reply, send it, and turn a “yes” into an order without leaving the chat.",
+      "প্রতিটি কথোপকথনের পাশে অর্ডার ও রিটার্ন দেখুন। AI উত্তরের খসড়া করুক, পাঠান, আর কাস্টমারের “হ্যাঁ” চ্যাট থেকেই অর্ডারে পরিণত করুন।",
+    ),
+    points: [
+      loc("Messenger, WhatsApp, Instagram and TikTok together", "Messenger, WhatsApp, Instagram ও TikTok একসাথে"),
+      loc("AI suggests replies in Bangla or English", "AI বাংলা বা ইংরেজিতে উত্তর সাজেস্ট করে"),
+      loc("Customer history beside every chat", "প্রতিটি চ্যাটের পাশে কাস্টমারের ইতিহাস"),
+    ],
+    small: loc("Supported channels and message rules apply. Usage charges may apply.", "সমর্থিত চ্যানেল ও মেসেজের নিয়ম প্রযোজ্য। ব্যবহার অনুযায়ী চার্জ প্রযোজ্য হতে পারে।"),
+    link: loc("Explore the inbox", "ইনবক্স দেখুন"),
+    href: "/features/omnichannel",
+  },
+  store: {
+    eyebrow: loc("Store & campaign pages", "স্টোর ও ক্যাম্পেইন পেজ"),
+    title: loc("Create the offer. Keep the order connected.", "অফার তৈরি করুন। অর্ডার থাকুক সংযুক্ত।"),
+    body: loc(
+      "Pick a product and AI drafts the campaign page in Bangla or English. Connect your pixels, share the link, and every order lands in your confirmation queue.",
+      "প্রোডাক্ট বাছুন, AI বাংলা বা ইংরেজিতে ক্যাম্পেইন পেজের খসড়া করবে। পিক্সেল যুক্ত করুন, লিংক শেয়ার করুন, আর প্রতিটি অর্ডার আসবে আপনার কনফার্মেশনের তালিকায়।",
+    ),
+    points: [
+      loc("AI drafts, you edit and approve", "AI খসড়া করে, আপনি সম্পাদনা ও অনুমোদন করেন"),
+      loc("Pixel and CAPI connected before you share", "শেয়ারের আগেই Pixel ও CAPI যুক্ত"),
+      loc("Mobile checkout with COD", "COD-সহ মোবাইল চেকআউট"),
+    ],
+    small: loc("AI drafting uses metered credits.", "AI খসড়ায় ব্যবহার অনুযায়ী ক্রেডিট লাগে।"),
+    link: loc("Explore stores & landing pages", "স্টোর ও ল্যান্ডিং পেজ দেখুন"),
+    href: "/features/storefront",
+  },
+  tracking: {
+    eyebrow: loc("Server-side tracking", "সার্ভার-সাইড ট্র্যাকিং"),
+    title: loc("Send every sale to your ad platforms.", "প্রতিটি বিক্রি পৌঁছে দিন অ্যাড প্ল্যাটফর্মে।"),
+    body: loc(
+      "Purchase events go from our server to Meta, TikTok and Google, with customer details hashed first, so your campaigns learn from real orders, not lost browser pixels.",
+      "পারচেজ ইভেন্ট আমাদের সার্ভার থেকে Meta, TikTok আর Google-এ যায়, কাস্টমারের তথ্য আগে হ্যাশ করে। তাই ক্যাম্পেইন শেখে আসল অর্ডার থেকে, হারিয়ে যাওয়া ব্রাউজার পিক্সেল থেকে নয়।",
+    ),
+    points: [
+      loc("Meta, TikTok and Google from one setup", "এক সেটআপে Meta, TikTok ও Google"),
+      loc("Customer details hashed before they leave", "পাঠানোর আগে কাস্টমারের তথ্য হ্যাশ"),
+      loc("Delivery events sent when COD orders land", "COD ডেলিভারি হলে ডেলিভারি ইভেন্ট পাঠানো"),
+    ],
+    small: loc("You connect your own ad accounts. Supported platforms only.", "নিজের অ্যাড অ্যাকাউন্ট যুক্ত করবেন। শুধু সমর্থিত প্ল্যাটফর্ম।"),
+    link: loc("Explore analytics & tracking", "অ্যানালিটিক্স ও ট্র্যাকিং দেখুন"),
+    href: "/features/analytics",
+  },
+  social: {
+    eyebrow: loc("Social posts", "সোশ্যাল পোস্ট"),
+    title: loc("Plan posts once. Publish on time, everywhere.", "একবার পরিকল্পনা করুন। সময়মতো সব জায়গায় পোস্ট।"),
+    body: loc(
+      "Write a post, pick Facebook, Instagram or TikTok, drop it on the calendar and answer the comments from the same inbox.",
+      "পোস্ট লিখুন, Facebook, Instagram বা TikTok বাছুন, ক্যালেন্ডারে বসিয়ে দিন আর একই ইনবক্স থেকে কমেন্টের উত্তর দিন।",
+    ),
+    points: [
+      loc("One post, every channel", "এক পোস্ট, সব চ্যানেল"),
+      loc("A calendar with the best times to post", "পোস্টের সেরা সময়সহ ক্যালেন্ডার"),
+      loc("Comments answered from the inbox", "ইনবক্স থেকেই কমেন্টের উত্তর"),
+    ],
+    small: loc("Supported channels and their posting rules apply.", "সমর্থিত চ্যানেল ও তাদের পোস্টিং নিয়ম প্রযোজ্য।"),
+    link: loc("Explore inbox & social", "ইনবক্স ও সোশ্যাল দেখুন"),
+    href: "/features/omnichannel",
   },
   recovery: {
-    steps: [loc("Checkout left", "চেকআউট অসম্পূর্ণ"), loc("Reminder", "রিমাইন্ডার"), loc("Back to cart", "কার্টে ফেরা"), loc("Order placed", "অর্ডার হয়েছে")],
-    left: loc("Checkout left · ৳3,240 · 3 items", "চেকআউট অসম্পূর্ণ · ৳৩,২৪০ · ৩টি পণ্য"),
-    reminder: loc("Reminder 1 sent on WhatsApp · with cart link", "WhatsApp-এ রিমাইন্ডার ১ পাঠানো · কার্ট লিংকসহ"),
-    reminderText: loc("Your cart is saved. Tap to finish your order.", "আপনার কার্ট সেভ করা আছে। অর্ডার শেষ করতে ট্যাপ করুন।"),
-    back: loc("Cart restored from the link", "লিংক থেকে কার্ট ফিরে এসেছে"),
-    placed: loc("Order #GC-10533 placed", "অর্ডার #GC-10533 হয়েছে"),
-    stopped: loc("Sequence stopped: order placed", "সিকোয়েন্স বন্ধ: অর্ডার হয়েছে"),
-    optout: loc("Customers who opted out are skipped", "অপ্ট-আউট করা কাস্টমার বাদ থাকেন"),
+    eyebrow: loc("Cart recovery", "কার্ট রিকভারি"),
+    title: loc("Give unfinished checkouts a clear way back.", "অসম্পূর্ণ চেকআউটকে ফেরার সহজ পথ দিন।"),
+    body: loc(
+      "A reminder goes out with a link that restores the cart. When the customer orders, the rest of the sequence stops on its own.",
+      "কার্ট ফিরিয়ে আনার লিংকসহ রিমাইন্ডার যায়। কাস্টমার অর্ডার করলে বাকি রিমাইন্ডার নিজে থেকেই বন্ধ হয়।",
+    ),
+    points: [
+      loc("WhatsApp, SMS or email reminders", "WhatsApp, SMS বা ইমেইল রিমাইন্ডার"),
+      loc("One tap restores the cart", "এক ট্যাপে কার্ট ফিরে আসে"),
+      loc("Opt-outs respected", "অপ্ট-আউট মানা হয়"),
+    ],
+    small: loc("SMS, WhatsApp and email use metered credits.", "SMS, WhatsApp ও ইমেইলে ব্যবহার অনুযায়ী ক্রেডিট লাগে।"),
+    link: loc("Explore cart recovery", "কার্ট রিকভারি দেখুন"),
+    href: "/features/cart-recovery",
   },
 };
 
@@ -512,26 +337,6 @@ export const SETUP_DEMO = {
   next: loc("First workflow: online orders and courier dues", "প্রথম কাজ: অনলাইন অর্ডার ও কুরিয়ারের পাওনা"),
   riders: [loc("Past orders", "পুরনো অর্ডার"), loc("Products", "পণ্য"), loc("Staff & roles", "স্টাফ ও দায়িত্ব")],
   hub: loc("Your GridCommerce workspace", "আপনার GridCommerce ওয়ার্কস্পেস"),
-};
-
-/* ------------------------------------------------------------------ */
-/* 8 · Module directory (homepage order and copy)                      */
-/* ------------------------------------------------------------------ */
-
-export const MODULE_DIRECTORY = {
-  title: loc("Explore the parts your business needs.", "আপনার ব্যবসার প্রয়োজনীয় অংশগুলো দেখুন।"),
-  intro: loc("Connected modules for every part of the business. Available modules and limits depend on your plan.", "ব্যবসার প্রতিটি অংশের জন্য সংযুক্ত মডিউল। কোন মডিউল ও কত সীমা পাবেন, তা প্ল্যানের ওপর নির্ভর করে।"),
-  explore: loc("Explore", "দেখুন"),
-  cards: [
-    { slug: "courier", icon: "Truck", title: loc("Courier & COD Control", "কুরিয়ার ও COD নিয়ন্ত্রণ"), body: loc("Match courier payouts, review charge differences and follow up on unpaid amounts.", "কুরিয়ার পেআউট মিলান, চার্জের পার্থক্য যাচাই করুন এবং বাকি টাকার ফলোআপ করুন।") },
-    { slug: "inventory", icon: "Boxes", title: loc("Stock, Warehouse & Purchasing", "স্টক, ওয়্যারহাউস ও পারচেজ"), body: loc("Trace purchases, stock movements, location balances and supplier dues.", "পারচেজ, স্টকের চলাচল, লোকেশনভিত্তিক ব্যালেন্স ও সাপ্লায়ারের পাওনা দেখুন।") },
-    { slug: "pos", icon: "ScanBarcode", title: loc("POS & Daily Cash", "POS ও দৈনিক ক্যাশ"), body: loc("Run counter sales and compare expected cash with the closing count.", "কাউন্টারে বিক্রি করুন এবং প্রত্যাশিত ক্যাশ মিলিয়ে নিন দিনশেষের গণনার সঙ্গে।") },
-    { slug: "wholesale", icon: "Handshake", title: loc("Wholesale & Collections", "পাইকারি ও আদায়"), body: loc("Connect dealer prices and credit sales to invoices and partial payments.", "ডিলার প্রাইস ও বাকিতে বিক্রি যুক্ত করুন ইনভয়েস ও আংশিক পেমেন্টের সঙ্গে।") },
-    { slug: "orders", icon: "ClipboardList", title: loc("Orders & Sales Entry", "অর্ডার ও সেলস এন্ট্রি"), body: loc("Confirm online orders and prepare phone or message orders with customer context.", "অনলাইন অর্ডার কনফার্ম করুন এবং কাস্টমারের তথ্যসহ ফোন বা মেসেজের অর্ডার তৈরি করুন।") },
-    { slug: "analytics", icon: "ChartPie", title: loc("Profit & Marketing Reports", "প্রফিট ও মার্কেটিং রিপোর্ট"), body: loc("Compare delivered sales and recorded costs to understand contribution.", "ডেলিভারড বিক্রি ও নথিভুক্ত খরচ মিলিয়ে অবদান বুঝুন।") },
-    { slug: "storefront", icon: "Store", title: loc("Online Store & Landing Pages", "অনলাইন স্টোর ও ল্যান্ডিং পেজ"), body: loc("Present your products and offers with a clear path to checkout.", "পণ্য ও অফার দেখান চেকআউটের সহজ পথসহ।") },
-    { slug: "omnichannel", icon: "MessagesSquare", title: loc("Customer Inbox & Follow-up", "কাস্টমার ইনবক্স ও ফলোআপ"), body: loc("Reply with context and follow up on unfinished checkouts through supported channels.", "প্রাসঙ্গিক তথ্যসহ উত্তর দিন এবং সমর্থিত চ্যানেলে অসম্পূর্ণ চেকআউটের ফলোআপ করুন।") },
-  ],
 };
 
 /* ------------------------------------------------------------------ */
@@ -639,99 +444,6 @@ export const FINAL_CTA = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 8b · How data moves between the modules (animated system map)       */
-/* ------------------------------------------------------------------ */
-
-type Hop = { module: string; text: Localized };
-
-export const MODULE_FLOW: {
-  label: Localized;
-  hub: Localized;
-  log: Localized;
-  workflows: { id: string; name: Localized; hops: Hop[] }[];
-  short: Record<string, Localized>;
-} = {
-  label: loc("How data moves through the system", "সিস্টেমে ডেটা যেভাবে চলে"),
-  hub: loc("One shared record", "একটাই সংযুক্ত তথ্য"),
-  log: loc("What just happened", "এইমাত্র যা হলো"),
-  short: {
-    courier: loc("Couriers & COD", "কুরিয়ার ও COD"),
-    inventory: loc("Stock", "স্টক"),
-    pos: loc("POS", "POS"),
-    "cash-and-expenses": loc("Money", "টাকা"),
-    orders: loc("Orders", "অর্ডার"),
-    analytics: loc("Reports", "রিপোর্ট"),
-    storefront: loc("Online store", "অনলাইন স্টোর"),
-    omnichannel: loc("Inbox", "ইনবক্স"),
-  },
-  workflows: [
-    {
-      id: "online",
-      name: loc("Online order", "অনলাইন অর্ডার"),
-      hops: [
-        { module: "storefront", text: loc("Order #GC-10512 placed · ৳2,500", "অর্ডার #GC-10512 এসেছে · ৳২,৫০০") },
-        { module: "orders", text: loc("Confirmed by staff", "স্টাফ কনফার্ম করেছেন") },
-        { module: "inventory", text: loc("1 reserved, then dispatched · 11 available", "১টি রিজার্ভ, তারপর ডিসপ্যাচ · ১১টি উপলব্ধ") },
-        { module: "courier", text: loc("Delivered · payout ৳2,400 due from the courier", "ডেলিভারড · কুরিয়ারের কাছে ৳২,৪০০ পেআউট পাওনা") },
-        { module: "cash-and-expenses", text: loc("Payout ৳2,400 received and matched", "৳২,৪০০ পেআউট পাওয়া ও মিলানো") },
-        { module: "analytics", text: loc("Contribution ৳540 after recorded costs", "নথিভুক্ত খরচ বাদে অবদান ৳৫৪০") },
-      ],
-    },
-    {
-      id: "message",
-      name: loc("Message order", "মেসেজ থেকে অর্ডার"),
-      hops: [
-        { module: "omnichannel", text: loc("Messenger: “2 earbuds, in stock?”", "মেসেঞ্জার: “২টা ইয়ারবাড, স্টকে আছে?”") },
-        { module: "orders", text: loc("Sales Entry · order #GC-10531 saved by staff", "সেলস এন্ট্রি · #GC-10531 স্টাফ সেভ করেছেন") },
-        { module: "inventory", text: loc("2 reserved · 12 available", "২টি রিজার্ভ · ১২টি উপলব্ধ") },
-        { module: "courier", text: loc("Sent to courier · COD ৳5,000 due", "কুরিয়ারে পাঠানো · ৳৫,০০০ COD পাওনা") },
-      ],
-    },
-    {
-      id: "counter",
-      name: loc("Counter sale", "কাউন্টার বিক্রি"),
-      hops: [
-        { module: "pos", text: loc("Receipt R-2291 · ৳2,450", "রসিদ R-2291 · ৳২,৪৫০") },
-        { module: "inventory", text: loc("Mirpur shop · on hand 12 → 11", "মিরপুর শপ · হাতে ১২ → ১১") },
-        { module: "cash-and-expenses", text: loc("৳2,450 cash in the counter drawer", "কাউন্টারের ড্রয়ারে ৳২,৪৫০ ক্যাশ") },
-        { module: "analytics", text: loc("Added to today’s sales and daily summary", "আজকের বিক্রি ও দৈনিক সারাংশে যোগ") },
-      ],
-    },
-    {
-      id: "restock",
-      name: loc("Restock from a supplier", "সাপ্লায়ার থেকে স্টক আনা"),
-      hops: [
-        { module: "inventory", text: loc("Purchase order PO-118 · 20 units received", "পারচেজ অর্ডার PO-118 · ২০টি গ্রহণ") },
-        { module: "cash-and-expenses", text: loc("Supplier bill ৳48,000 · ৳20,000 paid, ৳28,000 due", "সাপ্লায়ারের বিল ৳৪৮,০০০ · ৳২০,০০০ পরিশোধ, ৳২৮,০০০ বাকি") },
-        { module: "analytics", text: loc("Stock value and supplier dues updated", "স্টকের মূল্য ও সাপ্লায়ারের পাওনা হালনাগাদ") },
-      ],
-    },
-  ],
-};
-
-/* ------------------------------------------------------------------ */
-/* Real product screens used on the homepage (captured from the app)  */
-/* ------------------------------------------------------------------ */
-
-export const SHOTS: Record<string, Localized> = {
-  "merchant-overview": loc("GridCommerce dashboard: today’s sales, orders, money in hand and insights", "GridCommerce ড্যাশবোর্ড: আজকের বিক্রি, অর্ডার, হাতে থাকা টাকা ও ইনসাইট"),
-  stock: loc("Stock list with available, held and in-transit units for every product", "প্রতিটি পণ্যের উপলব্ধ, হোল্ড ও পথে থাকা স্টকের তালিকা"),
-  "customer-profile": loc("Customer profile with total spent, orders, returns and everything the customer did", "কাস্টমার প্রোফাইল: মোট কেনাকাটা, অর্ডার, রিটার্ন ও সব কার্যক্রম"),
-  "order-detail": loc("Order screen with the confirmation steps, payment review and call actions", "অর্ডার স্ক্রিন: কনফার্মেশনের ধাপ, পেমেন্ট যাচাই ও কলের অপশন"),
-  "stock-activity": loc("Stock activity: every move, hold, transfer and sale with its place and reference", "স্টক অ্যাক্টিভিটি: প্রতিটি চলাচল, হোল্ড, ট্রান্সফার ও বিক্রি"),
-  "courier-statement": loc("Courier statement: dispatched, delivered, returned, COD collected and payout due per courier", "কুরিয়ার স্টেটমেন্ট: প্রতি কুরিয়ারের ডিসপ্যাচ, ডেলিভারি, রিটার্ন, COD ও পাওনা পেআউট"),
-  "sales-profit": loc("Sales and profit report with net sales, gross profit and profit by channel", "বিক্রি ও মুনাফার রিপোর্ট: নিট বিক্রি, গ্রস প্রফিট ও চ্যানেলভিত্তিক মুনাফা"),
-  "analytics-hub": loc("Analytics hub: ad spend against delivered revenue by platform", "অ্যানালিটিক্স হাব: প্ল্যাটফর্মভিত্তিক বিজ্ঞাপন খরচ ও ডেলিভারড আয়"),
-  "daily-summary": loc("Daily summary: sales by channel, online orders and money at closing", "দৈনিক সারাংশ: চ্যানেলভিত্তিক বিক্রি, অনলাইন অর্ডার ও দিনশেষের টাকা"),
-  "woo-sync": loc("WordPress sync: store connected, with what syncs and the latest changes", "ওয়ার্ডপ্রেস সিঙ্ক: সংযুক্ত স্টোর, কী সিঙ্ক হয় ও সর্বশেষ পরিবর্তন"),
-  "landing-page-builder": loc("Landing page builder with page parts, price and offer, and a mobile preview", "ল্যান্ডিং পেজ বিল্ডার: পেজের অংশ, দাম ও অফার এবং মোবাইল প্রিভিউ"),
-  "merchant-inbox": loc("Inbox with chats from every channel beside the conversation", "সব চ্যানেলের চ্যাটসহ ইনবক্স"),
-  "abandoned-carts": loc("Abandoned carts with reminders, recovered orders and recovery rate", "অসম্পূর্ণ কার্ট: রিমাইন্ডার, ফেরত আসা অর্ডার ও রিকভারি রেট"),
-};
-
-export const REPORT_TOGGLE = loc("See the full campaign report", "পুরো ক্যাম্পেইন রিপোর্ট দেখুন");
-
-/* ------------------------------------------------------------------ */
 /* Migration assistant (Shopify / WordPress)                           */
 /* ------------------------------------------------------------------ */
 
@@ -753,18 +465,148 @@ export const MIGRATION = {
   note: loc("Prefer a hand? Our team can run the move for you as an assisted migration.", "সাহায্য চান? আমাদের টিম অ্যাসিস্টেড মাইগ্রেশন হিসেবে পুরো কাজটি করে দিতে পারে।"),
 };
 
-export const MIGRATION_DEMO = {
-  title: loc("Migration assistant", "মাইগ্রেশন অ্যাসিস্ট্যান্ট"),
-  from: loc("From", "যেখান থেকে"),
-  source: loc("dazzleshop.com.bd · WordPress", "dazzleshop.com.bd · ওয়ার্ডপ্রেস"),
-  connected: loc("Connected", "সংযুক্ত"),
-  importing: loc("Importing", "আনা হচ্ছে"),
-  done: loc("Done", "সম্পন্ন"),
-  ready: loc("Test import ready to review", "টেস্ট ইমপোর্ট দেখার জন্য প্রস্তুত"),
-  rows: [
-    { key: "customers", label: loc("Customers", "কাস্টমার"), total: 1204 },
-    { key: "orders", label: loc("Past orders", "পুরনো অর্ডার"), total: 3882 },
-    { key: "products", label: loc("Products", "পণ্য"), total: 268 },
-    { key: "pages", label: loc("Pages & blog posts", "পেজ ও ব্লগ পোস্ট"), total: 34 },
+/* Storefront themes — the ready Next.js themes, scrolling in columns. */
+export const THEMES = {
+  eyebrow: loc("Storefront themes", "স্টোরফ্রন্ট থিম"),
+  title: loc("Launch a store that looks the part", "দেখতে দারুণ একটা স্টোর চালু করুন"),
+  body: loc(
+    "Pick a ready Next.js theme, add your products and go live. Every theme runs on the same orders, stock and tracking as the rest of GridCommerce.",
+    "একটি রেডি Next.js থিম বাছুন, প্রোডাক্ট যোগ করুন আর লাইভ করুন। প্রতিটি থিম GridCommerce-এর একই অর্ডার, স্টক আর ট্র্যাকিংয়ে চলে।",
+  ),
+  points: [
+    loc("Fast, mobile-first pages", "দ্রুত, মোবাইল-ফার্স্ট পেজ"),
+    loc("Your brand colours and fonts", "আপনার ব্র্যান্ডের রং ও ফন্ট"),
+    loc("Checkout, COD and tracking built in", "চেকআউট, COD ও ট্র্যাকিং বিল্ট-ইন"),
   ],
+  link: loc("See the online store", "অনলাইন স্টোর দেখুন"),
+  alt: loc("Storefront theme preview", "স্টোরফ্রন্ট থিমের প্রিভিউ"),
+};
+
+/* Connections bento — the online tools in one grid, after the migration section. */
+export const CONNECT = {
+  lead: {
+    title: loc("Sell online without the guesswork", "আন্দাজ ছাড়াই অনলাইনে বিক্রি করুন"),
+    body: loc(
+      "Orders, stock, couriers, messages and money in one place, with every step recorded so you always know what happened.",
+      "অর্ডার, স্টক, কুরিয়ার, মেসেজ আর টাকা এক জায়গায়। প্রতিটি ধাপ রেকর্ড থাকে, তাই কী হয়েছে সবসময় জানবেন।",
+    ),
+  },
+  insights: {
+    title: loc("Business insights with GridAI", "GridAI দিয়ে ব্যবসার ইনসাইট"),
+    body: loc(
+      "Ask in Bangla or English. GridAI reads your orders, stock and money, then suggests the next step for you to approve.",
+      "বাংলা বা ইংরেজিতে জিজ্ঞেস করুন। GridAI আপনার অর্ডার, স্টক আর টাকার হিসাব দেখে পরের ধাপ সাজেস্ট করে, আপনি অনুমোদন দিলেই হয়।",
+    ),
+    tagReport: loc("Weekly report", "সাপ্তাহিক রিপোর্ট"),
+    tagWeek: loc("This week", "এই সপ্তাহ"),
+    cardTitle: loc("A strong week!", "দারুণ একটা সপ্তাহ!"),
+    cardBody: loc("Delivered orders are up. Two products need restocking soon.", "ডেলিভারড অর্ডার বেড়েছে। দুটি প্রোডাক্ট শিগগির রিস্টক করতে হবে।"),
+    topSellers: loc("Top sellers", "সেরা বিক্রি"),
+    delivered: loc("Delivered rate", "ডেলিভারি রেট"),
+    action: loc("Restock 2 products", "২টি প্রোডাক্ট রিস্টক করুন"),
+  },
+  trusted: {
+    title: loc("Trusted by 100+ ecommerce businesses", "১০০+ ই-কমার্স ব্যবসার আস্থা"),
+  },
+  integrations: {
+    title: loc("Works with the apps you already use", "আপনার চেনা অ্যাপগুলোর সাথেই চলে"),
+    label: loc("Integrations", "ইন্টিগ্রেশন"),
+  },
+  tracking: {
+    title: loc("Track every sale, server-side", "প্রতিটি বিক্রি ট্র্যাক করুন, সার্ভার থেকে"),
+    body: loc(
+      "Purchase events go to Meta, TikTok and Google from our server, with customer data hashed first, so ad results stay accurate.",
+      "পারচেজ ইভেন্ট আমাদের সার্ভার থেকে Meta, TikTok আর Google-এ যায়, কাস্টমারের তথ্য আগে হ্যাশ করে। তাই বিজ্ঞাপনের ফল থাকে সঠিক।",
+    ),
+    cta: loc("See analytics", "অ্যানালিটিক্স দেখুন"),
+  },
+  payments: {
+    title: loc("bKash and Nagad, recorded", "bKash আর Nagad, রেকর্ডসহ"),
+    body: loc("Mobile payments sit against the order they paid for.", "মোবাইল পেমেন্ট যে অর্ডারের, সেই অর্ডারের সাথেই থাকে।"),
+    received: loc("Received", "পাওয়া গেছে"),
+  },
+  alerts: {
+    title: loc("Instant alerts", "সাথে সাথে অ্যালার্ট"),
+    body: loc("New orders, messages and courier payouts, as they happen.", "নতুন অর্ডার, মেসেজ আর কুরিয়ার পেআউট, ঘটার সাথে সাথে।"),
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Hero gallery: one small widget per online tool (demo data)         */
+/* ------------------------------------------------------------------ */
+
+export const HERO_WIDGETS = {
+  // card titles
+  inventory: loc("Inventory", "ইনভেন্টরি"),
+  analytics: loc("Analytics", "অ্যানালিটিক্স"),
+  tracking: loc("Server-side tracking", "সার্ভার-সাইড ট্র্যাকিং"),
+  inbox: loc("Omnichannel inbox", "অমনিচ্যানেল ইনবক্স"),
+  courier: loc("One-click courier", "এক ক্লিকে কুরিয়ার"),
+  returns: loc("Returns", "রিটার্ন"),
+  warranty: loc("Warranty", "ওয়ারেন্টি"),
+  social: loc("Social posts", "সোশ্যাল পোস্ট"),
+  calendar: loc("Post calendar", "পোস্ট ক্যালেন্ডার"),
+  comments: loc("Comments", "কমেন্ট"),
+  reviews: loc("Reviews", "রিভিউ"),
+  landing: loc("Landing page", "ল্যান্ডিং পেজ"),
+  gridAi: loc("GridAI", "GridAI"),
+  finance: loc("Finance", "ফাইন্যান্স"),
+  // card content
+  available: loc("available", "উপলব্ধ"),
+  lowStock: loc("Reorder soon", "শিগগির রিঅর্ডার"),
+  deliveredRevenue: loc("Delivered revenue", "ডেলিভারড আয়"),
+  thisWeek: loc("this week", "এই সপ্তাহে"),
+  purchaseEvent: loc("Purchase event", "পারচেজ ইভেন্ট"),
+  sent: loc("Sent", "পাঠানো"),
+  hashed: loc("Customer data hashed on our server", "কাস্টমারের তথ্য আমাদের সার্ভারে হ্যাশ করা"),
+  inboxMsg: loc("Earbuds ta stock e ache?", "Earbuds ta stock e ache?"),
+  inboxReply: loc("Ji ache! Order kore dibo?", "Ji ache! Order kore dibo?"),
+  readyOrders: loc("6 orders ready to ship", "৬টি অর্ডার শিপের জন্য তৈরি"),
+  bookCourier: loc("Book with Pathao", "Pathao-তে বুক করুন"),
+  booked: loc("6 parcels booked", "৬টি পার্সেল বুকড"),
+  returnItem: loc("Earbuds Pro · RTN-1042", "Earbuds Pro · RTN-1042"),
+  sellAgain: loc("Can be sold again", "আবার বিক্রি করা যাবে"),
+  backToStock: loc("Back to stock +1", "স্টকে ফেরত +১"),
+  warrantyItem: loc("Laptop 14 · IMEI 3567…21", "Laptop 14 · IMEI 3567…21"),
+  warrantyLeft: loc("8 months left", "আর ৮ মাস বাকি"),
+  claimOpen: loc("Claim opened", "ক্লেইম খোলা হয়েছে"),
+  postText: loc("Battery at 1%? Not this Puja. PUJA10 gets you 10% off.", "Battery at 1%? Not this Puja. PUJA10 e 10% off."),
+  scheduledFor: loc("Scheduled · Fri 8:00 PM", "শিডিউলড · শুক্র রাত ৮টা"),
+  week: loc("This week", "এই সপ্তাহ"),
+  days: [loc("S", "শ"), loc("S", "র"), loc("M", "সো"), loc("T", "ম"), loc("W", "বু"), loc("T", "বৃ"), loc("F", "শু")],
+  postsPlanned: loc("9 posts planned", "৯টি পোস্ট পরিকল্পিত"),
+  commentText: loc("Price koto?", "Price koto?"),
+  commentReply: loc("Inbox e details dilam 😊", "Inbox e details dilam 😊"),
+  replied: loc("Replied", "উত্তর দেওয়া হয়েছে"),
+  reviewText: loc("Fast delivery, original product.", "দ্রুত ডেলিভারি, অরিজিনাল প্রোডাক্ট।"),
+  aiReply: loc("AI suggested reply", "AI-এর সাজেস্ট করা উত্তর"),
+  orderNow: loc("Order now", "এখনই অর্ডার"),
+  liveLink: loc("Live · link ready", "লাইভ · লিংক তৈরি"),
+  askAi: loc("Book 6 ready orders with Pathao", "রেডি ৬টি অর্ডার Pathao-তে বুক করো"),
+  needsOk: loc("Needs your OK", "আপনার অনুমতি দরকার"),
+  received: loc("Received", "পাওয়া"),
+  codAwaiting: loc("COD awaiting", "COD বাকি"),
+};
+
+/* The GridCommerce app for Android and iPhone. Store links are placeholders until the listings are live. */
+export const MOBILE_APPS = {
+  lead: loc("Your shop,", "আপনার দোকান,"),
+  tail: loc("in your pocket.", "আপনার পকেটে।"),
+  body: loc(
+    "Take orders, answer chats, check stock and see today's cash from the GridCommerce app for Android and iPhone.",
+    "অ্যান্ড্রয়েড ও আইফোনের গ্রিডকমার্স অ্যাপ থেকে অর্ডার নিন, চ্যাটের উত্তর দিন, স্টক দেখুন আর আজকের ক্যাশ জানুন।",
+  ),
+  features: [
+    { icon: "BellRing", text: loc("New-order alerts", "নতুন অর্ডারের নোটিফিকেশন") },
+    { icon: "ScanBarcode", text: loc("Scan a barcode to sell", "বারকোড স্ক্যান করে বিক্রি") },
+    { icon: "MessageCircle", text: loc("Inbox on the go", "চলতে চলতে ইনবক্স") },
+    { icon: "Wallet", text: loc("Today's cash at a glance", "এক নজরে আজকের ক্যাশ") },
+  ],
+  googlePlay: loc("Get it on Google Play", "গুগল প্লে থেকে নিন"),
+  appStore: loc("Download on the App Store", "অ্যাপ স্টোর থেকে ডাউনলোড করুন"),
+};
+
+export const APP_LINKS = {
+  googlePlay: "#",
+  appStore: "#",
 };
