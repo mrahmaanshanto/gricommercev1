@@ -53,6 +53,43 @@ export const HERO_VARIANTS = {
   newOrder: loc("New order", "নতুন অর্ডার"),
   booked: loc("Booked with Pathao", "Pathao-তে বুকড"),
   aiReady: loc("AI reply ready", "AI উত্তর তৈরি"),
+  /* Store gallery hero (variant 7). */
+  store: {
+    trust: loc("Trusted by 100+ ecommerce businesses", "১০০+ ই-কমার্স ব্যবসার আস্থা"),
+    title: loc("Your online store, with COD and couriers built in", "আপনার অনলাইন স্টোর, COD আর কুরিয়ারসহ"),
+    points: [
+      loc("Ready-made store themes, your brand", "রেডিমেড স্টোর থিম, আপনার ব্র্যান্ড"),
+      loc("No commission on your sales", "বিক্রিতে কোনো কমিশন নেই"),
+      loc("Pathao, Steadfast and RedX in one click", "এক ক্লিকে Pathao, Steadfast আর RedX"),
+    ],
+    from: loc("From", "শুরু"),
+    perMonth: loc("/mo", "/মাস"),
+    trialNote: loc("15-day free trial on every plan", "প্রতিটি প্ল্যানে ১৫ দিনের ফ্রি ট্রায়াল"),
+    start: loc("Start free trial", "ফ্রি ট্রায়াল শুরু করুন"),
+    fitTitle: loc("Is GridCommerce right for you?", "GridCommerce কি আপনার জন্য?"),
+    fitLink: loc("Compare with Shopify and WordPress", "Shopify আর WordPress-এর সাথে তুলনা"),
+  },
+  /* Live order feed hero (variant 6). */
+  feed: {
+    pill: loc("Selling for Puja and Eid", "পূজা আর ঈদের বিক্রি চলছে"),
+    watch: loc("See how it works", "কীভাবে কাজ করে দেখুন"),
+    businesses: loc("Online businesses", "অনলাইন ব্যবসা"),
+    couriers: loc("Couriers in one click", "এক ক্লিকে কুরিয়ার"),
+    days: [
+      { day: loc("SAT", "শনি"), date: loc("12 Oct", "১২ অক্টো") },
+      { day: loc("SUN", "রবি"), date: loc("13 Oct", "১৩ অক্টো") },
+      { day: loc("MON", "সোম"), date: loc("14 Oct", "১৪ অক্টো") },
+      { day: loc("TUE", "মঙ্গল"), date: loc("15 Oct", "১৫ অক্টো") },
+    ],
+    kinds: {
+      confirmed: loc("Order confirmed", "অর্ডার কনফার্মড"),
+      booked: loc("Booked with Pathao", "Pathao-তে বুকড"),
+      delivered: loc("Delivered", "ডেলিভারড"),
+      payout: loc("COD payout", "COD পেআউট"),
+      fake: loc("Fake order stopped", "ফেক অর্ডার আটকানো"),
+      chat: loc("Order from chat", "চ্যাট থেকে অর্ডার"),
+    },
+  },
   /* Spotlight hero slides: what each photo's seller is doing in GridCommerce. */
   slides: {
     shop: loc("Boutique owner", "বুটিকের মালিক"),
@@ -91,6 +128,8 @@ export const HERO_VARIANTS = {
       loc("3 · Centered + dashboard", "৩ · মাঝখানে + ড্যাশবোর্ড"),
       loc("4 · Highlight + side cards", "৪ · হাইলাইট + পাশের কার্ড"),
       loc("5 · Phones + name tags", "৫ · ফোন + নামের ট্যাগ"),
+      loc("6 · Live order feed", "৬ · লাইভ অর্ডার ফিড"),
+      loc("7 · Store gallery + price", "৭ · স্টোর গ্যালারি + দাম"),
     ],
   },
 };

@@ -4,9 +4,11 @@ import { useSyncExternalStore } from "react";
 import { readHeroChoice, readPreviewEnabled, subscribePreview } from "@/components/dev/previewStore";
 import { BrandHero } from "../BrandHero";
 import { HeroCentered } from "./variants/HeroCentered";
+import { HeroFeed } from "./variants/HeroFeed";
 import { HeroMarker } from "./variants/HeroMarker";
 import { HeroPhones } from "./variants/HeroPhones";
 import { HeroSpotlight } from "./variants/HeroSpotlight";
+import { HeroStore } from "./variants/HeroStore";
 import { HeroTilt } from "./variants/HeroTilt";
 
 /**
@@ -16,7 +18,7 @@ import { HeroTilt } from "./variants/HeroTilt";
  * BrandHome and delete the others and this file.
  */
 
-const HEROES = [BrandHero, HeroSpotlight, HeroTilt, HeroCentered, HeroMarker, HeroPhones];
+const HEROES = [BrandHero, HeroSpotlight, HeroTilt, HeroCentered, HeroMarker, HeroPhones, HeroFeed, HeroStore];
 
 export function HeroSwitch() {
   const enabled = useSyncExternalStore(subscribePreview, readPreviewEnabled, () => false);
