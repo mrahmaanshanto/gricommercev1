@@ -118,8 +118,8 @@ export const TRACKING_SCENE = {
 
 export const SOCIAL_SCENE = {
   label: loc(
-    "Animation: a post is written once, Facebook, Instagram and TikTok are picked, it is scheduled for Friday 8 PM on the calendar, published, and its comments are answered.",
-    "অ্যানিমেশন: একবার পোস্ট লেখা হয়, Facebook, Instagram ও TikTok বাছাই হয়, ক্যালেন্ডারে শুক্রবার রাত ৮টায় শিডিউল হয়, পাবলিশ হয়, আর কমেন্টের উত্তর দেওয়া হয়।",
+    "Animation: a post is written once, Facebook, Instagram, TikTok, LinkedIn and YouTube are picked, it is scheduled for Friday 8 PM on the calendar, published, and its comments are answered.",
+    "অ্যানিমেশন: একবার পোস্ট লেখা হয়, Facebook, Instagram, TikTok, LinkedIn ও YouTube বাছাই হয়, ক্যালেন্ডারে শুক্রবার রাত ৮টায় শিডিউল হয়, পাবলিশ হয়, আর কমেন্টের উত্তর দেওয়া হয়।",
   ),
   composer: loc("New post", "নতুন পোস্ট"),
   caption: loc("Eid drop is live! 10% off till Friday.", "ঈদ কালেকশন চলে এসেছে! শুক্রবার পর্যন্ত ১০% ছাড়।"),
@@ -128,7 +128,7 @@ export const SOCIAL_SCENE = {
   calendar: loc("Post calendar", "পোস্ট ক্যালেন্ডার"),
   best: loc("Best time", "সেরা সময়"),
   days: [loc("Sat", "শনি"), loc("Sun", "রবি"), loc("Mon", "সোম"), loc("Tue", "মঙ্গল"), loc("Wed", "বুধ"), loc("Thu", "বৃহঃ"), loc("Fri", "শুক্র")],
-  published: loc("Published to 3 channels", "৩টি চ্যানেলে পাবলিশড"),
+  published: loc("Published to 5 channels", "৫টি চ্যানেলে পাবলিশড"),
   comment: loc("Price koto?", "Price koto?"),
   reply: loc("Inbox e details dilam 😊", "Inbox e details dilam 😊"),
   replied: loc("Replied", "উত্তর দেওয়া হয়েছে"),
@@ -191,4 +191,26 @@ export const STOCK_SCENE = {
   reorderAt: loc("Reorder point is 10", "রিঅর্ডার পয়েন্ট ১০"),
   createPo: loc("Create purchase order", "পারচেজ অর্ডার তৈরি"),
   poSent: loc("PO-118 sent to supplier", "PO-118 সাপ্লায়ারকে পাঠানো"),
+};
+
+export const FRAUD_SCENE = {
+  label: loc(
+    "Animation: a new COD order arrives, the phone number's courier history shows most parcels returned, the order is flagged as risky and a duplicate, and an advance payment is asked for before shipping.",
+    "অ্যানিমেশন: নতুন COD অর্ডার আসে, ফোন নম্বরের কুরিয়ার হিস্টরিতে দেখা যায় বেশিরভাগ পার্সেল ফেরত এসেছে, অর্ডারটি ঝুঁকিপূর্ণ ও ডুপ্লিকেট হিসেবে চিহ্নিত হয়, আর শিপের আগে অ্যাডভান্স চাওয়া হয়।",
+  ),
+  newOrder: loc("New order #GC-1051", "নতুন অর্ডার #GC-1051"),
+  cod: loc("Cash on delivery", "ক্যাশ অন ডেলিভারি"),
+  history: loc("Courier history", "কুরিয়ার হিস্টরি"),
+  delivered: loc("delivered", "ডেলিভারড"),
+  returned: loc("returned", "ফেরত"),
+  rate: loc("Success rate", "সফলতার হার"),
+  checking: loc("Checking…", "যাচাই হচ্ছে…"),
+  flags: loc("Before you ship", "শিপের আগে"),
+  risky: loc("High return risk", "ফেরতের ঝুঁকি বেশি"),
+  duplicate: loc("Same number ordered 20 min ago", "একই নম্বর থেকে ২০ মিনিট আগে অর্ডার"),
+  wrong: loc("Address could not be found last time", "গতবার ঠিকানা খুঁজে পাওয়া যায়নি"),
+  ask: loc("Ask for ৳200 advance", "৳২০০ অ্যাডভান্স চান"),
+  sent: loc("bKash link sent", "bKash লিংক পাঠানো হয়েছে"),
+  rule: loc("COD off for this number", "এই নম্বরে COD বন্ধ"),
+  saved: loc("Fake order stopped before shipping", "শিপের আগেই ফেক অর্ডার আটকানো গেল"),
 };

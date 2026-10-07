@@ -111,6 +111,7 @@ export const MEGA_MENUS: MegaMenu[] = [
         accent: "mint",
         links: [
           { label: loc("Migration", "মাইগ্রেশন"), href: "/migration", icon: "ArrowRightLeft" },
+          { label: loc("Compare with Shopify & WordPress", "Shopify ও WordPress-এর সাথে তুলনা"), href: "/compare", icon: "Scale" },
           { label: loc("Customer Stories", "মার্চেন্ট স্টোরি"), href: "/customers", icon: "Quote" },
           { label: loc("Themes", "থিম"), href: "/themes", icon: "Palette" },
         ],
@@ -130,6 +131,7 @@ export const MEGA_MENUS: MegaMenu[] = [
 
 export const PRIMARY_NAV: { label: Localized; href: string }[] = [
   { label: loc("Pricing", "প্রাইসিং ও প্ল্যান"), href: "/pricing" },
+  { label: loc("Compare", "তুলনা"), href: "/compare" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -163,6 +165,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: loc("Help Centre", "হেল্প সেন্টার"), href: "/help" },
       { label: loc("Blog", "ব্লগ"), href: "/blog" },
       { label: loc("Migration", "মাইগ্রেশন"), href: "/migration" },
+      { label: loc("Compare", "তুলনা"), href: "/compare" },
       { label: loc("Customer Stories", "মার্চেন্ট স্টোরি"), href: "/customers" },
       { label: loc("Guides", "গাইড"), href: "/help/guides" },
       { label: loc("System Status", "সিস্টেম স্ট্যাটাস"), href: "/status" },

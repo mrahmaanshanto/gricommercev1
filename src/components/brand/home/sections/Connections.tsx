@@ -45,7 +45,7 @@ const EVENTS = ["Purchase", "AddToCart", "ViewContent", "InitiateCheckout", "Lea
  * Section 5b — the online tools as one bento grid: a lead tile, GridAI
  * insights, the trust line, server-side tracking, mobile payments, alerts,
  * and the integrations as two fast logo rows sliding in opposite directions.
- * The rows pause under the pointer and stand still under reduced motion.
+ * The rows stand still under reduced motion.
  */
 export function Connections() {
   const { L, t } = useI18n();
@@ -183,7 +183,7 @@ export function Connections() {
         </Reveal>
 
         {/* Integrations */}
-        <Reveal className="gc-marquee-wrap relative flex flex-col justify-end overflow-hidden rounded-[28px] bg-gc-canvas pb-6 pt-5 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-3">
+        <Reveal className="relative flex flex-col justify-end overflow-hidden rounded-[28px] bg-gc-canvas pb-6 pt-5 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-3">
           <p className="sr-only">
             {L(C.integrations.label)}: {[...ROW_A, ...ROW_B].map((l) => l.name).join(", ")}
           </p>

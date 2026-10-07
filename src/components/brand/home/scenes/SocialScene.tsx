@@ -12,7 +12,14 @@ import { At, Cursor, Scene, Show, Tag, Toast, Widget } from "./kit";
 
 /** Beats: 1 caption written · 2 channels picked · 3 schedule clicked · 4 lands on Friday · 5 published · 6 comment · 7 replied. */
 const CUES = [500, 1500, 2600, 3600, 4800, 6000, 7200];
-const CHANNELS = ["facebook", "instagram", "tiktok"] as const;
+const CHANNELS = ["facebook", "instagram", "tiktok", "linkedin", "youtube"] as const;
+type Platform = (typeof CHANNELS)[number];
+
+function PlatformLogo({ p, size }: { p: Platform; size: number }) {
+  if (p === "linkedin" || p === "youtube")
+    return <Image src={`/integrations/${p}.png`} alt="" width={size * 2} height={size * 2} style={{ width: size, height: size }} className="object-contain" />;
+  return <ChannelLogo channel={p} size={size} />;
+}
 /* Posts already on the week, by day: each dot is a planned post. */
 const WEEK = [1, 0, 2, 1, 0, 1, 0];
 
@@ -42,7 +49,7 @@ export function SocialScene() {
               <div className="mt-2 flex items-center gap-1.5">
                 {CHANNELS.map((c, i) => (
                   <span key={c} className={cn("relative grid size-7 place-items-center rounded-full ring-1 transition-colors duration-300", b >= 2 ? "bg-white ring-gc-royal" : "bg-gc-canvas ring-gc-line")} style={{ transitionDelay: `${i * 120}ms` }}>
-                    <ChannelLogo channel={c} size={14} />
+                    <PlatformLogo p={c} size={14} />
                     <Show on={b >= 2} from="pop" delay={i * 0.12} className="absolute -bottom-1 -right-1">
                       <span className="grid size-3.5 place-items-center rounded-full bg-gc-royal text-white ring-2 ring-white">
                         <BadgeCheck className="size-2.5" />
@@ -93,7 +100,7 @@ export function SocialScene() {
                   <div className="flex -space-x-1">
                     {CHANNELS.map((c) => (
                       <span key={c} className="grid size-5 place-items-center rounded-full bg-white ring-2 ring-white">
-                        <ChannelLogo channel={c} size={12} />
+                        <PlatformLogo p={c} size={12} />
                       </span>
                     ))}
                   </div>

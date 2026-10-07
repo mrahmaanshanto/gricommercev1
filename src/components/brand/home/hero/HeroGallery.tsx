@@ -28,9 +28,8 @@ import { useNum } from "../sections/kit";
 /**
  * The hero's curved gallery: one small widget per online tool, on a turning
  * band. Each card's tilt and size come from its distance to the centre, so the
- * band reads as the inside of a cylinder. It drifts while on screen, stops
- * under the pointer and in a hidden tab, and stands still under reduced
- * motion. Positions are written straight to the cards' style each frame, so
+ * band reads as the inside of a cylinder. It drifts while on screen, rests
+ * in a hidden tab, and stands still under reduced motion. Positions are written straight to the cards' style each frame, so
  * React does not re-render while it moves. Decorative: every module is also
  * listed, as links, further down the page.
  */
@@ -51,7 +50,6 @@ export function HeroGallery() {
     let offset = 0;
     let last = performance.now();
     let raf = 0;
-    let hover = false;
     let visible = true;
     const slot = () => (width < 640 ? 150 : width < 1024 ? 180 : 205);
 
@@ -80,10 +78,6 @@ export function HeroGallery() {
     ro.observe(wrap);
     const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
     io.observe(wrap);
-    const enter = () => (hover = true);
-    const leave = () => (hover = false);
-    wrap.addEventListener("pointerenter", enter);
-    wrap.addEventListener("pointerleave", leave);
 
     place();
      
@@ -93,7 +87,7 @@ export function HeroGallery() {
       const tick = (now: number) => {
         const dt = Math.min(now - last, 100);
         last = now;
-        if (!hover && visible && document.visibilityState === "visible") {
+        if (visible && document.visibilityState === "visible") {
           offset += (SPEED * dt) / 1000;
           place();
         }
@@ -106,8 +100,6 @@ export function HeroGallery() {
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
-      wrap.removeEventListener("pointerenter", enter);
-      wrap.removeEventListener("pointerleave", leave);
     };
   }, [reduced, cards.length]);
 

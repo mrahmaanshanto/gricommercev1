@@ -212,7 +212,6 @@
   to { transform: translate3d(0, -50%, 0); }
 }
 .gc-marquee-y { animation: gc-marquee-y var(--gc-marquee-duration, 40s) linear infinite; }
-.gc-marquee-wrap:hover :is(.gc-marquee, .gc-marquee-y) { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .gc-marquee, .gc-marquee-y { animation: none; }
 }
@@ -231,6 +230,22 @@
 .gc-dash { animation: gc-dash 0.6s linear infinite; }
 @media (prefers-reduced-motion: reduce) {
   .gc-dash { animation: none; }
+}
+
+/* Gentle bob for floating hero stickers and cards. */
+@keyframes gc-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+.gc-float { animation: gc-float 5s ease-in-out infinite; }
+/* Hand-drawn strokes (circle, arrow, squiggle) draw themselves once. */
+@keyframes gc-draw {
+  from { stroke-dashoffset: var(--gc-len, 600); }
+  to { stroke-dashoffset: 0; }
+}
+.gc-draw { stroke-dasharray: var(--gc-len, 600); animation: gc-draw 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
+@media (prefers-reduced-motion: reduce) {
+  .gc-float, .gc-draw { animation: none; }
 }
 
 /* Slow drift for the hero's aurora glows. */

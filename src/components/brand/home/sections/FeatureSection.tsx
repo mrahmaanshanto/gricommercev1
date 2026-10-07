@@ -1,13 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarClock, Check, LayoutTemplate, MessagesSquare, Radar, ShoppingCart, type LucideIcon } from "lucide-react";
+import { ArrowRight, CalendarClock, Check, LayoutTemplate, MessagesSquare, Radar, ShieldCheck, ShoppingCart, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion";
 import { FEATURES } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 import { Panel } from "../../primitives";
+import { FraudScene } from "../scenes/FraudScene";
 import { InboxScene } from "../scenes/InboxScene";
 import { RecoveryScene } from "../scenes/RecoveryScene";
 import { SocialScene } from "../scenes/SocialScene";
@@ -18,6 +20,7 @@ import { HOME_INNER, IconChip, TwoTone } from "./kit";
 type FeatureId = keyof typeof FEATURES;
 
 const PARTS: Record<FeatureId, { icon: LucideIcon; scene: ReactNode }> = {
+  fraud: { icon: ShieldCheck, scene: <FraudScene /> },
   inbox: { icon: MessagesSquare, scene: <InboxScene /> },
   store: { icon: LayoutTemplate, scene: <StoreScene /> },
   tracking: { icon: Radar, scene: <TrackingScene /> },
@@ -53,6 +56,15 @@ export function FeatureSection({
             <span aria-hidden className="size-1.5 rounded-full bg-gc-royal" />
             {L(F.eyebrow)}
           </p>
+          {"logos" in F && (
+            <ul className="mt-5 flex flex-wrap items-center gap-2" aria-label={F.logos.map((l) => l.name).join(", ")}>
+              {F.logos.map((l) => (
+                <li key={l.name} className="grid size-11 place-items-center rounded-2xl bg-white shadow-[0_10px_24px_-14px_rgba(10,60,150,0.5)] ring-1 ring-gc-line">
+                  <Image src={l.src} alt="" width={64} height={64} className="size-6 object-contain" />
+                </li>
+              ))}
+            </ul>
+          )}
           <TwoTone className="mt-5" title={L(F.title)} chip={<IconChip icon={icon} tone={chipTone} tilt={flip ? 6 : -6} />} />
           <p className="mt-5 text-gc-lead text-gc-ink-60">{L(F.body)}</p>
           <ul className="mt-6 space-y-2.5">
