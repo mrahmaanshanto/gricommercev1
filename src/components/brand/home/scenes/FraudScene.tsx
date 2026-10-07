@@ -154,7 +154,7 @@ export function FraudScene() {
           </At>
 
           <At x={272} y={344} z={30}>
-            <Toast on={b >= 7} icon={ShieldCheck} tone="success">
+            <Toast on={b >= 7} icon={ShieldCheck} tone="danger">
               {L(S.saved)}
             </Toast>
           </At>

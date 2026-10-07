@@ -185,13 +185,13 @@ export function Cursor({ x, y, click, show = true }: { x: number; y: number; cli
 }
 
 /** A small notification that drops in. */
-export function Toast({ on, icon: Icon, children, tone = "ink" }: { on: boolean; icon: LucideIcon; children: ReactNode; tone?: "ink" | "success" }) {
+export function Toast({ on, icon: Icon, children, tone = "ink" }: { on: boolean; icon: LucideIcon; children: ReactNode; tone?: "ink" | "success" | "danger" }) {
   return (
     <Show on={on} from="down">
       <div
         className={cn(
           "inline-flex items-center gap-2 whitespace-nowrap rounded-full py-1.5 pl-1.5 pr-3.5 text-[11.5px] font-semibold shadow-[0_14px_30px_-14px_rgba(0,0,0,0.5)]",
-          tone === "ink" ? "bg-gc-ink text-white" : "bg-gc-success text-white",
+          tone === "ink" ? "bg-gc-ink text-white" : tone === "danger" ? "bg-[#D93636] text-white" : "bg-gc-success text-white",
         )}
       >
         <span className={cn("grid size-6 place-items-center rounded-full", tone === "ink" ? "bg-gc-royal" : "bg-white/20")}>
