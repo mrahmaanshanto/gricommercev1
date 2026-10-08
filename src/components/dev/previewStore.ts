@@ -10,7 +10,7 @@ const ENABLED_KEY = "gc.preview";
 const HERO_KEY = "gc.hero";
 const EVENT = "gc:preview";
 
-export const HERO_COUNT = 8;
+export const HERO_COUNT = 9;
 
 export function subscribePreview(cb: () => void) {
   window.addEventListener(EVENT, cb);
