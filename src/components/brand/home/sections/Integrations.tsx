@@ -75,7 +75,7 @@ export function Integrations() {
         </p>
         <div
           aria-hidden
-          className="mt-10 space-y-3 md:mt-14 md:space-y-4"
+          className="mt-10 space-y-1.5 md:mt-14 md:space-y-2.5"
           style={{
             maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
             WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
@@ -83,7 +83,7 @@ export function Integrations() {
         >
           {ROWS.map((row, i) => (
             <div key={i}>
-              <div className="flex overflow-hidden">
+              <div className="flex overflow-hidden py-1.5">
                 <div
                   className={cn("gc-marquee flex w-max shrink-0 gap-3 pr-3 md:gap-4 md:pr-4", row.reverse && "gc-marquee-reverse")}
                   style={{ ["--gc-marquee-duration" as string]: `${row.seconds}s` }}
@@ -106,7 +106,7 @@ function LogoTile({ logo }: { logo: Logo }) {
     <span
       title={logo.name}
       className={cn(
-        "grid h-14 shrink-0 place-items-center rounded-2xl bg-white px-4 shadow-[0_10px_24px_-18px_rgba(10,40,100,0.45)] ring-1 ring-gc-line md:h-[72px] md:rounded-[20px]",
+        "grid h-14 shrink-0 place-items-center rounded-2xl border border-gc-line bg-white px-4 shadow-[0_6px_16px_-12px_rgba(10,40,100,0.35)] md:h-[72px] md:rounded-[20px]",
         logo.wide ? "w-[128px] md:w-[164px]" : "w-14 md:w-[72px]",
       )}
     >

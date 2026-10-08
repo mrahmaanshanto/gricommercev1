@@ -81,18 +81,18 @@ export function Footer({ className }: { className?: string } = {}) {
           <FooterLinks title={L(FOOTER.help)} links={FOOTER.helpLinks.map((l) => ({ label: L(l.label), href: l.href }))} />
         </div>
 
-        {/* GridCommerce, as wide as the first two columns, in a tone just above the background */}
+        {/* GridCommerce, half the width of the columns, centred, in a tone just above the background */}
         <p aria-hidden className="mt-12 select-none md:mt-14">
-          <svg viewBox="0 0 1000 150" className="block h-auto w-full font-gc-display md:w-[calc(50%-1rem)]">
+          <svg viewBox="0 0 1000 150" className="mx-auto block h-auto w-full font-gc-display md:w-[calc(50%-1rem)]">
             <text x="500" y="122" textAnchor="middle" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="#2c2c2c" fontSize="150" fontWeight="800" letterSpacing="-4">
               GridCommerce
             </text>
           </svg>
         </p>
 
-        {/* Payment methods, one thin strip */}
+        {/* Payment methods, one thin centred strip */}
         <div className="mt-8 border-y border-white/10 py-6">
-          <LogoStrip title={L(FOOTER.payWith)} logos={PAY} />
+          <LogoStrip label={L(FOOTER.payWith)} logos={PAY} />
         </div>
 
         {/* Copyright and legal */}
@@ -133,18 +133,15 @@ function FooterLinks({ title, links }: { title: string; links: { label: string; 
   );
 }
 
-function LogoStrip({ title, logos }: { title: string; logos: Logo[] }) {
+function LogoStrip({ label, logos }: { label: string; logos: Logo[] }) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-      <p className="shrink-0 text-[0.75rem] font-semibold text-white/55">{title}</p>
-      <ul className="flex flex-wrap gap-1.5 xl:flex-nowrap">
-        {logos.map((l) => (
-          <li key={l.name} title={l.name} className="grid h-8 min-w-12 place-items-center rounded-[6px] bg-white px-1.5">
-            <Image src={l.src} alt={l.name} width={80} height={32} className="max-h-5 w-auto max-w-[64px] object-contain" />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul aria-label={label} className="flex flex-wrap justify-center gap-1.5">
+      {logos.map((l) => (
+        <li key={l.name} title={l.name} className="grid h-8 min-w-12 place-items-center rounded-[6px] bg-white px-1.5">
+          <Image src={l.src} alt={l.name} width={80} height={32} className="max-h-5 w-auto max-w-[64px] object-contain" />
+        </li>
+      ))}
+    </ul>
   );
 }
 

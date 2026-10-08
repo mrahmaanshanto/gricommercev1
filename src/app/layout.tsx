@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Serif_Display, Outfit } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -7,30 +7,30 @@ import { LanguageProvider } from "@/i18n/provider";
 import { BrandNavbar } from "@/components/brand/BrandNavbar";
 import { BrandFooter } from "@/components/brand/BrandFooter";
 import { SampleBadge } from "@/components/marketing/SampleBadge";
-import { DesignPreview } from "@/components/dev/DesignPreview";
 import { SITE } from "@/data/site";
 import { JsonLd, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 
 /**
- * Plus Jakarta Sans carries headings and body; Instrument Serif italic is the
- * one-word accent in display headlines. next/font downloads both at build time
- * and serves them from our own origin, so there is no third-party CDN round
- * trip on mobile networks. Roles are mapped in globals.css (`--gc-font-*`).
+ * Outfit carries headings and body; DM Serif Display italic is the one-word
+ * accent in display headlines (pair 4 from the design preview, chosen Oct
+ * 2026). next/font downloads both at build time and serves them from our own
+ * origin, so there is no third-party CDN round trip on mobile networks. Roles
+ * are mapped in globals.css (`--gc-font-*`).
  */
-const jakarta = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+  variable: "--font-outfit",
   display: "swap",
   preload: true,
   fallback: ["Arial", "sans-serif"],
 });
 
-const instrument = Instrument_Serif({
+const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
   style: "italic",
-  variable: "--font-instrument",
+  variable: "--font-dm-serif",
   display: "swap",
   preload: true,
   fallback: ["Georgia", "serif"],
@@ -69,7 +69,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${instrument.variable} ${notoBengali.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${dmSerif.variable} ${notoBengali.variable}`}>
       <body className="gc-scope bg-gc-canvas antialiased">
         <JsonLd data={organizationSchema()} />
         <JsonLd data={softwareApplicationSchema()} />
@@ -78,7 +78,6 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <BrandFooter />
           <SampleBadge />
-          <DesignPreview />
         </LanguageProvider>
       </body>
     </html>

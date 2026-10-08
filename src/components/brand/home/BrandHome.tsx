@@ -1,4 +1,4 @@
-import { HeroSwitch } from "./hero/HeroSwitch";
+import { HomeHero } from "./hero/HomeHero";
 import { BrandSolutions } from "./BrandSolutions";
 import { BrandFaq } from "./BrandFaq";
 import { BrandCTA } from "./BrandCTA";
@@ -27,7 +27,7 @@ import { Themes } from "./sections/Themes";
 export function BrandHome() {
   return (
     <div className="gc-scope bg-gc-canvas">
-      <HeroSwitch />
+      <HomeHero />
       <OrderStory />
       <Integrations />
       <FeatureSection id="fraud" flip />
