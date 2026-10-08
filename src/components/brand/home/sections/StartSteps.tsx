@@ -31,7 +31,7 @@ export function StartSteps() {
       <Stagger className="mt-10 grid gap-4 md:grid-cols-3" stagger={0.08}>
         {START.steps.map((step, i) => (
           <Stagger.Item key={i} className="h-full">
-            <div className={cn("relative h-full overflow-hidden rounded-[28px] p-6 ring-1 ring-inset md:p-7", TONES[i])}>
+            <div className={cn("relative h-full overflow-hidden rounded-[20px] p-6 ring-1 ring-inset md:p-7", TONES[i])}>
               <span aria-hidden className="pointer-events-none absolute -right-2 -top-6 font-gc-display text-[7rem] font-extrabold leading-none text-gc-ink/[0.05]">
                 {n(i + 1)}
               </span>

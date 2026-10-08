@@ -69,7 +69,7 @@ export function BrandNavbar() {
     <>
       <a
         href="#main"
-        className="sr-only-focusable focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-gc-royal focus:px-4 focus:py-2.5 focus:text-white"
+        className="sr-only-focusable focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-[12px] focus:bg-gc-royal focus:px-4 focus:py-2.5 focus:text-white"
       >
         {t.common.skipToContent}
       </a>
@@ -85,7 +85,7 @@ export function BrandNavbar() {
       >
         <div
           className={cn(
-            "mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 rounded-full xl:gap-6 pl-5 pr-2.5 transition-[background-color,box-shadow] duration-[260ms] md:h-[72px] md:pl-7 md:pr-3",
+            "mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 rounded-[20px] xl:gap-6 pl-5 pr-2.5 transition-[background-color,box-shadow] duration-[260ms] md:h-[72px] md:pl-7 md:pr-3",
             scrolled || openMenu
               ? "bg-white/90 shadow-gc-card ring-1 ring-gc-line/70 backdrop-blur-xl"
               : "bg-white ring-1 ring-gc-line/60",
@@ -110,7 +110,7 @@ export function BrandNavbar() {
                       onFocus={() => open(menu.id)}
                       onClick={() => (isOpen ? setOpenMenu(null) : open(menu.id))}
                       className={cn(
-                        "inline-flex h-10 items-center gap-1 rounded-full px-3 text-[0.9375rem] xl:px-4 font-medium transition-colors duration-[160ms]",
+                        "inline-flex h-10 items-center gap-1 rounded-[12px] px-3 text-[0.9375rem] xl:px-4 font-medium transition-colors duration-[160ms]",
                         isOpen ? "bg-gc-royal-10 text-gc-royal" : "text-gc-ink-70 hover:bg-gc-canvas hover:text-gc-ink",
                       )}
                     >
@@ -131,7 +131,7 @@ export function BrandNavbar() {
                   <Link
                     href={item.href}
                     onMouseEnter={scheduleClose}
-                    className="inline-flex h-10 items-center rounded-full px-3 text-[0.9375rem] xl:px-4 font-medium text-gc-ink-70 transition-colors duration-[160ms] hover:bg-gc-canvas hover:text-gc-ink"
+                    className="inline-flex h-10 items-center rounded-[12px] px-3 text-[0.9375rem] xl:px-4 font-medium text-gc-ink-70 transition-colors duration-[160ms] hover:bg-gc-canvas hover:text-gc-ink"
                   >
                     {L(item.label)}
                   </Link>
@@ -150,7 +150,7 @@ export function BrandNavbar() {
             </span>
             <Link
               href="/login"
-              className="inline-flex h-10 items-center rounded-full px-3 text-[0.9375rem] xl:px-4 font-medium text-gc-ink-70 transition-colors duration-[160ms] hover:bg-gc-canvas hover:text-gc-ink"
+              className="inline-flex h-10 items-center rounded-[12px] px-3 text-[0.9375rem] xl:px-4 font-medium text-gc-ink-70 transition-colors duration-[160ms] hover:bg-gc-canvas hover:text-gc-ink"
             >
               {t.common.login}
             </Link>
@@ -176,7 +176,7 @@ export function BrandNavbar() {
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label={t.nav.openMenu}
-              className="grid size-10 place-items-center rounded-full text-gc-ink transition-colors hover:bg-gc-canvas"
+              className="grid size-10 place-items-center rounded-[12px] text-gc-ink transition-colors hover:bg-gc-canvas"
             >
               <Menu aria-hidden className="size-6" strokeWidth={1.9} />
             </button>

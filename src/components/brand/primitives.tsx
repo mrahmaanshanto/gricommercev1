@@ -210,7 +210,7 @@ export function Panel({
           must not create a scroll container, or sticky columns stop sticking. */}
       <div
         className={cn(
-          "relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] md:rounded-[40px]",
+          "relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px]",
           PANEL[tone],
           className,
         )}

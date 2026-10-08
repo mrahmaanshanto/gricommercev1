@@ -23,7 +23,7 @@ export function Pricing() {
       <PageHero crumbs={[{ label: PRICING_COPY.title }]} title={PRICING_COPY.title} body={PRICING_COPY.subtitle} align="center" pattern="tl">
         {/* Billing period switch */}
         <div className="hero-rise mt-10 flex justify-center">
-          <div className="inline-flex items-center gap-1 rounded-full bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
+          <div className="inline-flex items-center gap-1 rounded-[14px] bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
             {([false, true] as const).map((isYear) => {
               const active = yearly === isYear;
               return (
@@ -33,7 +33,7 @@ export function Pricing() {
                   onClick={() => setYearly(isYear)}
                   aria-pressed={active}
                   className={cn(
-                    "relative isolate inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-gc-small font-semibold transition-colors duration-[200ms]",
+                    "relative isolate inline-flex items-center gap-2 rounded-[10px] px-5 py-2.5 text-gc-small font-semibold transition-colors duration-[200ms]",
                     active ? "text-white" : "text-gc-ink-60 hover:text-gc-ink",
                   )}
                 >
@@ -41,7 +41,7 @@ export function Pricing() {
                     <motion.span
                       layoutId="gc-billing-pill"
                       transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }}
-                      className="absolute inset-0 -z-10 rounded-full bg-gc-royal shadow-[0_8px_20px_-8px_rgba(10,91,207,0.6)]"
+                      className="absolute inset-0 -z-10 rounded-[10px] bg-gc-royal shadow-[0_8px_20px_-8px_rgba(10,91,207,0.6)]"
                     />
                   )}
                   {L(isYear ? PRICING_COPY.yearly : PRICING_COPY.monthly)}
@@ -73,7 +73,7 @@ export function Pricing() {
               <Stagger.Item key={plan.id} className="h-full">
                 <div
                   className={cn(
-                    "relative isolate flex h-full flex-col overflow-hidden rounded-[32px] p-7 md:p-8",
+                    "relative isolate flex h-full flex-col overflow-hidden rounded-[20px] p-7 md:p-8",
                     dark ? "bg-gc-dark text-white shadow-gc-float" : "bg-gc-canvas",
                   )}
                 >
@@ -146,7 +146,7 @@ export function Pricing() {
         <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.07}>
           {MODULES.map((m) => (
             <Stagger.Item key={m.label.en} className="h-full">
-              <div className="flex h-full flex-col rounded-[24px] bg-white p-6 ring-1 ring-inset ring-gc-line/80">
+              <div className="flex h-full flex-col rounded-[20px] bg-white p-6 ring-1 ring-inset ring-gc-line/80">
                 <IconTile name={m.icon} />
                 <p className="mt-5 font-gc-display text-[1.0625rem] font-bold text-gc-ink">{L(m.label)}</p>
                 <p className="mt-1.5 flex-1 text-gc-small text-gc-ink-60">{L(m.detail)}</p>

@@ -34,7 +34,7 @@ export function PricingSection() {
         <TwoTone className="mt-5" title={L(P.title)} chip={<IconChip icon={TagIcon} tone="royal" tilt={6} />} />
         <p className="mt-5 text-gc-lead text-gc-ink-60">{L(P.body)}</p>
 
-        <div className="mt-7 inline-flex items-center gap-1 rounded-full bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
+        <div className="mt-7 inline-flex items-center gap-1 rounded-[14px] bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
           {([false, true] as const).map((isYear) => {
             const active = yearly === isYear;
             return (
@@ -43,13 +43,13 @@ export function PricingSection() {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setYearly(isYear)}
-                className={cn("relative isolate inline-flex items-center gap-2 rounded-full px-4 py-2 text-gc-small font-semibold transition-colors", active ? "text-white" : "text-gc-ink-60 hover:text-gc-ink")}
+                className={cn("relative isolate inline-flex items-center gap-2 rounded-[10px] px-4 py-2 text-gc-small font-semibold transition-colors", active ? "text-white" : "text-gc-ink-60 hover:text-gc-ink")}
               >
                 {active && (
                   <motion.span
                     layoutId="gc-home-billing"
                     transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }}
-                    className="absolute inset-0 -z-10 rounded-full bg-gc-royal"
+                    className="absolute inset-0 -z-10 rounded-[10px] bg-gc-royal"
                   />
                 )}
                 {L(isYear ? PRICING_COPY.yearly : PRICING_COPY.monthly)}
@@ -72,7 +72,7 @@ export function PricingSection() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.5, ease: EASE.outQuart, delay: i * 0.1 }}
               className={cn(
-                "relative flex flex-col rounded-[28px] p-6 md:p-7",
+                "relative flex flex-col rounded-[20px] p-6 md:p-7",
                 featured ? "bg-gc-ink text-white shadow-[0_30px_60px_-30px_rgba(10,40,100,0.7)] lg:-my-3" : "bg-gc-canvas text-gc-ink",
               )}
             >

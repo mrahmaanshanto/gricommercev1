@@ -269,7 +269,7 @@ export function Bento({
   children?: ReactNode;
 }) {
   return (
-    <div className={cn("relative flex min-w-0 flex-col overflow-hidden rounded-[28px] p-5 md:p-6", BENTO[tone], className)}>
+    <div className={cn("relative flex min-w-0 flex-col overflow-hidden rounded-[20px] p-5 md:p-6", BENTO[tone], className)}>
       {(label || title) && (
         <div className="flex items-start gap-3 pr-20">
           {Icon && (
@@ -306,7 +306,7 @@ export function ProductWindow({
   bodyClassName?: string;
 }) {
   return (
-    <div className={cn("overflow-hidden rounded-[22px] bg-white shadow-gc-screen ring-1 ring-gc-line", className)}>
+    <div className={cn("overflow-hidden rounded-[20px] bg-white shadow-gc-screen ring-1 ring-gc-line", className)}>
       <div className="flex h-10 items-center gap-3 border-b border-gc-line bg-[#F8FAFC] px-4" aria-hidden>
         <div className="flex gap-1.5">
           <span className="size-[10px] rounded-full bg-[#FF5F57]" />

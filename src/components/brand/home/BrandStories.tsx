@@ -36,8 +36,8 @@ export function BrandStories() {
           const [first, second] = story.metrics;
           return (
             <Stagger.Item key={story.id} className="h-full">
-              <article className="group/story flex h-full flex-col rounded-[28px] bg-gc-canvas p-3 md:p-4">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
+              <article className="group/story flex h-full flex-col rounded-[20px] bg-gc-canvas p-3 md:p-4">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[20px]">
                   <Image
                     src={story.photo}
                     alt={story.photoAlt}

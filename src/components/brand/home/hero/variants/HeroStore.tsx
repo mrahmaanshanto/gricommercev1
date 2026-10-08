@@ -44,7 +44,7 @@ export function HeroStore() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-white md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-white">
         <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-5 pb-10 pt-10 md:px-8 lg:grid-cols-[1fr_1fr] lg:gap-14 lg:py-0">
           <div className="min-w-0 lg:py-16">
             <p className="hero-rise inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[0.8125rem] font-semibold text-gc-ink-70 shadow-[0_6px_20px_-10px_rgba(17,24,39,0.35)] ring-1 ring-gc-line" style={heroDelay(HERO_STAGGER.eyebrow)}>
@@ -82,7 +82,7 @@ export function HeroStore() {
               <Link
                 href="/signup"
                 onClick={() => trackEvent("start_free_clicked", { source: "hero" })}
-                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gc-ink px-7 text-[0.9375rem] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(17,24,39,0.7)] transition-colors hover:bg-gc-ink-70 sm:w-auto"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-gc-ink px-7 text-[0.9375rem] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(17,24,39,0.7)] transition-colors hover:bg-gc-ink-70 sm:w-auto"
               >
                 {L(S.start)}
                 <ArrowRight aria-hidden className="size-4" />

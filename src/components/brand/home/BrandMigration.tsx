@@ -19,7 +19,7 @@ export function BrandMigration() {
     <Panel tone="tint" pattern="tr">
       <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <Reveal className="relative">
-          <div className="overflow-hidden rounded-[28px] md:rounded-[36px]">
+          <div className="overflow-hidden rounded-[20px]">
             <Image
               src="/merchants/merchant-grocery.webp"
               alt="Shopkeeper on the phone beside a ledger notebook at the counter of a small neighbourhood grocery shop"

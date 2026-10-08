@@ -10,11 +10,11 @@ type Size = "sm" | "md" | "lg";
 
 /**
  * The site's one button. Primary is RoyalBlue (Brand Guidelines p.22); every
- * variant is a full pill with a semibold label. The arrow sits in its own chip
+ * variant has 12px corners and a semibold label. The arrow sits in its own chip
  * so the label stays optically centred. Renders a Link when given `href`.
  */
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full font-semibold leading-none select-none " +
+  "group/btn relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-[12px] font-semibold leading-none select-none " +
   "transition-[background-color,color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] " +
   "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gc-royal " +
   "disabled:pointer-events-none disabled:opacity-55";
@@ -90,7 +90,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         <span
           aria-hidden
           className={cn(
-            "grid shrink-0 place-items-center rounded-full transition-transform duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:translate-x-0.5",
+            "grid shrink-0 place-items-center rounded-[8px] transition-transform duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:translate-x-0.5",
             size === "sm" ? "size-7" : size === "md" ? "size-8" : "size-10",
             arrowChip[variant],
           )}

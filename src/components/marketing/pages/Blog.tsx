@@ -71,7 +71,7 @@ export function Blog() {
     <>
       <PageHero crumbs={[{ label: COPY.crumb }]} eyebrow={COPY.eyebrow} title={COPY.title} body={COPY.body} pattern="tl">
         <div className="hero-rise mt-9 max-w-full overflow-x-auto">
-          <div className="inline-flex gap-1 rounded-full bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
+          <div className="inline-flex gap-1 rounded-[14px] bg-gc-canvas p-1.5 ring-1 ring-inset ring-gc-line">
             {BLOG_CATEGORIES.map((c) => {
               const active = cat === c.slug;
               return (
@@ -81,7 +81,7 @@ export function Blog() {
                   onClick={() => setCat(c.slug)}
                   aria-pressed={active}
                   className={cn(
-                    "relative isolate shrink-0 rounded-full px-4 py-2 text-gc-small font-semibold transition-colors duration-[200ms]",
+                    "relative isolate shrink-0 rounded-[10px] px-4 py-2 text-gc-small font-semibold transition-colors duration-[200ms]",
                     active ? "text-white" : "text-gc-ink-60 hover:text-gc-ink",
                   )}
                 >
@@ -89,7 +89,7 @@ export function Blog() {
                     <motion.span
                       layoutId="gc-blog-pill"
                       transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }}
-                      className="absolute inset-0 -z-10 rounded-full bg-gc-royal"
+                      className="absolute inset-0 -z-10 rounded-[10px] bg-gc-royal"
                     />
                   )}
                   {L(c.label)}
@@ -122,10 +122,10 @@ function ArticleCard({ article, locale }: { article: Article; locale: string }) 
     <Stagger.Item className="h-full">
       <Link
         href={`/blog/${article.slug}`}
-        className="group/a flex h-full flex-col rounded-[28px] bg-gc-canvas p-3 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
+        className="group/a flex h-full flex-col rounded-[20px] bg-gc-canvas p-3 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
       >
         {photo && (
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[22px]">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[20px]">
             <Image
               src={photo.src}
               alt={photo.alt}
@@ -186,7 +186,7 @@ export function BlogPost({ slug }: { slug: string }) {
       <Panel tone="white" inner="py-12 md:py-16">
         <article className="mx-auto max-w-3xl">
           {photo && (
-            <Reveal className="relative mb-12 aspect-[16/9] overflow-hidden rounded-[28px]">
+            <Reveal className="relative mb-12 aspect-[16/9] overflow-hidden rounded-[20px]">
               <Image src={photo.src} alt={photo.alt} fill priority sizes="(min-width: 1024px) 768px, 100vw" className="object-cover" />
             </Reveal>
           )}

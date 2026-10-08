@@ -31,7 +31,7 @@ export function HeroTilt() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-white md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-white">
         <div
           aria-hidden
           className="absolute right-[-6%] top-[8%] -z-10 h-[80%] w-[60%]"
@@ -82,7 +82,7 @@ export function HeroTilt() {
               initial={{ opacity: 0, rotateY: -24, rotateX: 10, y: 30 }}
               animate={{ opacity: 1, rotateY: -14, rotateX: 6, y: 0 }}
               transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
-              className="origin-left overflow-hidden rounded-[22px] max-sm:![transform:none] bg-white shadow-[0_50px_100px_-40px_rgba(10,40,100,0.55)] ring-1 ring-gc-line lg:w-[118%]"
+              className="origin-left overflow-hidden rounded-[20px] max-sm:![transform:none] bg-white shadow-[0_50px_100px_-40px_rgba(10,40,100,0.55)] ring-1 ring-gc-line lg:w-[118%]"
             >
               <div className="grid sm:grid-cols-[170px_1fr]">
                 <aside className="hidden border-r border-gc-line bg-gc-canvas/60 p-3 sm:block">

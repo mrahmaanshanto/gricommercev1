@@ -51,7 +51,7 @@ export function MobileNav({
               type="button"
               onClick={onClose}
               aria-label={t.nav.closeMenu}
-              className="grid size-11 place-items-center rounded-full bg-gc-canvas text-gc-ink transition-colors hover:bg-gc-royal-10 hover:text-gc-royal"
+              className="grid size-11 place-items-center rounded-[12px] bg-gc-canvas text-gc-ink transition-colors hover:bg-gc-royal-10 hover:text-gc-royal"
             >
               <X aria-hidden className="size-5" strokeWidth={2} />
             </button>

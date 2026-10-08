@@ -1,240 +1,215 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef, useState, type ReactNode } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "motion/react";
-import { BrandLogo } from "@/components/brand/primitives";
-import { Button } from "@/components/ui/Button";
-import { FormStatus, Input } from "@/components/ui/Field";
-import { FOOTER_DESCRIPTION } from "@/data/copy/home";
+import { motion, useReducedMotion } from "motion/react";
+import { FOOTER } from "@/data/copy/footer";
+import { APP_LINKS, MOBILE_APPS } from "@/data/copy/homepage";
 import { FOOTER_COLUMNS } from "@/data/navigation";
-import { CONTACT, SITE, isPending } from "@/data/site";
-import { useFinePointer } from "@/hooks/useMediaQuery";
+import { CONTACT, SITE } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
-import { subscribeNewsletter } from "@/services/lead.service";
-import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
+import { EASE } from "@/lib/motion";
 
-/* ------------------------------------------------------------------ */
-/* Ambient background: faint grid + slow brand-blue glows + cursor glow */
-/* ------------------------------------------------------------------ */
+/*
+ * The footer: one dark (#1a1a1a) panel. The app block (title, store badges
+ * around a QR code, a fan of phone-app screens), then one row of Modules,
+ * Explore, contact and help; "GridCommerce" set large in a tone just above
+ * the background; a thin strip of payment methods; copyright and legal.
+ */
 
-function FooterAmbience() {
-  const reduced = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const pointerFine = useFinePointer();
+type Logo = { name: string; src: string };
+const L_ = (name: string, file: string): Logo => ({ name, src: `/integrations/${file}` });
 
-  const mx = useMotionValue(50);
-  const my = useMotionValue(50);
-  const sx = useSpring(mx, { stiffness: 60, damping: 22, mass: 0.9 });
-  const sy = useSpring(my, { stiffness: 60, damping: 22, mass: 0.9 });
+const PAY: Logo[] = [
+  L_("bKash", "bkash.png"),
+  L_("Nagad", "nagad.png"),
+  L_("Rocket", "rocket.png"),
+  L_("SSLCommerz", "sslcommerz.png"),
+  L_("EPS", "eps.png"),
+  L_("Paystation", "paystation.png"),
+  L_("Visa", "visa.png"),
+  L_("Mastercard", "mastercard.png"),
+  L_("Bank transfer", "bank-transfer.png"),
+];
 
-  const onMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const el = ref.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      mx.set(((e.clientX - r.left) / r.width) * 100);
-      my.set(((e.clientY - r.top) / r.height) * 100);
-    },
-    [mx, my],
-  );
 
-  const glow = useMotionTemplate`radial-gradient(440px circle at ${sx}% ${sy}%, rgba(24,167,245,0.16), transparent 62%)`;
-  const glowEnabled = pointerFine && !reduced;
+/* Phone-app screens for the fan, centre one first. */
+const PHONES = [
+  { src: "/modules/analytics/phone.webp" },
+  { src: "/modules/orders/phone.webp" },
+  { src: "/modules/omnichannel/phone.webp" },
+  { src: "/modules/inventory/phone.webp" },
+  { src: "/modules/courier/phone.webp" },
+];
+
+export function Footer({ className }: { className?: string } = {}) {
+  const { L } = useI18n();
+  const year = new Date().getFullYear();
+  const modules = FOOTER_COLUMNS.find((c) => c.titleKey === "product")?.links ?? [];
 
   return (
-    <div
-      ref={ref}
-      aria-hidden
-      onMouseMove={glowEnabled ? onMove : undefined}
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
-      <div className="absolute inset-0 opacity-[0.55] [background-image:linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_75%)]" />
+    <footer className={cn("relative mx-auto max-w-[1440px] overflow-hidden rounded-t-[20px] bg-[#1a1a1a] text-white", className)}>
+      <AppBlock />
 
-      <motion.div
-        className="absolute -left-24 top-8 size-[26rem] rounded-full bg-gc-royal/30 blur-[110px]"
-        animate={reduced ? undefined : { x: [0, 40, 0], y: [0, 26, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -right-20 bottom-0 size-[22rem] rounded-full bg-gc-sky/15 blur-[110px]"
-        animate={reduced ? undefined : { x: [0, -34, 0], y: [0, -22, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
+      <div className="container-page relative pt-14">
+        {/* One row: modules, explore, contact, help */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-8">
+          <FooterLinks title={L(FOOTER.modules)} links={modules.map((l) => ({ label: L(l.label), href: l.href }))} />
+          <FooterLinks title={L(FOOTER.explore)} links={FOOTER.exploreLinks.map((l) => ({ label: L(l.label), href: l.href }))} />
 
-      <motion.div
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{ background: glow, opacity: glowEnabled ? 1 : 0 }}
-      />
+          <div className="col-span-2 md:col-span-1">
+            <p className="mb-4 font-gc-display text-[1rem] font-bold">{L(FOOTER.contact)}</p>
+            <ul className="space-y-2 text-gc-small">
+              {(
+                [
+                  [FOOTER.sales, CONTACT.salesEmail],
+                  [FOOTER.support, CONTACT.supportEmail],
+                  [FOOTER.partners, CONTACT.partnershipEmail],
+                ] as const
+              ).map(([label, email]) => (
+                <li key={email}>
+                  <span className="block text-[0.75rem] text-white/45">{L(label)}</span>
+                  <a href={`mailto:${email}`} className="text-white/85 transition-colors hover:text-gc-sky">
+                    {email}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <FooterLinks title={L(FOOTER.help)} links={FOOTER.helpLinks.map((l) => ({ label: L(l.label), href: l.href }))} />
+        </div>
+
+        {/* GridCommerce, as wide as the first two columns, in a tone just above the background */}
+        <p aria-hidden className="mt-12 select-none md:mt-14">
+          <svg viewBox="0 0 1000 150" className="block h-auto w-full font-gc-display md:w-[calc(50%-1rem)]">
+            <text x="500" y="122" textAnchor="middle" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="#2c2c2c" fontSize="150" fontWeight="800" letterSpacing="-4">
+              GridCommerce
+            </text>
+          </svg>
+        </p>
+
+        {/* Payment methods, one thin strip */}
+        <div className="mt-8 border-y border-white/10 py-6">
+          <LogoStrip title={L(FOOTER.payWith)} logos={PAY} />
+        </div>
+
+        {/* Copyright and legal */}
+        <div className="flex flex-col items-center gap-3 pb-8 pt-6 text-gc-small text-white/45 md:flex-row md:justify-between">
+          <p className="text-center md:text-left">
+            Copyright &copy; {year} {SITE.legalEntity}. {L(FOOTER.rights)}
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1">
+            {FOOTER.legal.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="transition-colors hover:text-white">
+                  {L(l.label)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </footer>
+  );
+}
+
+function FooterLinks({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  return (
+    <nav aria-label={title}>
+      <p className="mb-4 font-gc-display text-[1rem] font-bold">{title}</p>
+      <ul className="space-y-2.5">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} className="text-gc-small text-white/60 transition-colors hover:text-white">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+function LogoStrip({ title, logos }: { title: string; logos: Logo[] }) {
+  return (
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+      <p className="shrink-0 text-[0.75rem] font-semibold text-white/55">{title}</p>
+      <ul className="flex flex-wrap gap-1.5 xl:flex-nowrap">
+        {logos.map((l) => (
+          <li key={l.name} title={l.name} className="grid h-8 min-w-12 place-items-center rounded-[6px] bg-white px-1.5">
+            <Image src={l.src} alt={l.name} width={80} height={32} className="max-h-5 w-auto max-w-[64px] object-contain" />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-/* ------------------------------------------------------------------ */
-
-function NewsletterForm() {
-  const { t } = useI18n();
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | undefined>();
-  const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError(t.forms.invalidEmail);
-      return;
-    }
-    setError(undefined);
-    setState("loading");
-    const res = await subscribeNewsletter({ email });
-    if (res.ok) {
-      trackEvent("newsletter_submitted", { source: "footer" });
-      setState("success");
-      setEmail("");
-    } else {
-      setState("error");
-    }
-  }
-
-  if (state === "success") {
-    return (
-      <FormStatus
-        tone="dark"
-        state="success"
-        title={t.forms.successTitle}
-        body={t.footer.newsletterBody}
-      />
-    );
-  }
+/** "Your shop, in your pocket." — store badges around a QR code, then a fan of phone-app screens. */
+function AppBlock() {
+  const { L } = useI18n();
+  const reduced = useReducedMotion();
+  // Fan order left → right: outer, inner, centre, inner, outer.
+  const fan = [PHONES[3], PHONES[1], PHONES[0], PHONES[2], PHONES[4]];
+  const pose = [
+    "w-[58px] translate-y-8 sm:w-[130px] sm:translate-y-14",
+    "w-[70px] translate-y-4 sm:w-[150px] sm:translate-y-7",
+    "w-[92px] z-10 sm:w-[180px]",
+    "w-[70px] translate-y-4 sm:w-[150px] sm:translate-y-7",
+    "w-[58px] translate-y-8 sm:w-[130px] sm:translate-y-14",
+  ];
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-3">
-      <Input
-        tone="dark"
-        type="email"
-        label={t.forms.email}
-        placeholder="you@business.com.bd"
-        value={email}
-        error={error}
-        autoComplete="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <Button type="submit" variant="onDark" size="md" loading={state === "loading"} fullWidth>
-        {t.footer.newsletterCta}
-      </Button>
-      {state === "error" && (
-        <FormStatus tone="dark" state="error" title={t.forms.errorTitle} body={t.forms.errorBody} />
-      )}
-    </form>
-  );
-}
+    <section aria-labelledby="footer-app" className="relative overflow-hidden pt-14 text-center md:pt-16">
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-gc-royal/25 blur-[120px]" />
+      <div className="container-page relative">
+        <h2 id="footer-app" className="text-gc-h2 text-white">
+          {L(FOOTER.app.title)}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-gc-body text-white/60">{L(FOOTER.app.body)}</p>
 
-/** Only verified details are shown; an unconfirmed one is left out rather than
- *  shown as a placeholder. */
-const CONTACT_ITEMS = [
-  { label: "Sales", value: CONTACT.salesEmail },
-  { label: "Support", value: CONTACT.supportEmail },
-  { label: "Phone", value: CONTACT.phone },
-].filter((item) => !isPending(item.value));
-
-export function Footer({
-  logo,
-  className,
-}: {
-  /** Overrides the default reverse lockup. */
-  logo?: ReactNode;
-  className?: string;
-} = {}) {
-  const { t, L } = useI18n();
-  const year = new Date().getFullYear();
-
-  return (
-    <footer
-      className={cn(
-        "relative isolate mx-auto max-w-[1440px] overflow-hidden rounded-t-[28px] bg-gc-dark text-white md:rounded-t-[40px]",
-        className,
-      )}
-    >
-      <FooterAmbience />
-
-      <div className="container-page relative pb-10 pt-16 md:pt-20">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.1fr)]">
-          {/* Brand + newsletter */}
-          <div className="max-w-sm">
-            {logo ?? <BrandLogo tone="dark" className="h-[30px]" />}
-            <p className="mt-5 text-gc-small text-white/60">{L(FOOTER_DESCRIPTION)}</p>
-
-            <div className="mt-8 rounded-[24px] bg-white/[0.04] p-5 ring-1 ring-inset ring-white/10">
-              <p className="font-gc-display text-[1rem] font-bold text-white">{t.footer.newsletterTitle}</p>
-              <p className="mb-4 mt-1 text-gc-small text-white/55">{t.footer.newsletterBody}</p>
-              <NewsletterForm />
-            </div>
-          </div>
-
-          {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-            {FOOTER_COLUMNS.map((col) => (
-              <nav key={col.titleKey} aria-label={t.footer[col.titleKey]}>
-                <p className="mb-4 font-gc-display text-[1rem] font-bold text-white">
-                  {t.footer[col.titleKey]}
-                </p>
-                <ul className="space-y-2.5">
-                  {col.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="group/fl inline-flex text-gc-small text-white/60 transition-colors duration-[160ms] hover:text-white"
-                      >
-                        <span className="bg-gradient-to-r from-gc-sky to-gc-sky bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/fl:bg-[length:100%_1px]">
-                          {L(link.label)}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
-
-            {/* Contact */}
-            {CONTACT_ITEMS.length > 0 && (
-              <div className="col-span-2 sm:col-span-3 lg:col-span-5">
-                <p className="mb-3 font-gc-display text-[1rem] font-bold text-white">{t.footer.contact}</p>
-                <ul className="flex flex-wrap gap-x-10 gap-y-3">
-                  {CONTACT_ITEMS.map((item) => (
-                    <li key={item.label} className="text-gc-small">
-                      <span className="mr-2 text-white/40">{item.label}</span>
-                      <span className="text-white/75">{item.value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-gc-display text-[1.375rem] font-bold tracking-tight text-white">{SITE.name}</p>
-            <p className="gc-eyebrow mt-2 text-gc-eyebrow font-semibold uppercase text-gc-sky">{SITE.taglineDisplay}</p>
-          </div>
-          <div className="text-gc-small text-white/45 md:text-right">
-            <p>
-              &copy; {year} {SITE.legalEntity}. {t.footer.rights}
-            </p>
-            <p className="mt-1">
-              {SITE.domain} &middot; {t.footer.builtFor}
-            </p>
-          </div>
+        <div className="mt-8 flex items-center justify-center gap-3 sm:gap-5">
+          <a href={APP_LINKS.appStore} aria-label={L(MOBILE_APPS.appStore)} className="rounded-[10px] ring-1 ring-white/25 transition-transform hover:-translate-y-0.5">
+            <Image src="/apps/app-store.webp" alt={L(MOBILE_APPS.appStore)} width={360} height={108} className="h-11 w-auto sm:h-12" />
+          </a>
+          <span className="grid size-[84px] shrink-0 place-items-center rounded-[14px] bg-white p-2 ring-2 ring-gc-accent/50 sm:size-24" title={L(FOOTER.app.scan)}>
+            <Image src="/apps/qr-site.svg" alt={L(FOOTER.app.scan)} width={80} height={80} className="size-full" unoptimized />
+          </span>
+          <a href={APP_LINKS.googlePlay} aria-label={L(MOBILE_APPS.googlePlay)} className="rounded-[10px] ring-1 ring-white/25 transition-transform hover:-translate-y-0.5">
+            <Image src="/apps/google-play.webp" alt={L(MOBILE_APPS.googlePlay)} width={360} height={108} className="h-11 w-auto sm:h-12" />
+          </a>
         </div>
       </div>
-    </footer>
+
+      {/* The fan, fading into the footer */}
+      <div
+        aria-hidden
+        className="relative mt-10 flex h-[140px] items-start justify-center gap-1.5 sm:h-[230px] sm:gap-4"
+        style={{
+          maskImage: "linear-gradient(to bottom, black 40%, transparent)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent)",
+        }}
+      >
+        {fan.map((ph, i) => (
+          <motion.div
+            key={ph.src}
+            className={cn("shrink-0", pose[i])}
+            initial={reduced ? false : { opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 0.7, ease: EASE.outQuart, delay: Math.abs(i - 2) * 0.12 }}
+          >
+            <div className={cn("rounded-[14px] bg-black p-[3px] ring-1 ring-white/15 sm:rounded-[28px] sm:p-[5px]", i !== 2 && "opacity-80")}>
+              <div className="overflow-hidden rounded-[11px] bg-white sm:rounded-[23px]">
+                <Image src={ph.src} alt="" width={1170} height={2532} sizes="180px" className="h-auto w-full" />
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
   );
 }

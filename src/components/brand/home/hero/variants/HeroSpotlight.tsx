@@ -23,7 +23,7 @@ export function HeroSpotlight() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-gradient-to-br from-[#F3F0FF] via-white to-[#EAF3FF] md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-gradient-to-br from-[#F3F0FF] via-white to-[#EAF3FF]">
         <div className="mx-auto grid max-w-[1240px] items-center gap-12 px-5 pb-12 pt-12 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-16 lg:pt-16">
           <div className="min-w-0">
             <h1 className="hero-settle text-gc-display tracking-[-0.035em] text-gc-ink" style={heroDelay(HERO_STAGGER.headline)}>
@@ -81,8 +81,8 @@ function SpotlightSlider() {
   return (
     <div className="mx-auto w-full max-w-[460px]">
       <div aria-hidden className="relative h-[420px] w-full sm:h-[480px]">
-        <div className="absolute inset-x-8 bottom-6 top-6 rotate-[3deg] rounded-[36px] bg-gradient-to-br from-gc-royal-20 to-[#E4DCFF]" />
-        <div className="absolute inset-x-10 bottom-10 top-2 overflow-hidden rounded-[32px] bg-gc-royal-10 shadow-[0_40px_80px_-40px_rgba(10,40,100,0.6)]">
+        <div className="absolute inset-x-8 bottom-6 top-6 rotate-[3deg] rounded-[20px] bg-gradient-to-br from-gc-royal-20 to-[#E4DCFF]" />
+        <div className="absolute inset-x-10 bottom-10 top-2 overflow-hidden rounded-[20px] bg-gc-royal-10 shadow-[0_40px_80px_-40px_rgba(10,40,100,0.6)]">
           <AnimatePresence initial={false}>
             <motion.div
               key={slide}

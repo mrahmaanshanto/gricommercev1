@@ -60,7 +60,7 @@ export function HelpIndex() {
             <Stagger.Item key={c.slug} className="h-full">
               <Link
                 href={`/help/${c.slug}`}
-                className="group/h flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
+                className="group/h flex h-full flex-col rounded-[20px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
               >
                 <IconTile name={c.icon} />
                 <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(c.label)}</p>
@@ -75,7 +75,7 @@ export function HelpIndex() {
         </Stagger>
 
         <Reveal delay={0.1} className="mt-6">
-          <div className="relative isolate flex flex-col items-start gap-6 overflow-hidden rounded-[28px] bg-gc-dark p-8 sm:flex-row sm:items-center sm:justify-between md:p-10">
+          <div className="relative isolate flex flex-col items-start gap-6 overflow-hidden rounded-[20px] bg-gc-dark p-8 sm:flex-row sm:items-center sm:justify-between md:p-10">
             <div aria-hidden className="pointer-events-none absolute -right-20 -top-24 -z-10 size-72 rounded-full bg-gc-royal/40 blur-[90px]" />
             <div>
               <p className="font-gc-display text-[1.5rem] font-bold text-white">{L(COPY.stillStuck)}</p>
@@ -167,7 +167,7 @@ export function HelpArticle({ category: catSlug, slug }: { category: string; slu
               ))}
             </div>
 
-            <div className="mt-12 flex flex-col gap-4 rounded-[24px] bg-gc-canvas p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-12 flex flex-col gap-4 rounded-[20px] bg-gc-canvas p-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-gc-display text-[1.0625rem] font-bold text-gc-ink">{L(COPY.helpful)}</p>
               <div className="flex gap-2">
                 <Button variant="secondary" size="sm">{L(COPY.yes)}</Button>

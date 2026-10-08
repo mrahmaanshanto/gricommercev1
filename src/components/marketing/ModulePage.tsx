@@ -85,7 +85,7 @@ export function ModulePage({ entry }: { entry: AnyModuleEntry }) {
       {/* Works with */}
       {detail?.logos && (
         <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-6">
-          <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-4 rounded-[28px] bg-white px-5 py-6 text-center md:flex-row md:justify-center md:gap-6 md:rounded-[40px] md:py-7">
+          <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-4 rounded-[20px] bg-white px-5 py-6 text-center md:flex-row md:justify-center md:gap-6 md:py-7">
             <p className="text-gc-small font-semibold text-gc-ink-60">{L(detail.logos.title)}</p>
             <LogoRow items={detail.logos.items} className="justify-center" />
           </div>
@@ -97,7 +97,7 @@ export function ModulePage({ entry }: { entry: AnyModuleEntry }) {
         <Stagger className="grid gap-4 md:grid-cols-3" stagger={0.07}>
           {benefits.map((benefit, i) => (
             <Stagger.Item key={i} className="h-full">
-              <div className="h-full rounded-[24px] bg-white p-6 ring-1 ring-inset ring-gc-line/80 md:p-7">
+              <div className="h-full rounded-[20px] bg-white p-6 ring-1 ring-inset ring-gc-line/80 md:p-7">
                 <IconTile name={benefit.icon} />
                 <h2 className="mt-5 font-gc-display text-[1.125rem] font-bold leading-snug text-gc-ink">
                   {L(benefit.title)}
@@ -216,7 +216,7 @@ export function ModulePage({ entry }: { entry: AnyModuleEntry }) {
               <Stagger.Item key={rel.slug} className="h-full">
                 <Link
                   href={`/features/${rel.slug}`}
-                  className="group/rel flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
+                  className="group/rel flex h-full flex-col rounded-[20px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
                 >
                   <div className="flex items-center gap-3">
                     <IconTile name={rel.icon} size="sm" />

@@ -231,7 +231,7 @@ export function DesignPreview() {
           <div
             role="dialog"
             aria-label="Design preview"
-            className="fixed inset-x-0 bottom-0 z-[110] flex max-h-[72dvh] flex-col overflow-hidden rounded-t-[24px] bg-white pb-[env(safe-area-inset-bottom)] text-gc-ink shadow-[0_-20px_60px_-20px_rgba(17,24,39,0.45)] ring-1 ring-gc-line sm:inset-x-auto sm:bottom-4 sm:right-4 sm:max-h-[min(640px,calc(100dvh-2rem))] sm:w-[380px] sm:rounded-2xl sm:pb-0 sm:shadow-[0_30px_70px_-20px_rgba(17,24,39,0.45)]"
+            className="fixed inset-x-0 bottom-0 z-[110] flex max-h-[72dvh] flex-col overflow-hidden rounded-t-[20px] bg-white pb-[env(safe-area-inset-bottom)] text-gc-ink shadow-[0_-20px_60px_-20px_rgba(17,24,39,0.45)] ring-1 ring-gc-line sm:inset-x-auto sm:bottom-4 sm:right-4 sm:max-h-[min(640px,calc(100dvh-2rem))] sm:w-[380px] sm:rounded-2xl sm:pb-0 sm:shadow-[0_30px_70px_-20px_rgba(17,24,39,0.45)]"
           >
             <div aria-hidden className="mx-auto mt-2 h-1 w-10 rounded-full bg-gc-line sm:hidden" />
             <div className="flex items-center gap-2 px-4 pb-2 pt-3">

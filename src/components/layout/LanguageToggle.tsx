@@ -15,7 +15,7 @@ export function LanguageToggle({ compact = false }: { compact?: boolean }) {
         locale === "en" ? "Switch to Bangla" : "Switch to English"
       }
       className={cn(
-        "inline-flex h-10 items-center gap-1.5 rounded-full font-medium text-gc-ink-70",
+        "inline-flex h-10 items-center gap-1.5 rounded-[12px] font-medium text-gc-ink-70",
         "transition-colors duration-[160ms] hover:bg-gc-canvas hover:text-gc-ink",
         compact ? "w-11 justify-center" : "px-3 text-[0.875rem]",
       )}

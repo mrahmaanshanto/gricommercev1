@@ -50,7 +50,7 @@ export function Scene({
         ref={box}
         role="img"
         aria-label={label}
-        className="relative w-full overflow-hidden rounded-[28px] bg-gradient-to-br from-[#EEF4FF] via-white to-[#EAF6FE] ring-1 ring-inset ring-gc-royal-20/60"
+        className="relative w-full overflow-hidden rounded-[20px] bg-gradient-to-br from-[#EEF4FF] via-white to-[#EAF6FE] ring-1 ring-inset ring-gc-royal-20/60"
         style={{ aspectRatio: `${W} / ${H}` }}
       >
         <Backdrop />

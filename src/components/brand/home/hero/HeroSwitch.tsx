@@ -11,6 +11,7 @@ import { HeroPhones } from "./variants/HeroPhones";
 import { HeroSpotlight } from "./variants/HeroSpotlight";
 import { HeroStore } from "./variants/HeroStore";
 import { HeroTilt } from "./variants/HeroTilt";
+import { HeroWidgetFeed } from "./variants/HeroWidgetFeed";
 
 /**
  * Renders the hero picked in the design preview panel (components/dev) from
@@ -19,7 +20,7 @@ import { HeroTilt } from "./variants/HeroTilt";
  * BrandHome and delete the others and this file.
  */
 
-const HEROES = [BrandHero, HeroSpotlight, HeroTilt, HeroCentered, HeroMarker, HeroPhones, HeroFeed, HeroStore, HeroLanes];
+const HEROES = [BrandHero, HeroSpotlight, HeroTilt, HeroCentered, HeroMarker, HeroPhones, HeroFeed, HeroStore, HeroLanes, HeroWidgetFeed];
 
 export function HeroSwitch() {
   const enabled = useSyncExternalStore(subscribePreview, readPreviewEnabled, () => false);

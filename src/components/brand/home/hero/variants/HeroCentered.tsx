@@ -30,7 +30,7 @@ export function HeroCentered() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-white md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-white">
         <div
           aria-hidden
           className="absolute inset-0 -z-10"
@@ -84,7 +84,7 @@ export function HeroCentered() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.5 }}
-            className="overflow-hidden rounded-t-[22px] bg-white shadow-[0_-10px_80px_-30px_rgba(10,40,100,0.45)] ring-1 ring-gc-line"
+            className="overflow-hidden rounded-t-[20px] bg-white shadow-[0_-10px_80px_-30px_rgba(10,40,100,0.45)] ring-1 ring-gc-line"
           >
             <div className="flex h-9 items-center gap-1.5 border-b border-gc-line bg-gc-canvas/70 px-4">
               <span className="size-2.5 rounded-full bg-[#FF5F57]" />

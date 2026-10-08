@@ -52,7 +52,7 @@ export function Themes() {
         </Reveal>
 
         <div
-          className="relative grid h-[460px] grid-cols-2 gap-3 overflow-hidden rounded-[28px] bg-gc-canvas px-3 sm:h-[560px] sm:grid-cols-3 md:gap-4 md:px-4 lg:h-[620px]"
+          className="relative grid h-[460px] grid-cols-2 gap-3 overflow-hidden rounded-[20px] bg-gc-canvas px-3 sm:h-[560px] sm:grid-cols-3 md:gap-4 md:px-4 lg:h-[620px]"
           style={{
             maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
             WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",

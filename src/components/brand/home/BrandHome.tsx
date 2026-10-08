@@ -6,8 +6,8 @@ import { CompareSection } from "./sections/CompareSection";
 import { Connections } from "./sections/Connections";
 import { DailyControl } from "./sections/DailyControl";
 import { FeatureSection } from "./sections/FeatureSection";
+import { Integrations } from "./sections/Integrations";
 import { Migration } from "./sections/Migration";
-import { MobileApps } from "./sections/MobileApps";
 import { PricingSection } from "./sections/PricingSection";
 import { OrderStory } from "./sections/OrderStory";
 import { SharedStock } from "./sections/SharedStock";
@@ -20,7 +20,7 @@ import { Themes } from "./sections/Themes";
  * today's money, the tools that bring the next sale (campaign pages, ad
  * tracking, social posts, cart recovery), how GridCommerce compares with
  * Shopify and WordPress, moving over, integrations, store themes, counter +
- * online stock, business fit, the mobile app, pricing, how to start, FAQ and
+ * online stock, business fit, pricing, how to start, FAQ and
  * the demo close. Each feature sits beside its own animated product scene
  * (`home/scenes`). Copy lives in `data/copy/`.
  */
@@ -29,6 +29,7 @@ export function BrandHome() {
     <div className="gc-scope bg-gc-canvas">
       <HeroSwitch />
       <OrderStory />
+      <Integrations />
       <FeatureSection id="fraud" flip />
       <FeatureSection id="inbox" tone="tint" />
       <DailyControl />
@@ -42,7 +43,6 @@ export function BrandHome() {
       <Themes />
       <SharedStock />
       <BrandSolutions />
-      <MobileApps />
       <PricingSection />
       <StartSteps />
       <BrandFaq />

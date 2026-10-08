@@ -31,7 +31,7 @@ export function MegaMenuPanel({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.99 }}
       transition={{ duration: 0.24, ease: EASE.outQuart }}
-      className="gc-scope overflow-hidden rounded-[28px] bg-white shadow-gc-float ring-1 ring-gc-line/70"
+      className="gc-scope overflow-hidden rounded-[20px] bg-white shadow-gc-float ring-1 ring-gc-line/70"
     >
       <div
         className={cn(
@@ -91,7 +91,7 @@ export function MegaMenuPanel({
             initial={reduced ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: reduced ? 0 : 0.12, ease: EASE.outQuart }}
-            className="relative isolate overflow-hidden rounded-[22px] bg-gc-dark p-6 text-white"
+            className="relative isolate overflow-hidden rounded-[20px] bg-gc-dark p-6 text-white"
           >
             <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 -z-10 size-52 rounded-full bg-gc-royal/40 blur-3xl" />
             <span className="gc-eyebrow text-gc-eyebrow font-semibold uppercase text-gc-sky">{L(menu.feature.eyebrow)}</span>

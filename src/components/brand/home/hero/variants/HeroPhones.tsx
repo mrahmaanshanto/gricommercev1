@@ -24,7 +24,7 @@ export function HeroPhones() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-gradient-to-b from-[#FFF4EC] via-[#FFF9F4] to-white md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-gradient-to-b from-[#FFF4EC] via-[#FFF9F4] to-white">
         <div className="mx-auto max-w-[1240px] px-5 pt-12 text-center md:px-8 md:pt-16">
           <h1 className="hero-settle mx-auto max-w-4xl text-gc-display tracking-[-0.035em] text-gc-ink" style={heroDelay(HERO_STAGGER.headline)}>
             <span className="block">{L(HERO.line1)}</span>

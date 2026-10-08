@@ -44,7 +44,7 @@ export function BrandScreen({
     <div className={cn("relative", className)}>
       <div
         className={cn(
-          "relative isolate overflow-hidden rounded-[24px] p-3 sm:p-5 md:rounded-[32px] md:p-7 lg:p-9",
+          "relative isolate overflow-hidden rounded-[20px] p-3 sm:p-5 md:p-7 lg:p-9",
           STAGE[tone],
         )}
       >

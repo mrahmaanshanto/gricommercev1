@@ -43,7 +43,7 @@ export function Customers() {
             {COLLAGE.map((column, ci) => (
               <div key={ci} className={cn("space-y-3 md:space-y-4", ci === 1 && "mt-10")}>
                 {column.map((p, i) => (
-                  <div key={p.src} className={cn("relative overflow-hidden rounded-[24px] shadow-gc-card", p.ratio)}>
+                  <div key={p.src} className={cn("relative overflow-hidden rounded-[20px] shadow-gc-card", p.ratio)}>
                     <Image src={p.src} alt={p.alt} fill priority={ci === 0 && i === 0} sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
                   </div>
                 ))}

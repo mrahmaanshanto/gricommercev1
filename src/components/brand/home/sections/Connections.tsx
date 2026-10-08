@@ -2,50 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BellRing, CircleCheck, Radar, ScanEye, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BellRing, CircleCheck, Radar, ShieldCheck, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { CONNECT } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { trackEvent } from "@/lib/analytics";
-import { cn } from "@/lib/cn";
 import { GcButton, Panel } from "../../primitives";
 import { HOME_INNER, useNum } from "./kit";
-
-type Logo = { name: string; src?: string; wide?: boolean; tall?: boolean };
-
-/* Two marquee rows: where you sell and get found, then couriers and payment gateways. */
-const ROW_A: Logo[] = [
-  { name: "WordPress", src: "/integrations/wordpress.webp", wide: true },
-  { name: "Shopify", src: "/integrations/shopify.webp", wide: true },
-  { name: "Facebook", src: "/integrations/facebook-page.png" },
-  { name: "Instagram", src: "/integrations/instagram.png" },
-  { name: "TikTok", src: "/integrations/tiktok-ads.png" },
-  { name: "YouTube", src: "/integrations/youtube.png" },
-  { name: "X", src: "/integrations/x.png" },
-  { name: "Microsoft Clarity", wide: true },
-];
-const ROW_B: Logo[] = [
-  { name: "Google Analytics", src: "/integrations/google-analytics.png" },
-  { name: "Google Business", src: "/integrations/google-business.png" },
-  { name: "Pathao", src: "/integrations/pathao.png", wide: true },
-  { name: "Steadfast", src: "/integrations/steadfast.png", wide: true },
-  { name: "RedX", src: "/integrations/redx.png", wide: true },
-  { name: "Carrybee", src: "/integrations/carrybee.png", wide: true },
-  { name: "bKash", src: "/integrations/bkash.png", wide: true, tall: true },
-  { name: "Nagad", src: "/integrations/nagad.png", wide: true },
-  { name: "SSLCommerz", src: "/integrations/sslcommerz.png", wide: true },
-  { name: "Paystation", src: "/integrations/paystation.png", wide: true, tall: true },
-  { name: "EPS", src: "/integrations/eps.png", wide: true },
-];
 
 const MERCHANTS = ["merchant-boutique", "merchant-cosmetics", "merchant-electronics", "merchant-grocery", "merchant-home-business"];
 const EVENTS = ["Purchase", "AddToCart", "ViewContent", "InitiateCheckout", "Lead", "AddPaymentInfo", "Search", "CompleteRegistration"];
 
 /**
  * Section 5b — the online tools as one bento grid: a lead tile, GridAI
- * insights, the trust line, server-side tracking, mobile payments, alerts,
- * and the integrations as two fast logo rows sliding in opposite directions.
- * The rows stand still under reduced motion.
+ * insights, the trust line and alerts, server-side tracking, and mobile
+ * payments. The integrations have their own full-width section
+ * (Integrations.tsx).
  */
 export function Connections() {
   const { L, t } = useI18n();
@@ -56,7 +28,7 @@ export function Connections() {
     <Panel tone="white" pattern={null} inner={HOME_INNER}>
       <div className="grid gap-3 md:grid-flow-row-dense md:grid-cols-2 md:gap-4 lg:grid-flow-row lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,0.78fr)]">
         {/* Lead */}
-        <Reveal className="relative flex min-h-[300px] flex-col items-center justify-center overflow-hidden rounded-[28px] bg-gc-royal px-6 py-10 text-center text-white lg:col-start-1 lg:row-start-1">
+        <Reveal className="relative flex min-h-[300px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-gc-royal px-6 py-10 text-center text-white lg:col-start-1 lg:row-start-1">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-[-30%] bottom-[-10%] h-1/2 [transform:perspective(320px)_rotateX(58deg)]"
@@ -85,7 +57,7 @@ export function Connections() {
         </Reveal>
 
         {/* GridAI insights */}
-        <Reveal className="relative grid items-center gap-6 overflow-hidden rounded-[28px] bg-gc-canvas p-6 md:col-span-2 md:p-8 lg:col-start-2 lg:row-start-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+        <Reveal className="relative grid items-center gap-6 overflow-hidden rounded-[20px] bg-gc-canvas p-6 md:col-span-2 md:p-8 lg:col-start-2 lg:row-start-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
@@ -131,7 +103,7 @@ export function Connections() {
         </Reveal>
 
         {/* Trusted */}
-        <Reveal className="flex items-center justify-between gap-4 rounded-[28px] bg-gc-canvas px-6 py-6 lg:col-start-1 lg:row-start-2">
+        <Reveal className="flex items-center justify-between gap-4 rounded-[20px] bg-gc-canvas px-6 py-6 lg:col-start-1 lg:row-start-2">
           <p className="max-w-[13rem] text-[1.1875rem] font-semibold leading-snug text-gc-ink">{L(C.trusted.title)}</p>
           <div aria-hidden className="flex shrink-0 -space-x-3">
             {MERCHANTS.slice(0, 3).map((m) => (
@@ -141,7 +113,7 @@ export function Connections() {
         </Reveal>
 
         {/* Server-side tracking */}
-        <Reveal className="relative flex min-h-[360px] flex-col items-center justify-end overflow-hidden rounded-[28px] bg-gc-canvas px-6 pb-8 pt-10 text-center md:row-span-2 lg:col-start-2 lg:row-start-2">
+        <Reveal className="relative flex min-h-[360px] flex-col items-center justify-end overflow-hidden rounded-[20px] bg-gc-canvas px-6 pb-8 pt-10 text-center md:row-span-2 lg:col-start-2 lg:row-start-2">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 flex h-[46%] flex-wrap content-start gap-x-4 gap-y-2 p-4 font-mono text-[0.6875rem] text-gc-ink-50/60"
@@ -157,7 +129,7 @@ export function Connections() {
           <p className="relative mt-3 max-w-[22rem] text-gc-small text-gc-ink-60">{L(C.tracking.body)}</p>
           <Link
             href="/features/analytics"
-            className="relative mt-6 inline-flex items-center gap-1.5 rounded-full bg-gc-ink px-5 py-2.5 text-[0.8125rem] font-semibold text-white transition-colors hover:bg-gc-royal"
+            className="relative mt-6 inline-flex items-center gap-1.5 rounded-[12px] bg-gc-ink px-5 py-2.5 text-[0.8125rem] font-semibold text-white transition-colors hover:bg-gc-royal"
           >
             {L(C.tracking.cta)}
             <ArrowRight aria-hidden className="size-4" />
@@ -165,7 +137,7 @@ export function Connections() {
         </Reveal>
 
         {/* Mobile payments */}
-        <Reveal className="flex flex-col items-center rounded-[28px] bg-gc-canvas px-6 py-6 text-center lg:col-start-3 lg:row-start-2">
+        <Reveal className="flex flex-col items-center justify-center rounded-[20px] bg-gc-canvas px-6 py-6 text-center lg:col-start-3 lg:row-span-2 lg:row-start-2">
           <div aria-hidden className="w-full max-w-[15rem] rounded-2xl bg-white p-3 shadow-gc-float ring-1 ring-gc-line">
             <div className="flex items-center justify-center gap-3">
               <Image src="/integrations/bkash.png" alt="" width={128} height={81} className="h-8 w-auto" />
@@ -182,20 +154,8 @@ export function Connections() {
           <p className="mt-1.5 text-gc-small text-gc-ink-60">{L(C.payments.body)}</p>
         </Reveal>
 
-        {/* Integrations */}
-        <Reveal className="relative flex flex-col justify-end overflow-hidden rounded-[28px] bg-gc-canvas pb-6 pt-5 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-3">
-          <p className="sr-only">
-            {L(C.integrations.label)}: {[...ROW_A, ...ROW_B].map((l) => l.name).join(", ")}
-          </p>
-          <div aria-hidden className="space-y-2.5 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            <LogoRow logos={ROW_A} />
-            <LogoRow logos={ROW_B} reverse />
-          </div>
-          <h3 className="mt-5 px-6 text-center text-[1.1875rem] font-semibold leading-snug text-gc-ink">{L(C.integrations.title)}</h3>
-        </Reveal>
-
         {/* Alerts */}
-        <Reveal className="flex flex-col items-center rounded-[28px] bg-gc-canvas px-6 py-6 text-center lg:col-start-3 lg:row-start-3">
+        <Reveal className="flex flex-col items-center justify-center rounded-[20px] bg-gc-canvas px-6 py-6 text-center lg:col-start-1 lg:row-start-3">
           <span className="grid size-12 place-items-center rounded-full bg-gc-royal text-white">
             <BellRing aria-hidden className="size-5 motion-safe:animate-[gc-ring_2.4s_ease-in-out_infinite]" />
           </span>
@@ -204,25 +164,5 @@ export function Connections() {
         </Reveal>
       </div>
     </Panel>
-  );
-}
-
-function LogoRow({ logos, reverse }: { logos: Logo[]; reverse?: boolean }) {
-  return (
-    <div className="flex overflow-hidden">
-      <div className={cn("gc-marquee flex w-max shrink-0 gap-2.5 pr-2.5", reverse && "gc-marquee-reverse")} style={{ ["--gc-marquee-duration" as string]: "16s" }}>
-        {[...logos, ...logos].map((l, i) => (
-          <span key={i} className={cn("grid h-12 shrink-0 place-items-center rounded-xl bg-white px-3 ring-1 ring-gc-line", l.wide ? "w-[104px]" : "w-12")}>
-            {l.src ? (
-              <Image src={l.src} alt="" width={l.wide ? 160 : 64} height={l.wide ? 56 : 64} className={cn("w-auto object-contain", l.tall ? "max-h-9" : l.wide ? "max-h-6" : "h-7")} />
-            ) : (
-              <span className="flex items-center gap-1 text-[0.6875rem] font-semibold leading-tight text-[#0078D4]">
-                <ScanEye className="size-4" /> Clarity
-              </span>
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }

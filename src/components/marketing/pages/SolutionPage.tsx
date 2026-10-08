@@ -73,7 +73,7 @@ export function SolutionPage({ id }: { id: string }) {
         aside={
           /* The kind of business in a photograph, the product laid over it. */
           <div className="relative md:pb-10 lg:pb-0">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-gc-screen md:rounded-[36px]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] shadow-gc-screen">
               {photo && (
                 <Image src={photo.src} alt={photo.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
               )}
@@ -122,7 +122,7 @@ export function SolutionPage({ id }: { id: string }) {
             <Stagger.Item key={f.slug} className="h-full">
               <Link
                 href={`/features/${f.slug}`}
-                className="group/f flex h-full flex-col rounded-[24px] bg-white p-6 ring-1 ring-inset ring-gc-line/80 transition-[transform,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-gc-float md:p-7"
+                className="group/f flex h-full flex-col rounded-[20px] bg-white p-6 ring-1 ring-inset ring-gc-line/80 transition-[transform,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-gc-float md:p-7"
               >
                 <IconTile name={f.icon} />
                 <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(f.name)}</p>
@@ -142,10 +142,10 @@ export function SolutionPage({ id }: { id: string }) {
               <Stagger.Item key={o.id} className="h-full">
                 <Link
                   href={o.href}
-                  className="group/o flex h-full flex-col rounded-[28px] bg-gc-canvas p-3 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
+                  className="group/o flex h-full flex-col rounded-[20px] bg-gc-canvas p-3 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
                 >
                   {op && (
-                    <div className="relative aspect-[16/9] overflow-hidden rounded-[22px]">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-[20px]">
                       <Image
                         src={op.src}
                         alt={op.alt}

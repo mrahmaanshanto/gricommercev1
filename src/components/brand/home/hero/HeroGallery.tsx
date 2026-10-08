@@ -163,7 +163,7 @@ function Widget({
   );
 }
 
-function useCards() {
+export function useCards() {
   const { L } = useI18n();
   const n = useNum();
   const W = HERO_WIDGETS;

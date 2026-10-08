@@ -106,6 +106,7 @@ export const HERO_VARIANTS = {
     watch: loc("See how it works", "কীভাবে কাজ করে দেখুন"),
     businesses: loc("Online businesses", "অনলাইন ব্যবসা"),
     couriers: loc("Couriers in one click", "এক ক্লিকে কুরিয়ার"),
+    channels: loc("Every chat in one inbox", "সব চ্যাট এক ইনবক্সে"),
     days: [
       { day: loc("SAT", "শনি"), date: loc("12 Oct", "১২ অক্টো") },
       { day: loc("SUN", "রবি"), date: loc("13 Oct", "১৩ অক্টো") },
@@ -162,6 +163,7 @@ export const HERO_VARIANTS = {
       loc("6 · Live order feed", "৬ · লাইভ অর্ডার ফিড"),
       loc("7 · Store gallery + price", "৭ · স্টোর গ্যালারি + দাম"),
       loc("8 · Product lanes", "৮ · প্রোডাক্ট লেন"),
+      loc("9 · Widget feed", "৯ · উইজেট ফিড"),
     ],
   },
 };
@@ -379,6 +381,10 @@ export const CONNECT = {
   integrations: {
     title: loc("Works with the apps you already use", "আপনার চেনা অ্যাপগুলোর সাথেই কাজ করে"),
     label: loc("Integrations", "ইন্টিগ্রেশন"),
+    body: loc(
+      "Connect your website, social pages, couriers, payment gateways and ad accounts. Orders, stock and money stay in sync, so you never copy anything by hand.",
+      "আপনার ওয়েবসাইট, সোশ্যাল পেজ, কুরিয়ার, পেমেন্ট গেটওয়ে আর অ্যাড অ্যাকাউন্ট যুক্ত করুন। অর্ডার, স্টক আর টাকা নিজে থেকেই মিলে থাকে, হাতে কিছু তুলতে হয় না।",
+    ),
   },
   tracking: {
     title: loc("Track every sale from our server", "প্রতিটি বিক্রি ট্র্যাক হয় আমাদের সার্ভার থেকে"),

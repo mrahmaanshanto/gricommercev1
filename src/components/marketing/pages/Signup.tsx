@@ -110,7 +110,7 @@ export function Signup() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-white md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-white">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute left-1/2 top-[-20rem] size-[46rem] -translate-x-1/2 rounded-full bg-gc-sky-20 blur-[130px]" />
         </div>
@@ -141,7 +141,7 @@ export function Signup() {
             <form
               onSubmit={onSubmit}
               noValidate
-              className="mt-6 rounded-[28px] bg-white p-6 shadow-gc-float ring-1 ring-inset ring-gc-line/70 md:p-8"
+              className="mt-6 rounded-[20px] bg-white p-6 shadow-gc-float ring-1 ring-inset ring-gc-line/70 md:p-8"
             >
               {state === "done" ? (
                 <FormStatus state="success" title={L(COPY.doneTitle)} body={L(COPY.doneBody)} />

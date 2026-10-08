@@ -100,7 +100,7 @@ export function Contact({ initialTopic = "sales" }: { initialTopic?: ContactTopi
         <form
           onSubmit={onSubmit}
           noValidate
-          className="rounded-[28px] bg-white p-6 shadow-gc-float ring-1 ring-inset ring-gc-line/70 md:rounded-[32px] md:p-9"
+          className="rounded-[20px] bg-white p-6 shadow-gc-float ring-1 ring-inset ring-gc-line/70 md:p-9"
         >
           <div className="space-y-5">
             <Select label={L(COPY.topic)} name="topic" defaultValue={initialTopic}>

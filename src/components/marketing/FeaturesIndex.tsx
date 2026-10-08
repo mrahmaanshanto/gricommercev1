@@ -23,7 +23,7 @@ const COPY = {
 };
 
 const cardClass =
-  "flex h-full flex-col rounded-[24px] p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-gc-float md:p-7";
+  "flex h-full flex-col rounded-[20px] p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-gc-float md:p-7";
 
 /** The primary modules first, in the order `MODULES` sets, then the
  *  supporting feature pages, each labelled with the module it belongs to.

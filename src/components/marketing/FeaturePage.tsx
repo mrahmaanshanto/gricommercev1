@@ -79,7 +79,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           feature.screen ? (
             <BrandScreen priority screen={feature.screen} pattern="br" />
           ) : (
-            <div className="rounded-[28px] bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10 p-3 sm:p-5 md:rounded-[36px] md:p-7">
+            <div className="rounded-[20px] bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10 p-3 sm:p-5 md:p-7">
               <div className="grid gap-3 sm:grid-cols-2">{feature.points.map(pointCard)}</div>
             </div>
           )
@@ -113,7 +113,7 @@ export function FeaturePage({ slug }: { slug: string }) {
               <Stagger.Item key={rel.slug} className="h-full">
                 <Link
                   href={`/features/${rel.slug}`}
-                  className="group/rel flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
+                  className="group/rel flex h-full flex-col rounded-[20px] bg-gc-canvas p-6 transition-[transform,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float md:p-7"
                 >
                   <IconTile name={rel.icon} />
                   <p className="mt-5 font-gc-display text-[1.125rem] font-bold text-gc-ink">{L(rel.name)}</p>

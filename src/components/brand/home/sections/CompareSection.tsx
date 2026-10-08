@@ -58,7 +58,7 @@ export function CompareSection({ full = false, id = "compare" }: { full?: boolea
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.5, ease: EASE.outQuart, delay: i * 0.1 }}
               className={cn(
-                "relative rounded-[24px] p-5 md:p-6",
+                "relative rounded-[20px] p-5 md:p-6",
                 gc ? "bg-gc-royal text-white shadow-[0_24px_48px_-24px_rgba(10,91,207,0.8)]" : "bg-white ring-1 ring-gc-line",
               )}
             >
@@ -78,7 +78,7 @@ export function CompareSection({ full = false, id = "compare" }: { full?: boolea
       </div>
 
       {/* Feature table — desktop */}
-      <Reveal className="mt-10 hidden overflow-hidden rounded-[24px] bg-white ring-1 ring-gc-line md:block">
+      <Reveal className="mt-10 hidden overflow-hidden rounded-[20px] bg-white ring-1 ring-gc-line md:block">
         <table className="w-full table-fixed text-left">
           <caption className="sr-only">{L(C.title)}</caption>
           <colgroup>

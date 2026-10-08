@@ -18,7 +18,7 @@ import { cn } from "@/lib/cn";
 /** A photograph framed like the homepage hero. Generated imagery — no real person. */
 function PhotoFrame({ src, alt, priority = false }: { src: string; alt: string; priority?: boolean }) {
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-gc-screen md:rounded-[36px]">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] shadow-gc-screen">
       <Image src={src} alt={alt} fill priority={priority} sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
     </div>
   );
@@ -51,7 +51,7 @@ export function About() {
         <Stagger className="mt-12 grid gap-4 sm:grid-cols-2" stagger={0.07}>
           {ABOUT_VALUES.map((v) => (
             <Stagger.Item key={v.icon} className="h-full">
-              <div className="flex h-full flex-col rounded-[28px] bg-white p-7 ring-1 ring-inset ring-gc-line/80 md:p-8">
+              <div className="flex h-full flex-col rounded-[20px] bg-white p-7 ring-1 ring-inset ring-gc-line/80 md:p-8">
                 <IconTile name={v.icon} />
                 <p className="mt-6 font-gc-display text-[1.25rem] font-bold text-gc-ink">{L(v.label)}</p>
                 <p className="mt-3 text-gc-body text-gc-ink-60">{L(v.detail)}</p>
@@ -81,12 +81,12 @@ export function Themes() {
             const dark = i % 3 !== 0;
             return (
               <Stagger.Item key={th.id} className="h-full">
-                <div className="flex h-full flex-col rounded-[28px] bg-gc-canvas p-3">
+                <div className="flex h-full flex-col rounded-[20px] bg-gc-canvas p-3">
                   {/* No theme screenshots exist yet: an abstract layout sketch in the
                       brand palette stands in, never a fabricated storefront. */}
                   <div
                     className={cn(
-                      "relative isolate flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[22px] p-5",
+                      "relative isolate flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[20px] p-5",
                       i % 3 === 0 && "bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10",
                       i % 3 === 1 && "bg-gc-dark",
                       i % 3 === 2 && "bg-gradient-to-br from-gc-royal from-40% to-gc-sky",
@@ -191,7 +191,7 @@ export function Legal({ slug }: { slug: string }) {
       <Panel tone="white" inner="py-12 md:py-16">
         <div className="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-16">
           <nav aria-label={L(LEGAL_COPY.contents)} className="lg:sticky lg:top-32 lg:self-start">
-            <div className="rounded-[24px] bg-gc-canvas p-5">
+            <div className="rounded-[20px] bg-gc-canvas p-5">
               <p className="gc-eyebrow text-gc-eyebrow font-semibold uppercase text-gc-royal">{L(LEGAL_COPY.contents)}</p>
               <ol className="mt-4 space-y-1">
                 {doc.sections.map((s, i) => (
@@ -282,7 +282,7 @@ export function MigrationPage() {
       <Panel tone="white" pattern="br" inner="py-12 md:py-16">
         <Stagger as="ol" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" stagger={0.07}>
           {MIGRATION_STEPS.map((s, i) => (
-            <Stagger.Item as="li" key={s.icon} className="flex h-full flex-col rounded-[24px] bg-gc-canvas p-6">
+            <Stagger.Item as="li" key={s.icon} className="flex h-full flex-col rounded-[20px] bg-gc-canvas p-6">
               <div className="flex items-center justify-between">
                 <IconTile name={s.icon} size="sm" />
                 <span className="font-gc-display text-[1.5rem] font-bold text-gc-royal/30">{i + 1}</span>
@@ -321,7 +321,7 @@ export function HelpGuides() {
         <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
           {HELP_CATEGORIES.map((c) => (
             <Stagger.Item key={c.slug} className="h-full">
-              <div className="flex h-full flex-col rounded-[24px] bg-gc-canvas p-6 md:p-7">
+              <div className="flex h-full flex-col rounded-[20px] bg-gc-canvas p-6 md:p-7">
                 <div className="flex items-center gap-3">
                   <IconTile name={c.icon} size="sm" />
                   <Link href={`/help/${c.slug}`} className="font-gc-display text-[1.0625rem] font-bold text-gc-ink transition-colors hover:text-gc-royal">

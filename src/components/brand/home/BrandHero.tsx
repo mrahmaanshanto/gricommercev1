@@ -20,7 +20,7 @@ export function BrandHero() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[28px] bg-[#F4F8FF] md:rounded-[40px]">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-[#F4F8FF]">
         <Aurora />
 
         <div className="relative mx-auto max-w-[1240px] px-5 pt-9 md:px-8 md:pt-12">

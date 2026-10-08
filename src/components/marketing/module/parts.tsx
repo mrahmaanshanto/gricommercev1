@@ -54,7 +54,7 @@ export function FocusShot({ shot, phone, className }: { shot: Shot; phone?: Shot
   const ratio = shot.width / shot.height;
   const wide = ratio > 1.35;
   return (
-    <div className={cn("relative isolate overflow-hidden rounded-[28px] bg-gradient-to-br from-gc-royal-10 via-[#F4F8FF] to-gc-sky-10 p-4 sm:p-8", phone && "sm:pb-20 lg:pb-8 lg:pr-28", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-[20px] bg-gradient-to-br from-gc-royal-10 via-[#F4F8FF] to-gc-sky-10 p-4 sm:p-8", phone && "sm:pb-20 lg:pb-8 lg:pr-28", className)}>
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
@@ -111,7 +111,7 @@ export function FocusShot({ shot, phone, className }: { shot: Shot; phone?: Shot
 export function HeroShots({ detail }: { detail: ModuleDetail }) {
   return (
     <div className="relative">
-      <div className={cn("relative isolate rounded-[28px] bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10 p-3 sm:p-5 md:rounded-[32px] md:p-7", detail.heroPhone && "lg:mr-10")}>
+      <div className={cn("relative isolate rounded-[20px] bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10 p-3 sm:p-5 md:p-7", detail.heroPhone && "lg:mr-10")}>
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-2/3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-[70px]" />
         <BrowserShot shot={detail.heroShot} priority className={cn(detail.heroPhone && "hidden sm:block")} />
         {detail.heroPhone && <PhoneShot shot={detail.heroPhone} priority className="mx-auto w-[240px] sm:hidden" />}
@@ -166,7 +166,7 @@ export function VideoCard({ poster, video, slug }: { poster: Shot; video?: strin
           setOpen(true);
           trackEvent("demo_replayed", { source: "module_video", module: slug });
         }}
-        className="group relative block w-full overflow-hidden rounded-[28px] bg-gc-ink text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gc-sky"
+        className="group relative block w-full overflow-hidden rounded-[20px] bg-gc-ink text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gc-sky"
         style={{ aspectRatio: "16 / 9" }}
       >
         <Image src={poster.src} alt="" fill sizes="(min-width: 1024px) 900px, 100vw" className="object-cover object-top opacity-45 transition-transform duration-700 group-hover:scale-[1.03]" />
@@ -219,7 +219,7 @@ function VideoModal({ open, onClose, video }: { open: boolean; onClose: () => vo
           aria-label={L(MODULE_UI.watch)}
         >
           <motion.div
-            className="relative w-full max-w-4xl overflow-hidden rounded-[24px] bg-gc-ink shadow-2xl ring-1 ring-white/10"
+            className="relative w-full max-w-4xl overflow-hidden rounded-[20px] bg-gc-ink shadow-2xl ring-1 ring-white/10"
             initial={reduced ? false : { scale: 0.94, y: 20 }}
             animate={{ scale: 1, y: 0 }}
             exit={reduced ? undefined : { scale: 0.96, y: 10 }}
@@ -310,7 +310,7 @@ export function WorkflowSteps({ steps }: { steps: ModuleDetail["workflow"] }) {
 export function FaqList({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <ul className="divide-y divide-gc-line overflow-hidden rounded-[24px] bg-white ring-1 ring-gc-line">
+    <ul className="divide-y divide-gc-line overflow-hidden rounded-[20px] bg-white ring-1 ring-gc-line">
       {items.map((f, i) => {
         const on = open === i;
         return (

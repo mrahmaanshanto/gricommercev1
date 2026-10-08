@@ -44,7 +44,7 @@ export function BrandSolutions() {
             <Stagger.Item key={type.id} className="h-full">
               <Link
                 href={type.href}
-                className="group/sol flex h-full flex-col rounded-[24px] bg-white p-2.5 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
+                className="group/sol flex h-full flex-col rounded-[20px] bg-white p-2.5 transition-[transform,box-shadow,background-color] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-white hover:shadow-gc-float"
               >
                 {photo && (
                   <div className="relative aspect-[16/9] overflow-hidden rounded-[18px]">

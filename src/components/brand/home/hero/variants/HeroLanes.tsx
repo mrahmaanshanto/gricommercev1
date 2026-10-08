@@ -73,7 +73,7 @@ export function HeroLanes() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto flex max-w-[1440px] flex-col overflow-clip rounded-[28px] bg-[#F6F9FD] md:rounded-[40px] lg:grid lg:min-h-[860px] lg:items-center">
+      <div className="relative isolate mx-auto flex max-w-[1440px] flex-col overflow-clip rounded-[20px] bg-[#F6F9FD] lg:grid lg:min-h-[860px] lg:items-center">
         {/* Lanes */}
         <div aria-hidden className="order-2 mt-10 grid gap-3.5 pb-10 lg:absolute lg:inset-x-0 lg:top-7 lg:z-[1] lg:mt-0 lg:gap-5 lg:pb-0">
           {LANES.map((lane, i) => (
@@ -125,13 +125,13 @@ export function HeroLanes() {
             <Link
               href="/contact?topic=demo"
               onClick={() => trackEvent("demo_requested", { source: "hero" })}
-              className="inline-flex h-14 items-center justify-center rounded-2xl bg-gradient-to-r from-[#0a6fbe] via-[#0153a7] to-[#0a3f86] px-7 text-[1rem] font-semibold text-white shadow-[0_6px_18px_rgb(1_83_167/0.35),inset_0_1px_0_rgb(255_255_255/0.18)] transition-shadow hover:shadow-[0_10px_24px_rgb(1_83_167/0.45),inset_0_1px_0_rgb(255_255_255/0.18)]"
+              className="inline-flex h-14 items-center justify-center rounded-[12px] bg-gradient-to-r from-[#0a6fbe] via-[#0153a7] to-[#0a3f86] px-7 text-[1rem] font-semibold text-white shadow-[0_6px_18px_rgb(1_83_167/0.35),inset_0_1px_0_rgb(255_255_255/0.18)] transition-shadow hover:shadow-[0_10px_24px_rgb(1_83_167/0.45),inset_0_1px_0_rgb(255_255_255/0.18)]"
             >
               {t.common.bookDemo}
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex h-14 items-center justify-center rounded-2xl bg-white px-7 text-[1rem] font-semibold text-gc-ink ring-1 ring-gc-line transition-colors hover:ring-gc-ink-30"
+              className="inline-flex h-14 items-center justify-center rounded-[12px] bg-white px-7 text-[1rem] font-semibold text-gc-ink ring-1 ring-gc-line transition-colors hover:ring-gc-ink-30"
             >
               {L(H.watch)}
             </Link>
@@ -147,7 +147,7 @@ function LaneCard({ card }: { card: Card }) {
   const n = useNum();
   if (card.kind === "photo")
     return (
-      <div className="relative size-[140px] shrink-0 overflow-hidden rounded-[20px] lg:size-[236px] lg:rounded-[24px]" style={{ background: TINT[card.tint] }}>
+      <div className="relative size-[140px] shrink-0 overflow-hidden rounded-[20px] lg:size-[236px]" style={{ background: TINT[card.tint] }}>
         <Image src={`/hero-lanes/${card.img}.webp`} alt="" fill sizes="(min-width: 1024px) 236px, 140px" className="object-cover" />
         <span className="absolute bottom-2 left-2.5 z-[1] rounded-full bg-white/85 px-2 py-px text-[11px] font-medium text-gc-ink lg:bottom-3 lg:left-3.5 lg:px-2.5 lg:py-0.5 lg:text-[13px]">
           {L(card.cap)}
@@ -157,7 +157,7 @@ function LaneCard({ card }: { card: Card }) {
   const Icon = card.icon;
   const amount = card.amount === undefined ? null : typeof card.amount === "number" ? n(card.amount, { money: true }) : L(card.amount);
   return (
-    <div className="flex h-[140px] w-[180px] shrink-0 flex-col justify-between rounded-[20px] bg-white/75 p-3.5 text-left shadow-[0_18px_40px_-26px_rgb(10_42_94/0.25)] ring-1 ring-black/[0.05] lg:h-[236px] lg:w-[268px] lg:rounded-[24px] lg:p-5">
+    <div className="flex h-[140px] w-[180px] shrink-0 flex-col justify-between rounded-[20px] bg-white/75 p-3.5 text-left shadow-[0_18px_40px_-26px_rgb(10_42_94/0.25)] ring-1 ring-black/[0.05] lg:h-[236px] lg:w-[268px] lg:p-5">
       <p className="flex items-center gap-2 text-[12px] font-semibold text-gc-ink lg:text-[13px]">
         <span className={cn("grid size-[26px] shrink-0 place-items-center rounded-[9px] lg:size-8", card.strong ? "bg-gradient-to-br from-[#0190ea] to-[#0153a7] text-white" : "bg-[#f3f4f0] text-gc-ink")}>
           <Icon className="size-3.5" strokeWidth={2.2} />
