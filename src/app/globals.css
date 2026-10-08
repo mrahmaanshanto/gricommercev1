@@ -236,6 +236,21 @@
   .gc-dash { animation: none; }
 }
 
+/* Gentle bob for floating hero stickers and cards. */
+@keyframes gc-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+.gc-float { animation: gc-float 5s ease-in-out infinite; }
+/* Hand-drawn strokes (circle, arrow, squiggle) draw themselves once. */
+@keyframes gc-draw {
+  from { stroke-dashoffset: var(--gc-len, 600); }
+  to { stroke-dashoffset: 0; }
+}
+.gc-draw { stroke-dasharray: var(--gc-len, 600); animation: gc-draw 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
+@media (prefers-reduced-motion: reduce) {
+  .gc-float, .gc-draw { animation: none; }
+}
 
 /* Slow drift for the hero's aurora glows. */
 @keyframes gc-drift {
@@ -247,6 +262,20 @@
   .gc-drift { animation: none; }
 }
 
+/* Slide progress bar (hero slider dots). */
+@keyframes gc-step-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.gc-step-bar {
+  transform: scaleX(0);
+  animation-name: gc-step-bar;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gc-step-bar { animation: none; transform: scaleX(1); }
+}
 
 @keyframes hero-settle {
   from { transform: translateY(16px); }
@@ -280,7 +309,8 @@
   }
 }
 
-/* Phones: the background glows move a little faster. */
+/* Phones: floating stickers and background glows move a little faster. */
 @media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
+  .gc-float { animation-duration: 3.5s; }
   .gc-drift { animation-duration: 12s; }
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Boxes,
   CalendarDays,
@@ -25,9 +26,106 @@ import { Avatar, ChannelLogo } from "./shared";
 import { useNum } from "../sections/kit";
 
 /**
- * The module widgets shown in the homepage hero's feed: one small card per
- * online tool (inventory, courier, inbox, tracking, social…), demo data.
+ * The hero's curved gallery: one small widget per online tool, on a turning
+ * band. Each card's tilt and size come from its distance to the centre, so the
+ * band reads as the inside of a cylinder. It drifts while on screen, rests
+ * in a hidden tab, and stands still under reduced motion. Positions are written straight to the cards' style each frame, so
+ * React does not re-render while it moves. Decorative: every module is also
+ * listed, as links, further down the page.
  */
+
+const SPEED = 60; // px per second
+const SPEED_PHONE = 95; // phones: faster, so more cards pass in less time
+
+export function HeroGallery() {
+  const reduced = useReducedMotion();
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [ready, setReady] = useState(false);
+  const cards = useCards();
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    let width = wrap.clientWidth;
+    let offset = 0;
+    let last = performance.now();
+    let raf = 0;
+    let visible = true;
+    const slot = () => (width < 640 ? 150 : width < 1024 ? 180 : 205);
+
+    const place = () => {
+      const s = slot();
+      const total = s * cards.length;
+      const half = width / 2;
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+        let x = i * s - offset;
+        x = ((((x + total / 2) % total) + total) % total) - total / 2; // wrap around the band
+        const t = Math.max(-1.25, Math.min(1.25, x / (half + s * 0.5)));
+        const rotate = -t * 50;
+        const scale = 1 - Math.abs(t) * 0.3;
+        const lift = Math.abs(t) * Math.abs(t) * 38;
+        el.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${-lift}px, 0) rotateY(${rotate}deg) scale(${scale})`;
+        el.style.opacity = String(Math.max(0, 1 - Math.max(0, Math.abs(t) - 0.95) * 3.5));
+        el.style.zIndex = String(100 - Math.round(Math.abs(t) * 50));
+      });
+    };
+
+    const ro = new ResizeObserver(() => {
+      width = wrap.clientWidth;
+      place();
+    });
+    ro.observe(wrap);
+    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
+    io.observe(wrap);
+
+    place();
+     
+    setReady(true);
+
+    if (!reduced) {
+      const tick = (now: number) => {
+        const dt = Math.min(now - last, 100);
+        last = now;
+        if (visible && document.visibilityState === "visible") {
+          offset += ((width < 640 ? SPEED_PHONE : SPEED) * dt) / 1000;
+          place();
+        }
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      io.disconnect();
+    };
+  }, [reduced, cards.length]);
+
+  return (
+    <div
+      ref={wrapRef}
+      aria-hidden
+      className={cn("relative h-[200px] w-full transition-opacity duration-500 sm:h-[220px] lg:h-[240px]", ready ? "opacity-100" : "opacity-0")}
+      style={{ perspective: "1100px" }}
+    >
+      {cards.map((card, i) => (
+        <div
+          key={card.key}
+          ref={(el) => {
+            cardRefs.current[i] = el;
+          }}
+          className="absolute left-1/2 top-1/2 will-change-transform"
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {card.node}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* The widgets                                                         */

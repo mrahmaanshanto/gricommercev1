@@ -11,12 +11,12 @@ import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { EASE, HERO_STAGGER, heroDelay } from "@/lib/motion";
 import { Counter } from "./shared";
-import { useCards } from "./widgets";
+import { useCards } from "./HeroGallery";
 
 const CLIENTS = ["merchant-boutique-owner", "merchant-skincare-live", "merchant-warehouse-scan", "merchant-cosmetics"];
 
 /**
- * The homepage hero (chosen from the hero preview, Oct 2026). The left column has the headline with the chart
+ * The homepage hero (hero 9 in the hero preview; the default). The left column has the headline with the chart
  * chip, body, dark and light buttons and an animated proof row; on the right the current
  * hero's module widgets, in two columns that scroll up in a slight 3D tilt
  * with soft fades.
