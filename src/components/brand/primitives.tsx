@@ -57,6 +57,7 @@ export function BrandLogo({
       width={src.w}
       height={src.h}
       priority={priority}
+      sizes="240px"
       className={cn("h-7 w-auto", className)}
     />
   );
@@ -205,7 +206,7 @@ export function Panel({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-28 px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-6">
+    <section id={id} className="gc-cv scroll-mt-28 px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-6">
       {/* overflow-clip rather than overflow-hidden: clipping the rounded corners
           must not create a scroll container, or sticky columns stop sticking. */}
       <div
@@ -222,8 +223,8 @@ export function Panel({
         )}
         {tone === "dark" && (
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -left-40 -top-48 size-[38rem] rounded-full bg-gc-royal/35 blur-[140px]" />
-            <div className="absolute -bottom-48 -right-40 size-[30rem] rounded-full bg-gc-sky/15 blur-[140px]" />
+            <div className="absolute -left-40 -top-48 size-[38rem] rounded-full gc-glow text-gc-royal/35" />
+            <div className="absolute -bottom-48 -right-40 size-[30rem] rounded-full gc-glow text-gc-sky/15" />
           </div>
         )}
         {pattern && (

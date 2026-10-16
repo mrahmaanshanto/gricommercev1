@@ -69,8 +69,8 @@ export function Scene({
 function Backdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="gc-drift absolute -left-[15%] -top-[25%] size-[70%] rounded-full bg-gc-royal/10 blur-[70px]" />
-      <div className="gc-drift absolute -bottom-[30%] -right-[10%] size-[70%] rounded-full bg-gc-sky/15 blur-[70px] [animation-delay:-7s]" />
+      <div className="gc-drift absolute -left-[15%] -top-[25%] size-[70%] rounded-full gc-glow text-gc-royal/10" />
+      <div className="gc-drift absolute -bottom-[30%] -right-[10%] size-[70%] rounded-full gc-glow text-gc-sky/15 [animation-delay:-7s]" />
       <div
         className="absolute inset-0"
         style={{

@@ -7,7 +7,7 @@ import { LanguageProvider } from "@/i18n/provider";
 import { BrandNavbar } from "@/components/brand/BrandNavbar";
 import { BrandFooter } from "@/components/brand/BrandFooter";
 import { SampleBadge } from "@/components/marketing/SampleBadge";
-import { HeroPreview } from "@/components/dev/HeroPreview";
+import { LazyHeroPreview } from "@/components/dev/LazyHeroPreview";
 import { SITE } from "@/data/site";
 import { JsonLd, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 
@@ -24,7 +24,7 @@ const outfit = Outfit({
   variable: "--font-outfit",
   display: "swap",
   preload: true,
-  fallback: ["Arial", "sans-serif"],
+  fallback: ["Outfit Fallback", "Arial", "sans-serif"],
 });
 
 const dmSerif = DM_Serif_Display({
@@ -79,7 +79,7 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <BrandFooter />
           <SampleBadge />
-          <HeroPreview />
+          <LazyHeroPreview />
         </LanguageProvider>
       </body>
     </html>

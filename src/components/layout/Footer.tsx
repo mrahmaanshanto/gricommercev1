@@ -49,7 +49,7 @@ export function Footer({ className }: { className?: string } = {}) {
   const modules = FOOTER_COLUMNS.find((c) => c.titleKey === "product")?.links ?? [];
 
   return (
-    <footer className={cn("relative mx-auto max-w-[1440px] overflow-hidden rounded-t-[20px] bg-[#1a1a1a] text-white", className)}>
+    <footer className={cn("gc-cv relative mx-auto max-w-[1440px] overflow-hidden rounded-t-[20px] bg-[#1a1a1a] text-white", className)}>
       <AppBlock />
 
       <div className="container-page relative pt-14">
@@ -161,7 +161,7 @@ function AppBlock() {
 
   return (
     <section aria-labelledby="footer-app" className="relative overflow-hidden pt-14 text-center md:pt-16">
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-gc-royal/25 blur-[120px]" />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full gc-glow text-gc-royal/25" />
       <div className="container-page relative">
         <h2 id="footer-app" className="text-gc-h2 text-white">
           {L(FOOTER.app.title)}

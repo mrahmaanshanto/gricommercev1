@@ -62,7 +62,7 @@ export function Integrations() {
   const names = [...new Set(ROWS.flatMap((r) => r.logos.map((l) => l.name)))];
 
   return (
-    <section id="integrations" className="scroll-mt-28 px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-6">
+    <section id="integrations" className="gc-cv scroll-mt-28 px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-6">
       <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-white py-12 md:py-16 lg:py-20">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-2/3 bg-gradient-to-b from-gc-royal-10/70 to-transparent" />
         <Reveal className="mx-auto max-w-3xl px-5 text-center">
@@ -116,6 +116,7 @@ function LogoTile({ logo }: { logo: Logo }) {
           alt=""
           width={logo.wide ? 200 : 80}
           height={logo.wide ? 70 : 80}
+          sizes={logo.wide ? "(min-width: 768px) 140px, 112px" : "48px"}
           className={cn("w-auto object-contain", logo.tall ? "max-h-10 md:max-h-12" : logo.wide ? "max-h-7 md:max-h-8" : "h-8 md:h-9")}
         />
       ) : (

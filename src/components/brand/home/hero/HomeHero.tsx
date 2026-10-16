@@ -27,9 +27,16 @@ export function HomeHero() {
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px] bg-gradient-to-br from-white via-[#F4F8FF] to-[#EAF2FE]">
-        <div aria-hidden className="pointer-events-none absolute -right-[10%] -top-[20%] -z-10 size-[42rem] rounded-full bg-gc-royal/10 blur-[110px]" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-[30%] left-[10%] -z-10 size-[34rem] rounded-full bg-gc-sky/15 blur-[110px]" />
+      {/* The two soft glows are background layers, not boxes: they cannot shift when the web font swaps in. */}
+      <div
+        className="relative isolate mx-auto max-w-[1440px] overflow-clip rounded-[20px]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle 21rem at calc(110% - 21rem) calc(21rem - 20%), rgba(10,91,207,0.1) 20%, transparent 100%), " +
+            "radial-gradient(circle 17rem at calc(10% + 17rem) calc(130% - 17rem), rgba(24,167,245,0.15) 20%, transparent 100%), " +
+            "linear-gradient(to bottom right, #FFFFFF, #F4F8FF, #EAF2FE)",
+        }}
+      >
         <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 pb-8 pt-12 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6 lg:py-0">
           <FeedCopy />
 

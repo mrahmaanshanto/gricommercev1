@@ -158,6 +158,27 @@
   @media (width >= 1280px) { padding-inline: 40px; }
 }
 
+/* Arial sized to Outfit's metrics (capsize data in next/font), so text set in the fallback breaks onto the same
+   lines as Outfit and nothing shifts when the web font arrives. next/font did not emit one for Outfit in this build. */
+@font-face {
+  font-family: "Outfit Fallback";
+  src: local("Arial");
+  font-weight: 100 599;
+  size-adjust: 99.8%;
+  ascent-override: 100.2%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Outfit Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Arial");
+  font-weight: 600 900;
+  size-adjust: 97.5%;
+  ascent-override: 102.6%;
+  descent-override: 26.7%;
+  line-gap-override: 0%;
+}
+
 /* Hides content visually but keeps it for assistive technology */
 @utility sr-only-focusable {
   position: absolute;
@@ -169,6 +190,20 @@
 
 @utility font-gc-display {
   font-family: var(--gc-font-heading), Arial, sans-serif;
+}
+
+/* A soft glow: the radial gradient a large blurred circle produces, without the blur
+   filter (a blur on a big element is repainted on every frame it moves). Colour
+   from the text colour, e.g. `gc-glow text-gc-royal/20`. */
+@utility gc-glow {
+  background-image: radial-gradient(closest-side, currentColor 20%, transparent 100%);
+}
+
+/* Off-screen sections skip style, layout and paint until they near the viewport;
+   `auto` remembers each one's real height once it has been drawn. */
+@utility gc-cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 @utility gc-pattern {
@@ -313,4 +348,35 @@
 @media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
   .gc-float { animation-duration: 3.5s; }
   .gc-drift { animation-duration: 12s; }
+}
+
+/* ============================================================
+   SCROLL REVEALS (components/motion/reveal.tsx)
+   Content is in the HTML at full opacity. Where scroll-driven
+   animations exist it fades and slides in while entering the
+   viewport; anything already on screen at load is shown as is.
+   No JavaScript, so nothing waits for hydration.
+   ============================================================ */
+@keyframes gc-reveal {
+  from { opacity: 0; translate: var(--gc-rx, 0) var(--gc-ry, 24px); }
+  to { opacity: 1; translate: 0 0; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .gc-reveal {
+      animation: gc-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(4% + var(--gc-rd, 0%)) entry calc(60% + var(--gc-rd, 0%));
+    }
+    .gc-reveal-down { --gc-ry: -24px; }
+    .gc-reveal-left { --gc-rx: 28px; --gc-ry: 0; }
+    .gc-reveal-right { --gc-rx: -28px; --gc-ry: 0; }
+    .gc-reveal-none { --gc-ry: 0; }
+    /* Stagger: each item a little later in the scroll than the one before */
+    .gc-stagger > .gc-reveal:nth-child(2) { --gc-rd: 5%; }
+    .gc-stagger > .gc-reveal:nth-child(3) { --gc-rd: 10%; }
+    .gc-stagger > .gc-reveal:nth-child(4) { --gc-rd: 15%; }
+    .gc-stagger > .gc-reveal:nth-child(5) { --gc-rd: 20%; }
+    .gc-stagger > .gc-reveal:nth-child(n + 6) { --gc-rd: 25%; }
+  }
 }

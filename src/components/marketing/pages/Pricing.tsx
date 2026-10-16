@@ -78,7 +78,7 @@ export function Pricing() {
                   )}
                 >
                   {dark && (
-                    <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-gc-royal/40 blur-[90px]" />
+                    <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 -z-10 size-72 rounded-full gc-glow text-gc-royal/40" />
                   )}
                   <p className={cn("font-gc-display text-[1.375rem] font-bold", dark ? "text-white" : "text-gc-ink")}>{L(plan.name)}</p>
                   <p className={cn("mt-2 text-gc-small", dark ? "text-white/65" : "text-gc-ink-60")}>{L(plan.tagline)}</p>

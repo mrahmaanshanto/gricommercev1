@@ -77,10 +77,10 @@ function Aurora() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <div className="absolute inset-0 bg-gradient-to-b from-[#EEF4FF] via-white to-[#F2F7FF]" />
-      <div className="gc-drift absolute -left-[10%] -top-[30%] size-[38rem] rounded-full bg-gc-royal/20 blur-[110px]" />
-      <div className="gc-drift absolute -right-[8%] -top-[20%] size-[34rem] rounded-full bg-gc-sky/25 blur-[110px] [animation-delay:-6s]" />
-      <div className="gc-drift absolute bottom-[-35%] left-1/2 h-[30rem] w-[56rem] -translate-x-1/2 rounded-full bg-gc-royal-20/70 blur-[100px] [animation-delay:-11s]" />
-      <div className="gc-drift absolute bottom-[10%] right-[12%] size-[16rem] rounded-full bg-gc-accent/10 blur-[80px] [animation-delay:-3s]" />
+      <div className="gc-drift absolute -left-[10%] -top-[30%] size-[38rem] rounded-full gc-glow text-gc-royal/20" />
+      <div className="gc-drift absolute -right-[8%] -top-[20%] size-[34rem] rounded-full gc-glow text-gc-sky/25 [animation-delay:-6s]" />
+      <div className="gc-drift absolute bottom-[-35%] left-1/2 h-[30rem] w-[56rem] -translate-x-1/2 rounded-full gc-glow text-gc-royal-20/70 [animation-delay:-11s]" />
+      <div className="gc-drift absolute bottom-[10%] right-[12%] size-[16rem] rounded-full gc-glow text-gc-accent/10 [animation-delay:-3s]" />
       <div
         className="absolute inset-0"
         style={{

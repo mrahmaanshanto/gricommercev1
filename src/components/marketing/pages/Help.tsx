@@ -76,7 +76,7 @@ export function HelpIndex() {
 
         <Reveal delay={0.1} className="mt-6">
           <div className="relative isolate flex flex-col items-start gap-6 overflow-hidden rounded-[20px] bg-gc-dark p-8 sm:flex-row sm:items-center sm:justify-between md:p-10">
-            <div aria-hidden className="pointer-events-none absolute -right-20 -top-24 -z-10 size-72 rounded-full bg-gc-royal/40 blur-[90px]" />
+            <div aria-hidden className="pointer-events-none absolute -right-20 -top-24 -z-10 size-72 rounded-full gc-glow text-gc-royal/40" />
             <div>
               <p className="font-gc-display text-[1.5rem] font-bold text-white">{L(COPY.stillStuck)}</p>
               <p className="mt-2 text-gc-body text-white/65">{L(COPY.stillStuckBody)}</p>

@@ -54,8 +54,8 @@ export function BrandScreen({
         <div
           aria-hidden
           className={cn(
-            "pointer-events-none absolute left-1/2 top-1/2 -z-10 h-2/3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[70px]",
-            tone === "dark" ? "bg-gc-royal/40" : "bg-white/70",
+            "pointer-events-none absolute left-1/2 top-1/2 -z-10 h-2/3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full gc-glow",
+            tone === "dark" ? "text-gc-royal/40" : "text-white/70",
           )}
         />
 

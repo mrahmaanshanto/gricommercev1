@@ -112,7 +112,7 @@ export function HeroShots({ detail }: { detail: ModuleDetail }) {
   return (
     <div className="relative">
       <div className={cn("relative isolate rounded-[20px] bg-gradient-to-br from-gc-sky-20 via-gc-sky-10 to-gc-royal-10 p-3 sm:p-5 md:p-7", detail.heroPhone && "lg:mr-10")}>
-        <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-2/3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-[70px]" />
+        <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-2/3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full gc-glow text-white/70" />
         <BrowserShot shot={detail.heroShot} priority className={cn(detail.heroPhone && "hidden sm:block")} />
         {detail.heroPhone && <PhoneShot shot={detail.heroPhone} priority className="mx-auto w-[240px] sm:hidden" />}
       </div>

@@ -1,8 +1,9 @@
 /**
  * Shared state for the design preview panel (a review tool, not part of the
- * site): whether it is shown in this browser, and which hero is picked. While
- * the design is being chosen the panel is ON for everyone by default;
- * `?preview=off` hides it in that browser and `?preview` brings it back.
+ * site): whether it is shown in this browser, and which hero is picked. The
+ * hero and font are chosen (Hero 9, pair 4), so the panel is OFF for visitors:
+ * `?preview` (or `?hero=` / `?fonts`) turns it on in that browser, `?preview=off`
+ * turns it off. Off, neither the panel nor the other heroes are downloaded.
  * When the choices are final, delete components/dev and the hero variants.
  */
 
@@ -27,10 +28,10 @@ export function readPreviewEnabled() {
   try {
     const q = new URLSearchParams(window.location.search);
     if (q.get("preview") === "off") localStorage.setItem(ENABLED_KEY, "off");
-    else if (q.has("preview") || q.has("fonts") || q.has("hero")) localStorage.removeItem(ENABLED_KEY);
-    return localStorage.getItem(ENABLED_KEY) !== "off";
+    else if (q.has("preview") || q.has("fonts") || q.has("hero")) localStorage.setItem(ENABLED_KEY, "on");
+    return localStorage.getItem(ENABLED_KEY) === "on";
   } catch {
-    return true;
+    return false;
   }
 }
 
