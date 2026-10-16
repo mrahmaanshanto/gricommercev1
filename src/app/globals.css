@@ -380,3 +380,8 @@
     .gc-stagger > .gc-reveal:nth-child(n + 6) { --gc-rd: 25%; }
   }
 }
+
+/* Endless animations wait for the visitor's first scroll, touch, pointer move or key (lib/live.ts adds .gc-live). */
+html:not(.gc-live) :is(.gc-marquee, .gc-marquee-y, .gc-drift, .gc-float, .gc-dash, .animate-ping) {
+  animation-play-state: paused;
+}

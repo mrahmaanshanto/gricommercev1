@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { ArrowRight, Play, TrendingUp } from "lucide-react";
 import { HERO, HERO_VARIANTS as V } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
+import { readLive, subscribeLive } from "@/lib/live";
 import { EASE, HERO_STAGGER, heroDelay } from "@/lib/motion";
 import { Counter } from "./shared";
 import { useCards } from "./HeroGallery";
@@ -78,6 +79,8 @@ export function FeedCopy({ pill = false }: { pill?: boolean }) {
   const { t, L } = useI18n();
   const reduced = useReducedMotion();
   const F = V.feed;
+  // the loops (avatar bounce, ring pulse) start on the visitor's first interaction (lib/live.ts)
+  const live = useSyncExternalStore(subscribeLive, readLive, () => false);
   // Count the businesses up from zero once the row has appeared.
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -135,7 +138,7 @@ export function FeedCopy({ pill = false }: { pill?: boolean }) {
                 className="relative block rounded-full"
                 style={{ zIndex: CLIENTS.length - i }}
                 initial={reduced ? false : { opacity: 0, scale: 0.4, x: -14 }}
-                animate={reduced ? undefined : { opacity: 1, scale: 1, x: 0, y: [0, 0, -5, 0] }}
+                animate={reduced ? undefined : { opacity: 1, scale: 1, x: 0, ...(live ? { y: [0, 0, -5, 0] } : {}) }}
                 transition={{
                   opacity: { duration: 0.4, delay: 0.6 + i * 0.12 },
                   scale: { type: "spring", stiffness: 420, damping: 18, delay: 0.6 + i * 0.12 },
@@ -155,8 +158,9 @@ export function FeedCopy({ pill = false }: { pill?: boolean }) {
             >
               <motion.span
                 className="absolute inset-0 rounded-full border-2 border-gc-royal"
-                animate={reduced ? undefined : { scale: [1, 1.5], opacity: [0.6, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, delay: 1.4 }}
+                initial={{ opacity: 0 }}
+                animate={reduced || !live ? { opacity: 0 } : { scale: [1, 1.5], opacity: [0.6, 0] }}
+                transition={live ? { duration: 1.6, repeat: Infinity, delay: 0.4 } : { duration: 0 }}
               />
               +
             </motion.span>
@@ -202,12 +206,14 @@ function ProofTicker() {
   const { L } = useI18n();
   const reduced = useReducedMotion();
   const [i, setI] = useState(0);
+  const live = useSyncExternalStore(subscribeLive, readLive, () => false);
 
+  // cycles once the visitor is here (lib/live.ts): until then the first set stays put
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !live) return;
     const t = window.setInterval(() => setI((x) => (x + 1) % TICKER.length), 3200);
     return () => window.clearInterval(t);
-  }, [reduced]);
+  }, [reduced, live]);
 
   const item = TICKER[i];
   return (
