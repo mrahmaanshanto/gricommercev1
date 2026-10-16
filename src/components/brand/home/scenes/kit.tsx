@@ -15,8 +15,8 @@ import { useTimeline } from "../sections/kit";
  * pops. It loops while on screen; reduced motion shows the final beat.
  */
 
-export const W = 560;
-export const H = 440;
+export { W, H } from "./frame";
+import { W, H, Backdrop, STAGE_CLASS } from "./frame";
 
 /** Fits the 560 × 440 canvas to the column width and runs the scene's timeline. */
 export function Scene({
@@ -50,7 +50,7 @@ export function Scene({
         ref={box}
         role="img"
         aria-label={label}
-        className="relative w-full overflow-hidden rounded-[20px] bg-gradient-to-br from-[#EEF4FF] via-white to-[#EAF6FE] ring-1 ring-inset ring-gc-royal-20/60"
+        className={STAGE_CLASS}
         style={{ aspectRatio: `${W} / ${H}` }}
       >
         <Backdrop />
@@ -62,24 +62,6 @@ export function Scene({
           {children(beat)}
         </div>
       </div>
-    </div>
-  );
-}
-
-function Backdrop() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="gc-drift absolute -left-[15%] -top-[25%] size-[70%] rounded-full gc-glow text-gc-royal/10" />
-      <div className="gc-drift absolute -bottom-[30%] -right-[10%] size-[70%] rounded-full gc-glow text-gc-sky/15 [animation-delay:-7s]" />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "radial-gradient(rgba(10,91,207,0.16) 1px, transparent 1px)",
-          backgroundSize: "18px 18px",
-          maskImage: "radial-gradient(ellipse 75% 70% at 50% 45%, black 20%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 75% 70% at 50% 45%, black 20%, transparent 80%)",
-        }}
-      />
     </div>
   );
 }

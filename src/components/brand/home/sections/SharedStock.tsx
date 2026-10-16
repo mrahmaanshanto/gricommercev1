@@ -6,8 +6,10 @@ import { Reveal } from "@/components/motion";
 import { SHARED, SHARED_DEMO } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { Panel } from "../../primitives";
-import { StockScene } from "../scenes/StockScene";
 import { HOME_INNER, IconChip, TwoTone, useNum } from "./kit";
+import { lazyScene } from "../scenes/lazy";
+
+const StockScene = lazyScene(() => import("../scenes/StockScene").then((m) => m.StockScene));
 
 /* Today's simplified money picture. Received and outstanding never add into "cash". */
 const CASH = { counter: 61200, online: 18400, cod: 28640 };

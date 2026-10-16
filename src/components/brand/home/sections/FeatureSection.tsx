@@ -9,13 +9,15 @@ import { FEATURES } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/cn";
 import { Panel } from "../../primitives";
-import { FraudScene } from "../scenes/FraudScene";
-import { InboxScene } from "../scenes/InboxScene";
-import { RecoveryScene } from "../scenes/RecoveryScene";
-import { SocialScene } from "../scenes/SocialScene";
-import { StoreScene } from "../scenes/StoreScene";
-import { TrackingScene } from "../scenes/TrackingScene";
 import { HOME_INNER, IconChip, TwoTone } from "./kit";
+import { lazyScene } from "../scenes/lazy";
+
+const FraudScene = lazyScene(() => import("../scenes/FraudScene").then((m) => m.FraudScene));
+const InboxScene = lazyScene(() => import("../scenes/InboxScene").then((m) => m.InboxScene));
+const RecoveryScene = lazyScene(() => import("../scenes/RecoveryScene").then((m) => m.RecoveryScene));
+const SocialScene = lazyScene(() => import("../scenes/SocialScene").then((m) => m.SocialScene));
+const StoreScene = lazyScene(() => import("../scenes/StoreScene").then((m) => m.StoreScene));
+const TrackingScene = lazyScene(() => import("../scenes/TrackingScene").then((m) => m.TrackingScene));
 
 type FeatureId = keyof typeof FEATURES;
 

@@ -6,8 +6,10 @@ import { Reveal } from "@/components/motion";
 import { STORY } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { Panel } from "../../primitives";
-import { OrderScene } from "../scenes/OrderScene";
 import { HOME_INNER, IconChip, TwoTone } from "./kit";
+import { lazyScene } from "../scenes/lazy";
+
+const OrderScene = lazyScene(() => import("../scenes/OrderScene").then((m) => m.OrderScene));
 
 /**
  * Section 2 — "How it works": one order from the moment it arrives to the

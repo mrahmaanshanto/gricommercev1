@@ -7,8 +7,10 @@ import { Icon } from "@/components/ui/Icon";
 import { CONTROL } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { Panel } from "../../primitives";
-import { MoneyScene } from "../scenes/MoneyScene";
 import { HOME_INNER, IconChip, TwoTone } from "./kit";
+import { lazyScene } from "../scenes/lazy";
+
+const MoneyScene = lazyScene(() => import("../scenes/MoneyScene").then((m) => m.MoneyScene));
 
 /**
  * Section 3 — what needs attention today, emphasised: the three proof points

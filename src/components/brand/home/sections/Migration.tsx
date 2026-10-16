@@ -8,8 +8,10 @@ import { MIGRATION } from "@/data/copy/homepage";
 import { useI18n } from "@/i18n/provider";
 import { trackEvent } from "@/lib/analytics";
 import { GcButton, Panel } from "../../primitives";
-import { MigrateScene } from "../scenes/MigrateScene";
 import { HOME_INNER, IconChip, TwoTone } from "./kit";
+import { lazyScene } from "../scenes/lazy";
+
+const MigrateScene = lazyScene(() => import("../scenes/MigrateScene").then((m) => m.MigrateScene));
 
 /**
  * Migration assistant (Shopify / WordPress), emphasised: the pitch beside an

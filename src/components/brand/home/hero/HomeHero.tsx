@@ -25,6 +25,8 @@ const CLIENTS = ["merchant-boutique-owner", "merchant-skincare-live", "merchant-
 export function HomeHero() {
   const cards = useCards();
   const columns = [cards.filter((_, i) => i % 2 === 0), cards.filter((_, i) => i % 2 === 1)];
+  // the columns loop by repeating their cards; the repeat is only needed once they move (first interaction)
+  const live = useSyncExternalStore(subscribeLive, readLive, () => false);
 
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
@@ -57,7 +59,7 @@ export function HomeHero() {
                       className="gc-marquee-y flex flex-col items-center gap-3 pb-3 lg:gap-4 lg:pb-4"
                       style={{ ["--gc-marquee-duration" as string]: c ? "34s" : "28s" }}
                     >
-                      {[...col, ...col].map((card, i) => (
+                      {(live ? [...col, ...col] : col).map((card, i) => (
                         <div key={`${card.key}-${i}`} className="w-full [&>*]:!w-full">
                           {card.node}
                         </div>
