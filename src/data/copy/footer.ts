@@ -22,7 +22,7 @@ export const FOOTER = {
     { label: loc("Compare", "তুলনা"), href: "/compare" },
     { label: loc("Migration", "মাইগ্রেশন"), href: "/migration" },
     { label: loc("Blog", "ব্লগ"), href: "/blog" },
-    { label: loc("Careers", "ক্যারিয়ার"), href: "/about#careers" },
+    { label: loc("Careers", "ক্যারিয়ার"), href: "/careers" },
   ],
   payWith: loc("Your customers can pay with", "আপনার কাস্টমার পেমেন্ট করতে পারেন"),
   contact: loc("Contact us", "যোগাযোগ"),

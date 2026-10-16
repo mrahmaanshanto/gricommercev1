@@ -123,6 +123,7 @@ export const MEGA_MENUS: MegaMenu[] = [
           { label: loc("Contact", "যোগাযোগ"), href: "/contact", icon: "Mail" },
           { label: loc("Platform Status", "প্ল্যাটফর্ম স্ট্যাটাস"), href: "/status", icon: "Activity" },
           { label: loc("About", "আমাদের কথা"), href: "/about", icon: "Building2" },
+          { label: loc("Careers", "ক্যারিয়ার"), href: "/careers", icon: "Briefcase" },
         ],
       },
     ],
@@ -176,7 +177,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: loc("About", "আমাদের কথা"), href: "/about" },
       { label: loc("Contact", "যোগাযোগ"), href: "/contact" },
-      { label: loc("Careers", "ক্যারিয়ার"), href: "/about#careers" },
+      { label: loc("Careers", "ক্যারিয়ার"), href: "/careers" },
       { label: loc("Partners", "পার্টনার"), href: "/contact?topic=partnership" },
     ],
   },

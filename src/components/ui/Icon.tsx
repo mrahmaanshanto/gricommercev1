@@ -11,6 +11,7 @@ import {
   Zap,
   CalendarCheck, CalendarClock, ClipboardCheck, Contact, Crown, Gift, PackageX, PhoneCall,
   Radar, RadioTower, RefreshCw, Scale, Share2, Sun, Target, TicketPercent, Workflow,
+  Briefcase, CalendarDays, Coins, HeartPulse, House, Paperclip, Upload, Utensils,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,6 +28,7 @@ export const ICONS: Record<string, LucideIcon> = {
   TrendingUp, Truck, Users, Wallet, Warehouse, Zap,
   CalendarCheck, CalendarClock, ClipboardCheck, Contact, Crown, Gift, PackageX, PhoneCall,
   Radar, RadioTower, RefreshCw, Scale, Share2, Sun, Target, TicketPercent, Workflow,
+  Briefcase, CalendarDays, Coins, HeartPulse, House, Paperclip, Upload, Utensils,
 };
 
 export function Icon({

@@ -18,6 +18,7 @@ export type AnalyticsEvent =
   | "signup_completed"
   | "login_submitted"
   | "contact_submitted"
+  | "job_application_submitted"
   | "newsletter_submitted"
   | "language_switched"
   | "mega_menu_opened"

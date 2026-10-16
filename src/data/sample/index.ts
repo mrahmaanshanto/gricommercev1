@@ -31,3 +31,4 @@ export * from "./integrations";
 export * from "./articles";
 export * from "./features";
 export * from "./pages";
+export * from "./careers";

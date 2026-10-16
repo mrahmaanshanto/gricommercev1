@@ -28,6 +28,7 @@ grep -rn "data/sample" src
 | `articles.ts` | Six blog posts, six help categories with articles, about values, status states |
 | `features.ts` | Supporting copy for the seven supporting feature pages (module pages render from `data/copy/modules.ts`) |
 | `pages.ts` | Themes, about, status and legal document structures |
+| `careers.ts` | GridCommerce's employer profile, benefits and three open jobs (pay, dates, questions), mirrored from the platform's demo Grid Career data. `JOBS_ARE_REAL` keeps JobPosting structured data off until real jobs replace them |
 
 ## Outside that directory
 
