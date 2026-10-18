@@ -130,7 +130,11 @@ export const MEGA_MENUS: MegaMenu[] = [
   },
 ];
 
+/* "How it works" scrolls to the order-to-money walkthrough on the homepage
+ * (`sections/OrderStory`, id `how-it-works`; the Panel carries scroll-mt for
+ * the sticky bar). From any other page the link opens the homepage there. */
 export const PRIMARY_NAV: { label: Localized; href: string }[] = [
+  { label: loc("How it works", "কীভাবে কাজ করে"), href: "/#how-it-works" },
   { label: loc("Pricing", "প্রাইসিং ও প্ল্যান"), href: "/pricing" },
   { label: loc("Compare", "তুলনা"), href: "/compare" },
 ];

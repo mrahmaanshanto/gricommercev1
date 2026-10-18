@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { Smartphone } from "lucide-react";
 import { FOOTER } from "@/data/copy/footer";
 import { APP_LINKS, MOBILE_APPS } from "@/data/copy/homepage";
 import { FOOTER_COLUMNS } from "@/data/navigation";
@@ -145,6 +146,41 @@ function LogoStrip({ label, logos }: { label: string; logos: Logo[] }) {
   );
 }
 
+/**
+ * A store badge while the listing is not live: shown, not linked. The badge is
+ * dimmed, the "Coming soon" label sits on it, and the element is a disabled
+ * link so nothing suggests a tap will open a store. The moment a real store
+ * address is set in APP_LINKS it becomes an ordinary link again.
+ */
+function StoreBadge({ src, alt, soon, href }: { src: string; alt: string; soon: string; href: string }) {
+  const { L } = useI18n();
+  const live = href && href !== "#";
+  if (live) {
+    return (
+      <a href={href} aria-label={alt} className="rounded-[10px] ring-1 ring-white/25 transition-transform hover:-translate-y-0.5">
+        <Image src={src} alt={alt} width={360} height={108} className="h-11 w-auto sm:h-12" />
+      </a>
+    );
+  }
+  return (
+    <span className="flex flex-col items-center gap-1.5">
+      <a
+        role="link"
+        aria-disabled="true"
+        aria-label={soon}
+        tabIndex={-1}
+        className="relative block cursor-default rounded-[10px] ring-1 ring-white/15"
+        onClick={(e) => e.preventDefault()}
+      >
+        <Image src={src} alt="" width={360} height={108} className="h-11 w-auto opacity-45 grayscale sm:h-12" />
+        <span aria-hidden className="absolute inset-x-0 -bottom-1.5 mx-auto w-max rounded-full bg-gc-accent px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.06em] text-white">
+          {L(FOOTER.app.comingSoon)}
+        </span>
+      </a>
+    </span>
+  );
+}
+
 /** "Your shop, in your pocket." — store badges around a QR code, then a fan of phone-app screens. */
 function AppBlock() {
   const { L } = useI18n();
@@ -169,15 +205,23 @@ function AppBlock() {
         <p className="mx-auto mt-4 max-w-2xl text-gc-body text-white/60">{L(FOOTER.app.body)}</p>
 
         <div className="mt-8 flex items-center justify-center gap-3 sm:gap-5">
-          <a href={APP_LINKS.appStore} aria-label={L(MOBILE_APPS.appStore)} className="rounded-[10px] ring-1 ring-white/25 transition-transform hover:-translate-y-0.5">
-            <Image src="/apps/app-store.webp" alt={L(MOBILE_APPS.appStore)} width={360} height={108} className="h-11 w-auto sm:h-12" />
-          </a>
+          <StoreBadge src="/apps/app-store.webp" alt={L(MOBILE_APPS.appStore)} soon={L(FOOTER.app.appStoreSoon)} href={APP_LINKS.appStore} />
           <span className="grid size-[84px] shrink-0 place-items-center rounded-[14px] bg-white p-2 ring-2 ring-gc-accent/50 sm:size-24" title={L(FOOTER.app.scan)}>
             <Image src="/apps/qr-site.svg" alt={L(FOOTER.app.scan)} width={80} height={80} className="size-full" unoptimized />
           </span>
-          <a href={APP_LINKS.googlePlay} aria-label={L(MOBILE_APPS.googlePlay)} className="rounded-[10px] ring-1 ring-white/25 transition-transform hover:-translate-y-0.5">
-            <Image src="/apps/google-play.webp" alt={L(MOBILE_APPS.googlePlay)} width={360} height={108} className="h-11 w-auto sm:h-12" />
-          </a>
+          <StoreBadge src="/apps/google-play.webp" alt={L(MOBILE_APPS.googlePlay)} soon={L(FOOTER.app.googlePlaySoon)} href={APP_LINKS.googlePlay} />
+        </div>
+
+        {/* One thing the phone app does today (Orders: list, detail with the full order flow). */}
+        <div className="mx-auto mt-6 flex max-w-md items-start gap-3 rounded-[16px] bg-white/[0.06] p-4 text-left ring-1 ring-inset ring-white/12">
+          <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/10 text-gc-sky">
+            <Smartphone aria-hidden className="size-5" strokeWidth={1.9} />
+          </span>
+          <div className="min-w-0">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white/50">{L(FOOTER.app.taskLabel)}</p>
+            <p className="mt-0.5 text-gc-small font-semibold text-white">{L(FOOTER.app.task)}</p>
+            <p className="mt-1 text-[0.8125rem] leading-snug text-white/60">{L(FOOTER.app.taskBody)}</p>
+          </div>
         </div>
       </div>
 

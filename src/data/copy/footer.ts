@@ -9,10 +9,18 @@ export const FOOTER = {
   app: {
     title: loc("Your shop, in your pocket.", "আপনার দোকান, আপনার পকেটে।"),
     body: loc(
-      "Take orders, reply to customers, check stock and see today’s cash from your phone. For Android and iPhone.",
-      "ফোন থেকেই অর্ডার নিন, কাস্টমারকে উত্তর দিন, স্টক দেখুন আর আজকের ক্যাশ জানুন। Android ও iPhone-এর জন্য।",
+      "Take orders, reply to customers, check stock and see today’s cash from your phone. The panel opens in your phone’s browser today; the store apps are on their way.",
+      "ফোন থেকেই অর্ডার নিন, কাস্টমারকে উত্তর দিন, স্টক দেখুন আর আজকের ক্যাশ জানুন। আজ প্যানেল খোলে ফোনের ব্রাউজারে; স্টোরের অ্যাপ আসছে।",
     ),
     scan: loc("Scan to open GridCommerce", "স্ক্যান করে GridCommerce খুলুন"),
+    /* The store badges are shown, not linked, until the listings are live. */
+    comingSoon: loc("Coming soon", "শিগগিরই আসছে"),
+    appStoreSoon: loc("App Store: coming soon", "App Store: শিগগিরই আসছে"),
+    googlePlaySoon: loc("Google Play: coming soon", "Google Play: শিগগিরই আসছে"),
+    /* One task from the phone app (Orders: list, detail with the full order flow). */
+    taskLabel: loc("From your phone", "ফোন থেকেই"),
+    task: loc("Confirm an order and book the courier", "অর্ডার কনফার্ম করে কুরিয়ার বুক করুন"),
+    taskBody: loc("Open the order, see the customer and stock, approve it and send it to Pathao, Steadfast or RedX.", "অর্ডার খুলুন, কাস্টমার আর স্টক দেখুন, অনুমোদন দিন আর Pathao, Steadfast বা RedX-এ পাঠান।"),
   },
   modules: loc("Modules", "মডিউল"),
   explore: loc("Explore", "আরও দেখুন"),

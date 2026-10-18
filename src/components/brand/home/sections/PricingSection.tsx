@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Check, Tag as TagIcon } from "lucide-react";
+import { Icon } from "@/components/ui/Icon";
 import { PRICING_HOME as P } from "@/data/copy/compare";
 import { PLANS, PRICING_COPY } from "@/data/sample";
 import { useI18n } from "@/i18n/provider";
@@ -112,6 +113,21 @@ export function PricingSection() {
             </motion.div>
           );
         })}
+      </div>
+
+      {/* What the price covers: the trial, usage credits, no commission, VAT. */}
+      <div className="mt-10 rounded-[20px] bg-gc-canvas p-5 ring-1 ring-inset ring-gc-line md:p-6">
+        <h3 className="font-gc-display text-[1rem] font-bold text-gc-ink">{L(P.notesTitle)}</h3>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {P.notes.map((note, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-white text-gc-royal ring-1 ring-gc-line">
+                <Icon name={note.icon} className="size-[18px]" />
+              </span>
+              <p className="text-gc-small leading-relaxed text-gc-ink-70">{L(note.text)}</p>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-8 flex flex-col items-center gap-3 text-center">

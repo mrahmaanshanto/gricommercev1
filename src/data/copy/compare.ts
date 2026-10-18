@@ -18,8 +18,8 @@ export const COMPARE = {
   eyebrow: loc("Compare", "তুলনা"),
   title: loc("GridCommerce vs Shopify vs WordPress.", "GridCommerce বনাম Shopify বনাম WordPress।"),
   body: loc(
-    "Shopify and WordPress are built for the whole world. GridCommerce is built for selling in Bangladesh: COD, couriers, bKash and fake orders are part of the product, not extra apps.",
-    "Shopify আর WordPress পুরো দুনিয়ার জন্য তৈরি। GridCommerce তৈরি বাংলাদেশে বিক্রির জন্য: COD, কুরিয়ার, bKash আর ফেক অর্ডার সামলানো প্রোডাক্টের ভেতরেই, আলাদা অ্যাপ লাগে না।",
+    "Shopify and WordPress are built for the whole world. GridCommerce is built for selling in Bangladesh: COD, couriers, bKash and the courier history of a phone number are part of the product, not extra apps.",
+    "Shopify আর WordPress পুরো দুনিয়ার জন্য তৈরি। GridCommerce তৈরি বাংলাদেশে বিক্রির জন্য: COD, কুরিয়ার, bKash আর ফোন নম্বরের কুরিয়ার ইতিহাস প্রোডাক্টের ভেতরেই, আলাদা অ্যাপ লাগে না।",
   ),
   columns: {
     gc: loc("GridCommerce", "GridCommerce"),
@@ -35,7 +35,7 @@ export const COMPARE = {
       lines: [
         loc("Paid in taka", "টাকায় পেমেন্ট"),
         loc("No commission on your sales", "বিক্রিতে কোনো কমিশন নেই"),
-        loc("Courier, COD and fraud check included", "কুরিয়ার, COD আর ফ্রড চেক সাথেই"),
+        loc("Courier, COD and the courier history check included", "কুরিয়ার, COD আর কুরিয়ার ইতিহাস যাচাই সাথেই"),
       ],
     },
     shopify: {
@@ -55,65 +55,71 @@ export const COMPARE = {
       ],
     },
   },
-  legend: { yes: loc("Built in", "ভেতরেই আছে"), part: loc("Needs apps or extra cost", "অ্যাপ বা বাড়তি খরচ লাগে"), no: loc("Not available", "নেই") },
+  /* Every mark carries a word (shown and read aloud), then the legend says what the word means. */
+  words: { yes: loc("Yes", "হ্যাঁ"), part: loc("Partly", "আংশিক"), no: loc("No", "না") },
+  legend: {
+    yes: loc("Yes: part of the product", "হ্যাঁ: প্রোডাক্টের ভেতরেই"),
+    part: loc("Partly: needs an add-on, app or plugin (the note says which)", "আংশিক: অ্যাড-অন, অ্যাপ বা প্লাগইন লাগে (নোটে বলা আছে)"),
+    no: loc("No: not part of the product", "না: প্রোডাক্টে নেই"),
+  },
   rows: [
     {
-      label: loc("Fraud check before shipping", "শিপের আগে ফ্রড চেক"),
-      gc: yes("Courier history by phone, risky and duplicate orders flagged", "ফোন দিয়ে কুরিয়ার হিস্টরি, ঝুঁকিপূর্ণ ও ডুপ্লিকেট অর্ডার চিহ্নিত"),
+      label: loc("Risky COD orders checked before shipping", "শিপের আগে ঝুঁকিপূর্ণ COD অর্ডার যাচাই"),
+      gc: yes("Courier delivery history for the phone number; you decide what to do", "ফোন নম্বরের কুরিয়ার ডেলিভারি ইতিহাস; কী করবেন আপনি ঠিক করেন"),
       shopify: part("Card fraud only; COD checks need an app", "শুধু কার্ড ফ্রড; COD চেকে অ্যাপ লাগে"),
       woo: part("Needs a plugin", "প্লাগইন লাগে"),
     },
     {
       label: loc("Pathao, Steadfast and RedX booking", "Pathao, Steadfast ও RedX বুকিং"),
-      gc: yes("Book in one click", "এক ক্লিকে বুক"),
+      gc: yes("Book from the order; tracking ID comes back", "অর্ডার থেকেই বুক; ট্র্যাকিং আইডি ফিরে আসে"),
       shopify: part("Through third-party apps", "থার্ড-পার্টি অ্যাপ দিয়ে"),
       woo: part("Through plugins", "প্লাগইন দিয়ে"),
     },
     {
       label: loc("COD money tracking and payout matching", "COD টাকা ট্র্যাকিং ও পেআউট মেলানো"),
-      gc: yes("Every taka matched to its order", "প্রতিটি টাকা তার অর্ডারের সাথে মেলানো"),
+      gc: yes("Each courier payout matched to its orders", "প্রতিটি কুরিয়ার পেআউট তার অর্ডারের সাথে মেলানো"),
       shopify: no("Not built in", "ভেতরে নেই"),
       woo: no("Not built in", "ভেতরে নেই"),
     },
     {
-      label: loc("AI calls to confirm orders in Bangla", "বাংলায় AI কলে অর্ডার কনফার্ম"),
-      gc: yes("Calls, confirms and saves the answer", "কল করে, কনফার্ম করে, উত্তর সেভ রাখে"),
+      label: loc("Order confirmation calls", "অর্ডার কনফার্মেশন কল"),
+      gc: yes("A call step on every order: AI or a person; the answer is saved", "প্রতিটি অর্ডারে কলের ধাপ: AI বা মানুষ; উত্তর সেভ থাকে"),
       shopify: no("Not available", "নেই"),
       woo: no("Not available", "নেই"),
     },
     {
       label: loc("bKash, Nagad and SSLCommerz checkout", "bKash, Nagad ও SSLCommerz চেকআউট"),
-      gc: yes("Ready to connect", "কানেক্ট করার জন্য রেডি"),
+      gc: yes("Connect your own gateway accounts", "আপনার নিজের গেটওয়ে অ্যাকাউন্ট যুক্ত করুন"),
       shopify: part("Through apps, with an extra fee per sale", "অ্যাপ দিয়ে, প্রতি বিক্রিতে বাড়তি ফি"),
       woo: part("Through plugins", "প্লাগইন দিয়ে"),
     },
     {
       label: loc("Facebook, WhatsApp and Instagram inbox", "Facebook, WhatsApp ও Instagram ইনবক্স"),
-      gc: yes("Add-on, with order from chat", "অ্যাড-অন, চ্যাট থেকে অর্ডারসহ"),
+      gc: part("Inbox add-on; create the order from the chat", "ইনবক্স অ্যাড-অন; চ্যাট থেকেই অর্ডার তৈরি"),
       shopify: part("Through apps", "অ্যাপ দিয়ে"),
       woo: part("Through plugins", "প্লাগইন দিয়ে"),
     },
     {
       label: loc("Server-side tracking for Meta, TikTok and Google", "Meta, TikTok ও Google-এর সার্ভার-সাইড ট্র্যাকিং"),
-      gc: yes("One setup for all three", "তিনটির জন্য এক সেটআপ"),
+      gc: yes("One Pixels & events page; you connect your ad accounts", "একটি Pixels ও events পেজ; অ্যাড অ্যাকাউন্ট আপনি যুক্ত করেন"),
       shopify: part("One app per platform", "প্রতি প্ল্যাটফর্মে আলাদা অ্যাপ"),
       woo: part("Through plugins", "প্লাগইন দিয়ে"),
     },
     {
       label: loc("Real profit after courier, returns and ads", "কুরিয়ার, রিটার্ন ও বিজ্ঞাপন বাদে আসল লাভ"),
-      gc: yes("In the reports", "রিপোর্টেই আছে"),
+      gc: yes("In the reports, from your own cost prices", "রিপোর্টে, আপনার দেওয়া কেনা দাম থেকে"),
       shopify: part("Needs apps", "অ্যাপ লাগে"),
       woo: part("Needs plugins", "প্লাগইন লাগে"),
     },
     {
       label: loc("Shop counter POS with the same stock", "একই স্টকে দোকানের POS"),
-      gc: yes("Included", "সাথেই আছে"),
+      gc: yes("In the Retail and Retail + Online systems", "Retail আর Retail + Online সিস্টেমে"),
       shopify: part("Yes; POS Pro costs extra", "আছে; POS Pro-তে বাড়তি খরচ"),
       woo: part("Through plugins", "প্লাগইন দিয়ে"),
     },
     {
       label: loc("Bring your old store", "পুরনো স্টোর নিয়ে আসা"),
-      gc: yes("Customers, orders and products", "কাস্টমার, অর্ডার আর প্রোডাক্ট"),
+      gc: yes("Products, customers and past orders from an export file, checked before import", "এক্সপোর্ট ফাইল থেকে প্রোডাক্ট, কাস্টমার আর আগের অর্ডার, ইমপোর্টের আগে যাচাই"),
       shopify: part("Import tools and apps", "ইমপোর্ট টুল আর অ্যাপ"),
       woo: part("Import plugins", "ইমপোর্ট প্লাগইন"),
     },
@@ -153,5 +159,37 @@ export const PRICING_HOME = {
   start: loc("Start free trial", "ফ্রি ট্রায়াল শুরু করুন"),
   all: loc("See all plans and add-ons", "সব প্ল্যান ও অ্যাড-অন দেখুন"),
   orders: loc("orders a month", "অর্ডার প্রতি মাসে"),
+  /* What the price does and does not cover. Figures come from pricing.ts only. */
+  notesTitle: loc("Good to know", "জেনে রাখুন"),
+  notes: [
+    {
+      icon: "CalendarClock",
+      text: loc(
+        "The trial is 15 days of the plan you pick, with your own products and orders. Nothing is charged until you choose to continue.",
+        "ট্রায়াল মানে আপনার বাছা প্ল্যান ১৫ দিন, নিজের প্রোডাক্ট আর অর্ডার দিয়ে। আপনি চালিয়ে যেতে চাইলে তবেই টাকা নেওয়া হয়।",
+      ),
+    },
+    {
+      icon: "Coins",
+      text: loc(
+        "SMS, WhatsApp, email and AI are paid by use, from a separate prepaid credits balance. Your plan includes some AI credits and SMS; the rest is topped up when you need it.",
+        "SMS, WhatsApp, ইমেইল আর AI-এর খরচ ব্যবহার অনুযায়ী, আলাদা প্রিপেইড ক্রেডিট ব্যালেন্স থেকে। প্ল্যানের সাথে কিছু AI ক্রেডিট আর SMS থাকে; বাকিটা দরকার হলে টপ-আপ করেন।",
+      ),
+    },
+    {
+      icon: "Percent",
+      text: loc(
+        "No commission on your sales, on COD or on bKash and Nagad payments. The plan price is the price.",
+        "বিক্রি, COD বা bKash-Nagad পেমেন্টে কোনো কমিশন নেই। প্ল্যানের দামই দাম।",
+      ),
+    },
+    {
+      icon: "Receipt",
+      text: loc(
+        "Prices are in taka. VAT is added to the bill where it applies.",
+        "দাম টাকায়। যেখানে প্রযোজ্য, বিলে VAT যোগ হয়।",
+      ),
+    },
+  ],
 };
 

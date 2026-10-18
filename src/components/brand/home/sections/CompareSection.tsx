@@ -112,12 +112,12 @@ export function CompareSection({ full = false, id = "compare" }: { full?: boolea
             <p className="font-gc-display text-[1rem] font-bold text-gc-ink">{L(r.label)}</p>
             <dl className="mt-3 space-y-2">
               {COLS.map((c) => (
-                <div key={c} className={cn("flex items-start gap-2.5 rounded-xl p-2", c === "gc" && "bg-gc-royal-10")}>
-                  <Mark cell={r[c]} />
-                  <div className="min-w-0">
-                    <dt className="text-[0.75rem] font-semibold text-gc-ink">{L(C.columns[c])}</dt>
-                    <dd className="text-[0.8125rem] leading-snug text-gc-ink-60">{L(r[c].note)}</dd>
-                  </div>
+                <div key={c} className={cn("rounded-xl p-2.5", c === "gc" && "bg-gc-royal-10")}>
+                  <dt className="flex items-center justify-between gap-3 text-[0.75rem] font-semibold text-gc-ink">
+                    {L(C.columns[c])}
+                    <Mark cell={r[c]} />
+                  </dt>
+                  <dd className="mt-1 text-[0.8125rem] leading-snug text-gc-ink-60">{L(r[c].note)}</dd>
                 </div>
               ))}
             </dl>
@@ -148,7 +148,7 @@ function TableRow({ row, last }: { row: Row; last: boolean }) {
       </th>
       {COLS.map((c) => (
         <td key={c} className={cn("px-4 py-4 align-top", c === "gc" && "bg-gc-royal-10/60")}>
-          <div className="flex items-start gap-2.5">
+          <div className="flex flex-col gap-1.5">
             <Mark cell={row[c]} />
             <span className={cn("text-[0.8125rem] leading-snug", c === "gc" ? "font-medium text-gc-ink" : "text-gc-ink-60")}>{L(row[c].note)}</span>
           </div>
@@ -158,27 +158,27 @@ function TableRow({ row, last }: { row: Row; last: boolean }) {
   );
 }
 
+const MARK_STYLE: Record<Cell["mark"], { icon: typeof Check; dot: string; text: string }> = {
+  yes: { icon: Check, dot: "bg-gc-success text-white", text: "text-gc-success" },
+  part: { icon: Minus, dot: "bg-gc-warning-10 text-gc-warning", text: "text-gc-warning" },
+  no: { icon: X, dot: "bg-[#FEF2F2] text-[#D93636]", text: "text-[#D93636]" },
+};
+
+/**
+ * A mark is never colour or a glyph alone: the word (Yes / Partly / No) is
+ * shown beside the icon and is the text a screen reader gets. The cell's note
+ * then says what "partly" means in that row.
+ */
 function Mark({ cell }: { cell: Cell }) {
   const { L } = useI18n();
-  const label = L(COMPARE.legend[cell.mark]);
-  if (cell.mark === "yes")
-    return (
-      <span className="grid size-5 shrink-0 place-items-center rounded-full bg-gc-success text-white" title={label}>
-        <Check aria-hidden className="size-3" strokeWidth={3} />
-        <span className="sr-only">{label}</span>
-      </span>
-    );
-  if (cell.mark === "part")
-    return (
-      <span className="grid size-5 shrink-0 place-items-center rounded-full bg-gc-warning-10 text-gc-warning" title={label}>
-        <Minus aria-hidden className="size-3" strokeWidth={3} />
-        <span className="sr-only">{label}</span>
-      </span>
-    );
+  const s = MARK_STYLE[cell.mark];
+  const Icon = s.icon;
   return (
-    <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#FEF2F2] text-[#D93636]" title={label}>
-      <X aria-hidden className="size-3" strokeWidth={3} />
-      <span className="sr-only">{label}</span>
+    <span className="flex shrink-0 items-center gap-1.5">
+      <span aria-hidden className={cn("grid size-5 shrink-0 place-items-center rounded-full", s.dot)}>
+        <Icon className="size-3" strokeWidth={3} />
+      </span>
+      <span className={cn("text-[0.75rem] font-bold uppercase tracking-[0.04em]", s.text)}>{L(COMPARE.words[cell.mark])}</span>
     </span>
   );
 }
@@ -186,13 +186,19 @@ function Mark({ cell }: { cell: Cell }) {
 function Legend() {
   const { L } = useI18n();
   return (
-    <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[0.8125rem] text-gc-ink-60">
-      {(["yes", "part", "no"] as const).map((m) => (
-        <li key={m} className="flex items-center gap-1.5">
-          <Mark cell={{ mark: m, note: COMPARE.legend[m] }} />
-          {L(COMPARE.legend[m])}
-        </li>
-      ))}
+    <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[0.8125rem] text-gc-ink-60">
+      {(["yes", "part", "no"] as const).map((m) => {
+        const s = MARK_STYLE[m];
+        const Icon = s.icon;
+        return (
+          <li key={m} className="flex items-center gap-2">
+            <span aria-hidden className={cn("grid size-5 shrink-0 place-items-center rounded-full", s.dot)}>
+              <Icon className="size-3" strokeWidth={3} />
+            </span>
+            <span>{L(COMPARE.legend[m])}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }

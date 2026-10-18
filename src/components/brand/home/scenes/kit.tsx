@@ -1,73 +1,110 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { MousePointer2, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
-import { useTimeline } from "../sections/kit";
+import { useI18n } from "@/i18n/provider";
+import { SCENE_COMMON } from "@/data/copy/scenes";
+import { SceneSteps, useScenePlayer, type Step } from "./player";
 
 /*
- * Animated product scenes. Each scene is drawn on a fixed 560 × 440 canvas of
- * small widget cards (the hero gallery's style) and scaled to fit its column,
- * so the composition is identical on a phone and a desktop. A scene is a
- * timeline of beats: cards arrive, values change, a cursor clicks, a toast
- * pops. It loops while on screen; reduced motion shows the final beat.
+ * Animated product scenes. Each scene is a short story about one order: cards arrive, a value changes, a status
+ * flips. On a wide screen the scene is drawn on a fixed 560 × 440 canvas of widget cards and scaled to fit its
+ * column. On a phone the same cards are laid out in one column at full size, in reading order, so nothing is tiny
+ * (`compact`). Every scene runs through the player (player.tsx): autoplay on screen, captions for each step,
+ * Prev / Pause / Next / Replay, a held final frame, and a static final state under reduced motion.
  */
 
 export { W, H } from "./frame";
 import { W, H, Backdrop, STAGE_CLASS } from "./frame";
+export type { Step } from "./player";
 
-/** Fits the 560 × 440 canvas to the column width and runs the scene's timeline. */
+const CompactCtx = createContext(false);
+/** True when the scene is laid out as a column (phones). */
+export const useCompact = () => useContext(CompactCtx);
+
+/** Fits the canvas to the column width (or stacks it on phones) and runs the scene's timeline. */
 export function Scene({
   cues,
   duration,
+  steps,
+  h = H,
   children,
   className,
   label,
 }: {
   cues: number[];
-  duration: number;
-  children: (beat: number) => ReactNode;
+  duration?: number;
+  /** The captions, each from a beat onward; the first should be at 0. Without them the scene has no rail (legacy). */
+  steps?: Step[];
+  /** Canvas height for wide screens (the width is always 560). */
+  h?: number;
+  children: (beat: number, compact: boolean) => ReactNode;
   className?: string;
   label: string;
 }) {
-  const { ref, beat } = useTimeline(cues, { duration });
+  const { L } = useI18n();
+  const { ref, player, stepIndex } = useScenePlayer(cues, steps ?? [], { duration });
   const box = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState<number | null>(null);
+  const [width, setWidth] = useState<number | null>(null);
 
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) => setScale(Math.min(1.25, e.contentRect.width / W)));
+    const ro = new ResizeObserver(([e]) => setWidth(e.contentRect.width));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
+  // below 480px of column the desktop canvas would shrink its labels under 9px: lay the cards out instead
+  const compact = width !== null && width < 480;
+  const scale = width === null ? null : Math.min(1.25, width / W);
+  const b = player.beat;
+
   return (
-    <div ref={ref} className={cn("relative -mx-4 sm:mx-0", className)}>
-      <div
-        ref={box}
-        role="img"
-        aria-label={label}
-        className={STAGE_CLASS}
-        style={{ aspectRatio: `${W} / ${H}` }}
-      >
+    <div ref={ref} className={cn("relative", className)}>
+      <div ref={box} role="img" aria-label={label} className={cn(STAGE_CLASS, compact && "p-3")} style={compact ? undefined : { aspectRatio: `${W} / ${h}` }}>
         <Backdrop />
-        <div
-          aria-hidden
-          className={cn("absolute left-0 top-0 origin-top-left transition-opacity duration-500", scale === null ? "opacity-0" : "opacity-100")}
-          style={{ width: W, height: H, transform: `scale(${scale ?? 1})` }}
-        >
-          {children(beat)}
-        </div>
+        <span className="absolute right-3 top-3 z-[70] rounded-full bg-white/90 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-gc-ink-60 ring-1 ring-gc-line">
+          {L(SCENE_COMMON.example)}
+        </span>
+        <CompactCtx.Provider value={compact}>
+          {compact ? (
+            <div aria-hidden className="relative flex flex-col gap-2.5 pt-7">
+              {children(b, true)}
+            </div>
+          ) : (
+            <div
+              aria-hidden
+              className={cn("absolute left-0 top-0 origin-top-left transition-opacity duration-500", scale === null ? "opacity-0" : "opacity-100")}
+              style={{ width: W, height: h, transform: `scale(${scale ?? 1})` }}
+            >
+              {children(b, false)}
+            </div>
+          )}
+        </CompactCtx.Provider>
       </div>
+      {steps && <SceneSteps steps={steps} player={player} stepIndex={stepIndex} />}
     </div>
   );
 }
 
-/** Absolute placement on the canvas, in canvas pixels. */
-export function At({ x, y, w, z, children, className, style }: { x: number; y: number; w?: number; z?: number; children: ReactNode; className?: string; style?: CSSProperties }) {
+/**
+ * Placement on the canvas, in canvas pixels. On phones the same element becomes a full-width row, ordered by its
+ * `order` (or its `y`, so the reading order follows the vertical layout); `hide` leaves it out of the column.
+ */
+export function At({ x, y, w, z, order, hide, children, className, style }: { x: number; y: number; w?: number; z?: number; order?: number; hide?: boolean; children: ReactNode; className?: string; style?: CSSProperties }) {
+  const compact = useCompact();
+  if (compact) {
+    if (hide) return null;
+    return (
+      <div className={cn("w-full", className)} style={{ order: order ?? y }}>
+        {children}
+      </div>
+    );
+  }
   return (
     <div className={cn("absolute", className)} style={{ left: x, top: y, width: w, zIndex: z, ...style }}>
       {children}
@@ -84,10 +121,28 @@ const OFF: Record<From, { x?: number; y?: number; scale?: number }> = {
   pop: { scale: 0.85 },
 };
 
-/** Shows its children from a beat onward (and hides them again when the scene restarts). */
+/** Shows its children from a beat onward (and hides them again when the scene restarts). In the column layout a hidden element takes no room. */
 export function Show({ on, from = "up", delay = 0, children, className }: { on: boolean; from?: From; delay?: number; children: ReactNode; className?: string }) {
   const reduced = useReducedMotion();
+  const compact = useCompact();
   const off = { opacity: 0, x: 0, y: 0, scale: 1, ...OFF[from] };
+  if (compact) {
+    return (
+      <AnimatePresence initial={false}>
+        {on && (
+          <motion.div
+            className={className}
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, height: 0, marginTop: 0, overflow: "hidden" }}
+            transition={reduced ? { duration: 0 } : { duration: 0.4, ease: EASE.outQuart, delay }}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
   return (
     <motion.div
       className={className}
@@ -143,6 +198,8 @@ export function Widget({
 
 /** A pointer that glides to a canvas point and clicks when `click` turns true. */
 export function Cursor({ x, y, click, show = true }: { x: number; y: number; click?: boolean; show?: boolean }) {
+  const compact = useCompact();
+  if (compact) return null;
   return (
     <motion.div
       className="pointer-events-none absolute left-0 top-0 z-[60]"
@@ -188,7 +245,8 @@ export function Toast({ on, icon: Icon, children, tone = "ink" }: { on: boolean;
 /** A dot that travels from one canvas point to another, again and again while `on`. */
 export function Packet({ from, to, on, color = "var(--color-gc-royal)", duration = 1.1, delay = 0 }: { from: [number, number]; to: [number, number]; on: boolean; color?: string; duration?: number; delay?: number }) {
   const reduced = useReducedMotion();
-  if (!on || reduced) return null;
+  const compact = useCompact();
+  if (!on || reduced || compact) return null;
   return (
     <motion.span
       aria-hidden
@@ -203,6 +261,8 @@ export function Packet({ from, to, on, color = "var(--color-gc-royal)", duration
 
 /** A dashed connector between two canvas points; the dashes run while `on`. */
 export function Wire({ from, to, on, curve = 0 }: { from: [number, number]; to: [number, number]; on: boolean; curve?: number }) {
+  const compact = useCompact();
+  if (compact) return null;
   const mx = (from[0] + to[0]) / 2;
   const my = (from[1] + to[1]) / 2 - curve;
   return (

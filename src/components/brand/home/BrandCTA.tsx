@@ -8,9 +8,10 @@ import { GcButton, Panel } from "../primitives";
 
 /**
  * Section 11 — the final call to action, on the existing RoyalBlue →
- * DeepSkyBlue ground over the parcels photograph. One action: Book a Demo.
- * (The WhatsApp button is left off the homepage while the contact number is
- * sample data.)
+ * DeepSkyBlue ground over the parcels photograph. Two actions, the same two
+ * the hero and the start steps offer: Book a Demo, Start free trial. No new
+ * claims. (The WhatsApp button is left off the homepage while the contact
+ * number is sample data.)
  */
 export function BrandCTA() {
   const { t, L } = useI18n();
@@ -31,7 +32,7 @@ export function BrandCTA() {
         <h2 className="text-gc-h2 text-white">{L(FINAL_CTA.title)}</h2>
         <p className="mx-auto mt-6 max-w-xl text-gc-lead text-white/85">{L(FINAL_CTA.body)}</p>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
           <GcButton
             href="/contact?topic=demo"
             variant="white"
@@ -41,6 +42,15 @@ export function BrandCTA() {
             onClick={() => trackEvent("demo_requested", { source: "final_cta" })}
           >
             {t.common.bookDemo}
+          </GcButton>
+          <GcButton
+            href="/signup"
+            variant="onDark"
+            size="lg"
+            className="w-full sm:w-auto"
+            onClick={() => trackEvent("start_free_clicked", { source: "final_cta" })}
+          >
+            {L(FINAL_CTA.trial)}
           </GcButton>
         </div>
         <p className="mt-5 text-gc-small font-medium text-white/85">{L(FINAL_CTA.support)}</p>

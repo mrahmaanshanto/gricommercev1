@@ -11,23 +11,16 @@ import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { readLive, subscribeLive } from "@/lib/live";
 import { EASE, HERO_STAGGER, heroDelay } from "@/lib/motion";
-import { Counter } from "./shared";
-import { useCards } from "./HeroGallery";
+import { HeroScene } from "../scenes/HeroScene";
 
 const CLIENTS = ["merchant-boutique-owner", "merchant-skincare-live", "merchant-warehouse-scan", "merchant-cosmetics"];
 
 /**
- * The homepage hero (hero 9 in the hero preview; the default). The left column has the headline with the chart
- * chip, body, dark and light buttons and an animated proof row; on the right the current
- * hero's module widgets, in two columns that scroll up in a slight 3D tilt
- * with soft fades.
+ * The homepage hero: the headline, body, buttons and proof row on the left; on the right one introductory
+ * demonstration (scenes/HeroScene): a customer message becomes an order, and the order gathers its stock,
+ * courier and payment status. The final frame holds the connected card.
  */
 export function HomeHero() {
-  const cards = useCards();
-  const columns = [cards.filter((_, i) => i % 2 === 0), cards.filter((_, i) => i % 2 === 1)];
-  // the columns loop by repeating their cards; the repeat is only needed once they move (first interaction)
-  const live = useSyncExternalStore(subscribeLive, readLive, () => false);
-
   return (
     <section className="px-3 pt-3 sm:px-4 sm:pt-4 md:px-6">
       {/* The two soft glows are background layers, not boxes: they cannot shift when the web font swaps in. */}
@@ -40,35 +33,10 @@ export function HomeHero() {
             "linear-gradient(to bottom right, #FFFFFF, #F4F8FF, #EAF2FE)",
         }}
       >
-        <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 pb-8 pt-12 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6 lg:py-0">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-5 pb-10 pt-12 md:px-8 lg:grid-cols-[1fr_1fr] lg:gap-12 lg:py-16">
           <FeedCopy />
-
-          {/* The widgets, scrolling up in a slight tilt */}
-          <div aria-hidden className="relative h-[440px] min-w-0 sm:h-[520px] lg:h-[660px] [perspective:1400px]">
-            <div
-              className="absolute inset-0 overflow-hidden"
-              style={{
-                maskImage: "linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
-              }}
-            >
-              <div className="mx-auto grid w-full max-w-[360px] grid-cols-2 gap-3 [transform:rotateX(6deg)_rotateY(-5deg)_rotateZ(1deg)] [transform-style:preserve-3d] sm:max-w-[400px] lg:max-w-[420px] lg:gap-4 lg:[transform:rotateX(10deg)_rotateY(-12deg)_rotateZ(2deg)]">
-                {columns.map((col, c) => (
-                  <div key={c} className={cn("min-w-0", c === 1 && "pt-20")}>
-                    <div
-                      className="gc-marquee-y flex flex-col items-center gap-3 pb-3 lg:gap-4 lg:pb-4"
-                      style={{ ["--gc-marquee-duration" as string]: c ? "34s" : "28s" }}
-                    >
-                      {(live ? [...col, ...col] : col).map((card, i) => (
-                        <div key={`${card.key}-${i}`} className="w-full [&>*]:!w-full">
-                          {card.node}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="min-w-0 hero-rise" style={heroDelay(HERO_STAGGER.actions)}>
+            <HeroScene />
           </div>
         </div>
       </div>
@@ -83,12 +51,6 @@ export function FeedCopy({ pill = false }: { pill?: boolean }) {
   const F = V.feed;
   // the loops (avatar bounce, ring pulse) start on the visitor's first interaction (lib/live.ts)
   const live = useSyncExternalStore(subscribeLive, readLive, () => false);
-  // Count the businesses up from zero once the row has appeared.
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const t = window.setTimeout(() => setCount(100), reduced ? 0 : 900);
-    return () => window.clearTimeout(t);
-  }, [reduced]);
   return (
     <div className="min-w-0 lg:py-20">
       {pill && (
@@ -167,12 +129,8 @@ export function FeedCopy({ pill = false }: { pill?: boolean }) {
               +
             </motion.span>
           </div>
-          <div>
-            <p className="text-[1.125rem] font-bold leading-none tabular-nums text-gc-ink">
-              <Counter value={count} duration={1.6} />+
-            </p>
-            <p className="mt-1 text-[0.75rem] font-medium text-gc-ink-60">{L(F.businesses)}</p>
-          </div>
+          {/* No customer count until there is a real one to cite (docs/homepage-storyboard.md › facts needed). */}
+          <p className="max-w-[11rem] text-[0.8125rem] font-semibold leading-snug text-gc-ink">{L(F.businesses)}</p>
         </div>
         <span aria-hidden className="hidden h-10 w-px bg-gc-line sm:block" />
         <ProofTicker />
